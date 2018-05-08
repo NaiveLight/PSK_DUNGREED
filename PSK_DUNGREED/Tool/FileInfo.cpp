@@ -68,7 +68,6 @@ void CFileInfo::DirInfoExtraction(const std::wstring & wstrPath, std::list<IMGPA
 			pImgPath->wstrPath = ConvertRelativePath(szBuf);
 
 			PathRemoveFileSpec(szBuf);
-			//szBuf[0] = szBuf[0] - 'A' + 'a';
 			pImgPath->wstrStateKey = PathFindFileName(szBuf);
 
 			PathRemoveFileSpec(szBuf);
@@ -83,5 +82,19 @@ void CFileInfo::DirInfoExtraction(const std::wstring & wstrPath, std::list<IMGPA
 
 int CFileInfo::DirFileCount(const std::wstring & wstrPath)
 {
-	return 0;
+	std::wstring		wstrTemp = wstrPath + L"\\*.png";
+
+	CFileFind	Find;
+	Find.FindFile(wstrTemp.c_str());
+
+	int		iFileCount = 0;
+	int		iContinue = 1;
+
+	while (iContinue)
+	{
+		iContinue = Find.FindNextFile();
+		if (!Find.IsDirectory())
+			++iFileCount;
+	}
+	return iFileCount;
 }

@@ -5,6 +5,7 @@
 #include "Tool.h"
 #include "PathFind.h"
 #include "afxdialogex.h"
+#include "FileInfo.h"
 
 
 // CPathFind 대화 상자입니다.
@@ -40,19 +41,87 @@ END_MESSAGE_MAP()
 
 void CPathFind::OnDropFiles(HDROP hDropInfo)
 {
-	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	UpdateData(TRUE);
 
+	int		iFileCount = DragQueryFile(hDropInfo, -1, nullptr, 0);
+	TCHAR	szFullPath[MAX_PATH] = L"";
+
+	CFileInfo		FileInfo;
+
+	for (int i = 0; i < iFileCount; ++i)
+	{
+		DragQueryFile(hDropInfo, i, szFullPath, MAX_PATH);
+		FileInfo.DirInfoExtraction(szFullPath, m_PathInfolist);
+
+		std::wstring		wstrCombined = L"";
+		TCHAR		szBuf[128] = L"";
+
+		for (auto& iter : m_PathInfolist)
+		{
+			_itow_s(iter->iCount, szBuf, 10);
+
+			wstrCombined = iter->wstrObjKey + L"|" + iter->wstrStateKey + L"|";
+			wstrCombined += szBuf;
+			wstrCombined += L"|" + iter->wstrPath;
+
+			m_ListBox.AddString(wstrCombined.c_str());
+		}
+	}
+
+	UpdateData(FALSE);
 }
 
 void CPathFind::OnBnClickedSave()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	std::wofstream		SaveFile;
+	SaveFile.open(L"../Data/ImgPath.txt", std::ios::out);
+
+	int		iCount = 0;
+	for (auto& iter : m_PathInfolist)
+	{
+		++iCount;
+		SaveFile << iter->wstrObjKey << L"|";
+		SaveFile << iter->wstrStateKey << L"|";
+		SaveFile << iter->iCount << L"|";
+
+		if (iCount == m_PathInfolist.size())
+			SaveFile << iter->wstrPath << std::flush;
+		else
+			SaveFile << iter->wstrPath << std::endl;
+	}
+	SaveFile.close();
 }
 
 
 void CPathFind::OnBnClickedLoad()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+	std::wifstream		LoadFile;
+	LoadFile.open(L"../Data/ImgPath.txt", std::ios::in);
+
+	TCHAR		szObjKey[128] = L"";
+	TCHAR		szStateKey[128] = L"";
+	TCHAR		szCount[128] = L"";
+	TCHAR		szImgPath[MAX_PATH] = L"";
+
+	std::wstring		wstrCombined = L"";
+	m_ListBox.ResetContent();
+
+	while (!LoadFile.eof())
+	{
+		LoadFile.getline(szObjKey, 128, '|');
+		LoadFile.getline(szStateKey, 128, '|');
+		LoadFile.getline(szCount, 128, '|');
+		LoadFile.getline(szImgPath, MAX_PATH);
+
+		wstrCombined = std::wstring(szObjKey) + L"|" + std::wstring(szStateKey) + L"|";
+		wstrCombined += szCount;
+		wstrCombined += L"|" + std::wstring(szImgPath);
+
+		m_ListBox.AddString(wstrCombined.c_str());
+	}
+	LoadFile.close();
+	UpdateData(FALSE);
 }
 
 

@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Headers", "Headers", "{94C9
 		Headers\Enum.h = Headers\Enum.h
 		Headers\Extern.h = Headers\Extern.h
 		Headers\Function.h = Headers\Function.h
+		Data\ImgPath.txt = Data\ImgPath.txt
 		Headers\Include.h = Headers\Include.h
 		Headers\Singleton.h = Headers\Singleton.h
 		Headers\Struct.h = Headers\Struct.h

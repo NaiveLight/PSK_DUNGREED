@@ -4,6 +4,8 @@
 
 // CPathFind 대화 상자입니다.
 
+#include "Include.h"
+
 class CPathFind : public CDialog
 {
 	DECLARE_DYNAMIC(CPathFind)
@@ -26,5 +28,9 @@ public:
 	afx_msg void OnBnClickedSave();
 	afx_msg void OnBnClickedLoad();
 	afx_msg void OnBnClickedDelete();
+
+private:
+	std::list<IMGPATH*>		m_PathInfolist;
+public:
 	CListBox m_ListBox;
 };
