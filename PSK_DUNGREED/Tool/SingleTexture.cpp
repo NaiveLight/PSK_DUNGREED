@@ -12,12 +12,12 @@ CSingleTexture::~CSingleTexture()
 	Release();
 }
 
-const TEXINFO * CSingleTexture::GetTexture(const std::wstring & wstrStateKey = L"", const int & iCount = 0)
+const TEXINFO * CSingleTexture::GetTexture(const std::wstring & wstrStateKey /*= L""*/, const int & iCount /*= 0*/)
 {
 	return m_pTexInfo;
 }
 
-HRESULT CSingleTexture::InsertTexture(const std::wstring & wstrFilePath, const std::wstring & wstrStateKey = L"", const int & iCount = 0)
+HRESULT CSingleTexture::InsertTexture(const std::wstring & wstrFilePath, const std::wstring & wstrStateKey /*= L""*/, const int & iCount /*= 0*/)
 {
 	m_pTexInfo = new TEXINFO;
 	ZeroMemory(m_pTexInfo, sizeof(TEXINFO));
