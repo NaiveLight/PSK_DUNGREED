@@ -18,7 +18,6 @@ typedef struct tagMapObject
 {
 	D3DXVECTOR3 vPos;
 	int iCount;
-	TCHAR szObjKey[128] = {};
 	TCHAR szStateKey[128] = {};
 }MAPOBJ;
 

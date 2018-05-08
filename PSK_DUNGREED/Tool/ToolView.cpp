@@ -12,6 +12,8 @@
 #include "ToolDoc.h"
 #include "ToolView.h"
 #include "MainFrm.h"
+#include "ToolForm.h"
+#include "MapTool.h"
 
 #include "Include.h"
 #include "Device.h"
@@ -33,6 +35,9 @@ BEGIN_MESSAGE_MAP(CToolView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 	ON_WM_KEYDOWN()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CToolView 생성/소멸
@@ -193,4 +198,44 @@ void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 
 	CScrollView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	D3DXVECTOR3		vMouse = D3DXVECTOR3(float(point.x) + GetScrollPos(0)	, float(point.y) + GetScrollPos(1), 0.f);
+
+	if (m_bTilePicking)
+	{
+		m_wstrStateKey = ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_wstrStateKey;
+		m_byOption = ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_byOption;
+		m_byDrawID = ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_byDrawID;
+		m_pScene->TileChange(vMouse, m_wstrStateKey, m_byOption, m_byDrawID);
+	}
+	else
+	{
+		m_wstrStateKey = ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_wstrStateKey;
+		m_iCount= ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_iCount;
+		m_pScene->InsertMapObj(vMouse, m_wstrStateKey, m_iCount);
+		std::cout << m_pScene->GetVecMapObj()->size() << std::endl;
+	}
+
+	CScrollView::OnLButtonDown(nFlags, point);
+}
+
+
+void CToolView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	CScrollView::OnMouseMove(nFlags, point);
+}
+
+
+void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	m_pScene->DeleteLastestMapObj();
+
+	CScrollView::OnRButtonDown(nFlags, point);
 }

@@ -3,6 +3,7 @@
 
 #include "MainFrm.h"
 #include "ToolView.h"
+#include "ObjView.h"
 #include "Device.h"
 #include "TextureManager.h"
 
@@ -145,6 +146,28 @@ void CScene::ColliderRender()
 
 void CScene::MapObjRender()
 {
+	D3DXMATRIX		matTrans;
+
+	for (int i = 0; i < m_vecMapObj.size(); ++i)
+	{
+		const TEXINFO*		pTexInfo = TextureManager->GetTexture(L"OBJECT", m_vecMapObj[i]->szStateKey, m_vecMapObj[i]->iCount);
+		if (pTexInfo == nullptr)
+			return;
+
+		float fDiffX = pTexInfo->tImgInfo.Width * 0.5f - TILECX * 0.5f;
+		float fDiffY = pTexInfo->tImgInfo.Height * 0.5f - TILECY * 0.5f;
+
+		D3DXMatrixTranslation(&matTrans
+			, m_vecMapObj[i]->vPos.x + fDiffX - m_pMainView->GetScrollPos(0)
+			, m_vecMapObj[i]->vPos.y - fDiffY - m_pMainView->GetScrollPos(1)
+			, 0.f);
+		m_pSprite->SetTransform(&matTrans);
+		m_pSprite->Draw(pTexInfo->pTexture
+			, nullptr
+			, &D3DXVECTOR3(pTexInfo->tImgInfo.Width * 0.5f, pTexInfo->tImgInfo.Height * 0.5f, 0.f)
+			, nullptr
+			, D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
 
 void CScene::MiniViewRender()
@@ -163,8 +186,8 @@ void CScene::MiniViewRender()
 
 			D3DXMatrixScaling(&matScale, 0.3f, 0.3f, 0.f);
 			D3DXMatrixTranslation(&matTrans
-				, m_vecTile[iIndex]->vPos.x * 0.3f
-				, m_vecTile[iIndex]->vPos.y * 0.3f
+				, (m_vecTile[iIndex]->vPos.x - m_pMainView->GetScrollPos(0)) * 0.3f
+				, (m_vecTile[iIndex]->vPos.y - m_pMainView->GetScrollPos(1)) * 0.3f
 				, 0.f);
 
 			matWorld = matScale * matTrans;
@@ -177,10 +200,42 @@ void CScene::MiniViewRender()
 				, D3DCOLOR_ARGB(255, 255, 255, 255));
 		}
 	}
+
+	for (int i = 0; i < m_vecMapObj.size(); ++i)
+	{
+		const TEXINFO*		pTexInfo = TextureManager->GetTexture(L"OBJECT", m_vecMapObj[i]->szStateKey, m_vecMapObj[i]->iCount);
+		if (pTexInfo == nullptr)
+			return;
+
+		float fDiffX = pTexInfo->tImgInfo.Width * 0.5f - TILECX * 0.5f;
+		float fDiffY = pTexInfo->tImgInfo.Height * 0.5f - TILECY * 0.5f;
+
+		D3DXMatrixScaling(&matScale, 0.3f, 0.3f, 0.f);
+		D3DXMatrixTranslation(&matTrans
+			, (m_vecMapObj[i]->vPos.x + fDiffX - m_pMainView->GetScrollPos(0)) * 0.3f
+			, (m_vecMapObj[i]->vPos.y - fDiffY - m_pMainView->GetScrollPos(1)) * 0.3f
+			, 0.f);
+
+		matWorld = matScale * matTrans;
+
+		m_pSprite->SetTransform(&matWorld);
+		m_pSprite->Draw(pTexInfo->pTexture
+			, nullptr
+			, &D3DXVECTOR3(pTexInfo->tImgInfo.Width * 0.5f, pTexInfo->tImgInfo.Height * 0.5f, 0.f)
+			, nullptr
+			, D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
 
 void CScene::ObjViewRender()
 {
+	RECT rc = {};
+
+	((CMainFrame*)AfxGetMainWnd())->m_pObjView->GetWindowRect(&rc);
+
+	float fX = float(rc.right - rc.left);
+	float fY = float(rc.bottom - rc.top);
+
 	if (m_bisTile)
 	{
 		if (m_pCurTile == nullptr)
@@ -198,7 +253,7 @@ void CScene::ObjViewRender()
 			fScale = 0.3f;
 
 		D3DXMatrixScaling(&matScale, fScale, fScale, 0.f);
-		D3DXMatrixTranslation(&matTrans	, m_pCurTile->vPos.x * fScale, m_pCurTile->vPos.y * fScale, 0.f);
+		D3DXMatrixTranslation(&matTrans	, (fX * 0.5f)* fScale, (fX * 0.5f)* fScale, 0.f);
 
 		matWorld = matScale * matTrans;
 
@@ -216,7 +271,7 @@ void CScene::ObjViewRender()
 
 		D3DXMATRIX matWorld, matScale, matTrans;
 
-		const TEXINFO*		pTexInfo = TextureManager->GetTexture(m_pCurMapObj->szObjKey, m_pCurMapObj->szStateKey, m_pCurMapObj->iCount);
+		const TEXINFO*		pTexInfo = TextureManager->GetTexture(L"OBJECT", m_pCurMapObj->szStateKey, m_pCurMapObj->iCount);
 		if (pTexInfo == nullptr)
 			return;
 
@@ -226,7 +281,7 @@ void CScene::ObjViewRender()
 			fScale = 0.3f;
 
 		D3DXMatrixScaling(&matScale, fScale, fScale, 0.f);
-		D3DXMatrixTranslation(&matTrans, m_pCurTile->vPos.x * fScale, m_pCurTile->vPos.y * fScale, 0.f);
+		D3DXMatrixTranslation(&matTrans, (fX * 0.5f)* fScale, (fY * 0.5f)* fScale, 0.f);
 
 		matWorld = matScale * matTrans;
 
@@ -262,16 +317,20 @@ void CScene::TileChange(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKe
 	lstrcpy(m_vecTile[iIndex]->szStateKey, wstrStateKey.c_str());
 }
 
-void CScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrObjKey, const std::wstring& wstrStateKey, const int& iCount)
+void CScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKey, const int& iCount)
 {
 	int	iIndex = Picking(vPos);
+	if (iIndex == -1)
+		return;
 
 	D3DXVECTOR3 vTempPos = m_vecTile[iIndex]->vPos;
 	
+	//vTempPos.x -= ;
+	//vTempPos.y -= ;
+
 	MAPOBJ* pMapObj = new MAPOBJ;
 
 	pMapObj->vPos = vTempPos;
-	lstrcpy(pMapObj->szObjKey, wstrObjKey.c_str());
 	lstrcpy(pMapObj->szStateKey, wstrStateKey.c_str());
 	pMapObj->iCount = iCount;
 
@@ -299,7 +358,7 @@ void CScene::CreateTileMap(int iTileX, int iTileY)
 			pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
 			pTile->byOption = 0;
 			pTile->byDrawID = 0;
-			lstrcpy(pTile->szStateKey, L"Default");
+			lstrcpy(pTile->szStateKey, L"Dungeon");
 
 			m_vecTile.push_back(pTile);
 		}

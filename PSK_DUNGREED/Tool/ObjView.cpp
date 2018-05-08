@@ -6,6 +6,9 @@
 #include "ObjView.h"
 
 #include "Device.h"
+#include "MainFrm.h"
+#include "ToolView.h"
+#include "Scene.h"
 // CObjView
 
 IMPLEMENT_DYNCREATE(CObjView, CView)
@@ -29,9 +32,13 @@ void CObjView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	// TODO: 여기에 그리기 코드를 추가합니다.
+
+	CScene*	pScene = ((CMainFrame*)AfxGetMainWnd())->m_pMainView->m_pScene;
+
 	Device->BeginDraw();
 
 	// Rendering Section
+	pScene->ObjViewRender();
 
 	Device->EndDraw(m_hWnd);
 }

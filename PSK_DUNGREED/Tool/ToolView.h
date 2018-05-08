@@ -26,7 +26,13 @@ public:
 
 public:
 	CScene* m_pScene = nullptr;
+	bool			m_bTilePicking = true;
 
+public:
+	std::wstring m_wstrStateKey = L"";
+	BYTE m_byOption = 0;
+	BYTE m_byDrawID = 0;
+	int m_iCount = 0;
 
 // 재정의입니다.
 public:
@@ -54,6 +60,9 @@ public:
 	virtual void OnInitialUpdate();
 	virtual void PostNcDestroy();
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전

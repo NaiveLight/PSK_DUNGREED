@@ -93,11 +93,11 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 
 	m_SecondSplitter.CreateStatic(&m_MainSplitter, 3, 1, WS_CHILD | WS_VISIBLE
 		, m_MainSplitter.IdFromRowCol(0, 0));
-	m_SecondSplitter.CreateView(0, 0, RUNTIME_CLASS(CMiniView), CSize(300, 300), pContext);
-	m_SecondSplitter.CreateView(1, 0, RUNTIME_CLASS(CObjView), CSize(300, 300), pContext);
-	m_SecondSplitter.CreateView(2, 0, RUNTIME_CLASS(CToolForm), CSize(300, 300), pContext);
+	m_SecondSplitter.CreateView(0, 0, RUNTIME_CLASS(CMiniView), CSize(320, 240), pContext);
+	m_SecondSplitter.CreateView(1, 0, RUNTIME_CLASS(CObjView), CSize(320, 240), pContext);
+	m_SecondSplitter.CreateView(2, 0, RUNTIME_CLASS(CToolForm), CSize(320, 300), pContext);
 
-	m_MainSplitter.SetColumnInfo(0, 300, 50);
+	m_MainSplitter.SetColumnInfo(0, 320, 50);
 	m_pMainView = (CToolView*)m_MainSplitter.GetPane(0, 1);
 	m_pMiniView = (CMiniView*)m_SecondSplitter.GetPane(0, 0);
 	m_pObjView = (CObjView*)m_SecondSplitter.GetPane(1, 0);
