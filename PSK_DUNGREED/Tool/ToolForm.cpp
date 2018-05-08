@@ -26,6 +26,8 @@ void CToolForm::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CToolForm, CFormView)
+	ON_BN_CLICKED(IDC_BUTTON1, &CToolForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON2, &CToolForm::OnBnClickedPathFind)
 END_MESSAGE_MAP()
 
 
@@ -47,3 +49,15 @@ void CToolForm::Dump(CDumpContext& dc) const
 
 
 // CToolForm 메시지 처리기입니다.
+
+
+void CToolForm::OnBnClickedMapTool()
+{
+
+}
+
+
+void CToolForm::OnBnClickedPathFind()
+{
+
+}

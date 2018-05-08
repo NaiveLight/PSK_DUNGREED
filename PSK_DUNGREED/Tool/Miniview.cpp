@@ -9,24 +9,24 @@
 
 // CMiniview
 
-IMPLEMENT_DYNCREATE(CMiniview, CView)
+IMPLEMENT_DYNCREATE(CMiniView, CView)
 
-CMiniview::CMiniview()
+CMiniView::CMiniView()
 {
 
 }
 
-CMiniview::~CMiniview()
+CMiniView::~CMiniView()
 {
 }
 
-BEGIN_MESSAGE_MAP(CMiniview, CView)
+BEGIN_MESSAGE_MAP(CMiniView, CView)
 END_MESSAGE_MAP()
 
 
 // CMiniview 그리기입니다.
 
-void CMiniview::OnDraw(CDC* pDC)
+void CMiniView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	// TODO: 여기에 그리기 코드를 추가합니다.
@@ -42,13 +42,13 @@ void CMiniview::OnDraw(CDC* pDC)
 // CMiniview 진단입니다.
 
 #ifdef _DEBUG
-void CMiniview::AssertValid() const
+void CMiniView::AssertValid() const
 {
 	CView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
-void CMiniview::Dump(CDumpContext& dc) const
+void CMiniView::Dump(CDumpContext& dc) const
 {
 	CView::Dump(dc);
 }

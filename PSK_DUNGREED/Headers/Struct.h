@@ -11,13 +11,16 @@ typedef struct tagTile
 	D3DXVECTOR3 vPos;
 	BYTE byOption;
 	BYTE byDrawID;
-	TCHAR szStateKey[10] = {};
+	TCHAR szStateKey[128] = {};
 }TILE;
 
 typedef struct tagMapObject
 {
 	D3DXVECTOR3 vPos;
-};
+	int iCount;
+	TCHAR szObjKey[128] = {};
+	TCHAR szStateKey[128] = {};
+}MAPOBJ;
 
 typedef struct tagData
 {

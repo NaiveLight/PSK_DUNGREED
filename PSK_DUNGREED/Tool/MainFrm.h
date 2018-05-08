@@ -4,6 +4,10 @@
 
 #pragma once
 
+class CToolView;
+class CMiniView;
+class CObjView;
+class CToolForm;
 class CMainFrame : public CFrameWnd
 {
 	
@@ -38,6 +42,17 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	DECLARE_MESSAGE_MAP()
 
+	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+
+public:
+	CSplitterWnd	m_MainSplitter;
+	CSplitterWnd	m_SecondSplitter;
+
+public:
+	CToolView*	m_pMainView = nullptr;
+	CMiniView*	m_pMiniView = nullptr;
+	CObjView*		m_pObjView = nullptr;
+	CToolForm*	m_pToolForm = nullptr;
 };
 
 

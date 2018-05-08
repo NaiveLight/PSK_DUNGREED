@@ -25,17 +25,11 @@
     <Filter Include="소스 파일\03.View">
       <UniqueIdentifier>{8f07aee5-4910-4378-bfe0-9a2fe2b2d1bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\04.Object">
-      <UniqueIdentifier>{233a5d68-4518-4530-814c-c16d373286e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\05.Manager">
       <UniqueIdentifier>{3397face-0c66-49c5-b6c4-42d444403381}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\99.Default">
       <UniqueIdentifier>{a26d26b0-e42b-4bd2-bb5d-e0110968618f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="98.Headers">
-      <UniqueIdentifier>{088870ab-94f8-4a4c-8864-2f676589cf13}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\05.Manager\00.Device">
       <UniqueIdentifier>{042f57a8-770e-47a4-804b-61faf207e3a6}</UniqueIdentifier>
@@ -64,8 +58,14 @@
     <Filter Include="소스 파일\02.Dlg\00.MapTool">
       <UniqueIdentifier>{a8c6a7d0-f7b8-4763-8edf-0b41720c1044}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Dlg\01.ObjTool">
+    <Filter Include="소스 파일\02.Dlg\01.PathFind">
       <UniqueIdentifier>{eb807f61-6f92-4a67-b496-e84d23f2247a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Scene">
+      <UniqueIdentifier>{233a5d68-4518-4530-814c-c16d373286e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.View\03.ObjView">
+      <UniqueIdentifier>{bf654a15-c038-4726-90f2-8978119165ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,18 @@
     <ClInclude Include="ToolForm.h">
       <Filter>소스 파일\03.View\02.ToolForm</Filter>
     </ClInclude>
+    <ClInclude Include="MapTool.h">
+      <Filter>소스 파일\02.Dlg\00.MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFind.h">
+      <Filter>소스 파일\02.Dlg\01.PathFind</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\04.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjView.h">
+      <Filter>소스 파일\03.View\03.ObjView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -148,6 +160,18 @@
     </ClCompile>
     <ClCompile Include="ToolForm.cpp">
       <Filter>소스 파일\03.View\02.ToolForm</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTool.cpp">
+      <Filter>소스 파일\02.Dlg\00.MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFind.cpp">
+      <Filter>소스 파일\02.Dlg\01.PathFind</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\04.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjView.cpp">
+      <Filter>소스 파일\03.View\03.ObjView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

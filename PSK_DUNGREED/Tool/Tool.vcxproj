@@ -191,9 +191,13 @@
   <ItemGroup>
     <ClInclude Include="Device.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MapTool.h" />
     <ClInclude Include="Miniview.h" />
     <ClInclude Include="MultiTexture.h" />
+    <ClInclude Include="ObjView.h" />
+    <ClInclude Include="PathFind.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="SingleTexture.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -207,8 +211,12 @@
   <ItemGroup>
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MapTool.cpp" />
     <ClCompile Include="Miniview.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
+    <ClCompile Include="ObjView.cpp" />
+    <ClCompile Include="PathFind.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

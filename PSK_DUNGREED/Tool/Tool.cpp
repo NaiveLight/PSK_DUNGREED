@@ -10,6 +10,7 @@
 
 #include "ToolDoc.h"
 #include "ToolView.h"
+#include "Miniview.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
