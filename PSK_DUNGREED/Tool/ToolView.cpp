@@ -63,17 +63,11 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
-	m_pDevice->Clear(0, nullptr
-		, D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET
-		, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
-	m_pDevice->BeginScene();
-	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+	Device->BeginDraw();
 
 	// Rendering Section
 
-	m_pSprite->End();
-	m_pDevice->EndScene();
-	m_pDevice->Present(nullptr, nullptr, m_hWnd, nullptr);
+	Device->EndDraw(m_hWnd);
 }
 
 
@@ -125,7 +119,7 @@ void CToolView::OnInitialUpdate()
 	CScrollView::OnInitialUpdate();
 
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
-
+	g_hWnd = m_hWnd;
 
 	SetScrollSizes(MM_TEXT, CSize(TILECX * TILEX, TILECY * TILEY));
 

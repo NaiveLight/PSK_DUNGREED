@@ -77,6 +77,20 @@ HRESULT CDevice::Initialize()
 	return S_OK;
 }
 
+void CDevice::BeginDraw()
+{
+	m_pDevice->Clear(0, nullptr , D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
+	m_pDevice->BeginScene();
+	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+}
+
+void CDevice::EndDraw(HWND hWnd)
+{
+	m_pSprite->End();
+	m_pDevice->EndScene();
+	m_pDevice->Present(nullptr, nullptr, hWnd, nullptr);
+}
+
 void CDevice::SetParameters(D3DPRESENT_PARAMETERS & d3dpp)
 {
 	d3dpp.BackBufferWidth = WINCX;

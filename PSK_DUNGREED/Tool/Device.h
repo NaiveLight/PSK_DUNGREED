@@ -17,6 +17,10 @@ public:
 public:
 	HRESULT Initialize();
 
+public:
+	void BeginDraw();
+	void EndDraw(HWND hWnd);
+
 private:
 	void SetParameters(D3DPRESENT_PARAMETERS& d3dpp);
 	void Release();

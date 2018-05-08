@@ -1,5 +1,24 @@
 #pragma once
 
+typedef struct tagTexture
+{
+	LPDIRECT3DTEXTURE9 pTexture = nullptr;
+	D3DXIMAGE_INFO tImgInfo = {};
+}TEXINFO;
+
+typedef struct tagTile
+{
+	D3DXVECTOR3 vPos;
+	BYTE byOption;
+	BYTE byDrawID;
+	TCHAR szStateKey[10] = {};
+}TILE;
+
+typedef struct tagMapObject
+{
+	D3DXVECTOR3 vPos;
+};
+
 typedef struct tagData
 {
 	int		iLevel;
@@ -38,21 +57,6 @@ typedef struct tagInfo
 	D3DXMATRIX matWorld;
 }INFO;
 
-typedef struct tagTexture
-{
-	LPDIRECT3DTEXTURE9 pTexture = nullptr;
-	D3DXIMAGE_INFO tImgInfo = {};
-}TEXINFO;
-
-typedef struct tagTile
-{
-	D3DXVECTOR3 vPos;
-	D3DXVECTOR3 vSize;
-	BYTE byOption;
-	BYTE byDrawID;
-	TCHAR szStateKey[10] = {};
-}TILE;
-
 typedef struct tagUnitData
 {
 	int iHp = 0;
@@ -76,15 +80,3 @@ typedef struct tagAStarNode
 	int				iIndex;
 	float			fCost;
 }NODE;
-
-typedef struct tagVertexTexture
-{
-	D3DXVECTOR3		vPos;
-	D3DXVECTOR2		vTex;
-}VTXTEX;
-const DWORD VTXFVF_TEX = D3DFVF_XYZ | D3DFVF_TEX1;
-
-typedef struct tagIndex
-{
-	DWORD		_1, _2, _3;
-}INDEX;

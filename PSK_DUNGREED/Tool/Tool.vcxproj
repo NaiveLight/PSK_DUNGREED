@@ -191,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="Device.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Miniview.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTexture.h" />
@@ -200,11 +201,13 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Tool.h" />
     <ClInclude Include="ToolDoc.h" />
+    <ClInclude Include="ToolForm.h" />
     <ClInclude Include="ToolView.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="Miniview.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -217,6 +220,7 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tool.cpp" />
     <ClCompile Include="ToolDoc.cpp" />
+    <ClCompile Include="ToolForm.cpp" />
     <ClCompile Include="ToolView.cpp" />
   </ItemGroup>
   <ItemGroup>

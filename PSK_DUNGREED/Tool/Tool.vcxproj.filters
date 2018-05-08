@@ -52,6 +52,21 @@
     <Filter Include="소스 파일\05.Manager\01.TextureManager\Texture\MultiTexture">
       <UniqueIdentifier>{3d51bd12-fa30-4eaf-bf02-757ab44e1b99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03.View\00.MainView">
+      <UniqueIdentifier>{6cb7d614-628e-4e05-aa70-d47371b45297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.View\01.MiniView">
+      <UniqueIdentifier>{fe96938c-b5bf-4e5e-8c5b-a2b4e8602a5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.View\02.ToolForm">
+      <UniqueIdentifier>{7858a093-e678-4736-a63b-871ba1636afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Dlg\00.MapTool">
+      <UniqueIdentifier>{a8c6a7d0-f7b8-4763-8edf-0b41720c1044}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Dlg\01.ObjTool">
+      <UniqueIdentifier>{eb807f61-6f92-4a67-b496-e84d23f2247a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,9 +87,6 @@
     <ClInclude Include="ToolDoc.h">
       <Filter>소스 파일\99.Default</Filter>
     </ClInclude>
-    <ClInclude Include="ToolView.h">
-      <Filter>소스 파일\03.View</Filter>
-    </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>소스 파일\05.Manager\00.Device</Filter>
     </ClInclude>
@@ -90,6 +102,15 @@
     <ClInclude Include="TextureManager.h">
       <Filter>소스 파일\05.Manager\01.TextureManager</Filter>
     </ClInclude>
+    <ClInclude Include="ToolView.h">
+      <Filter>소스 파일\03.View\00.MainView</Filter>
+    </ClInclude>
+    <ClInclude Include="Miniview.h">
+      <Filter>소스 파일\03.View\01.MiniView</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolForm.h">
+      <Filter>소스 파일\03.View\02.ToolForm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -103,9 +124,6 @@
     </ClCompile>
     <ClCompile Include="ToolDoc.cpp">
       <Filter>소스 파일\99.Default</Filter>
-    </ClCompile>
-    <ClCompile Include="ToolView.cpp">
-      <Filter>소스 파일\03.View</Filter>
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>소스 파일\05.Manager\00.Device</Filter>
@@ -121,6 +139,15 @@
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>소스 파일\05.Manager\01.TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolView.cpp">
+      <Filter>소스 파일\03.View\00.MainView</Filter>
+    </ClCompile>
+    <ClCompile Include="Miniview.cpp">
+      <Filter>소스 파일\03.View\01.MiniView</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolForm.cpp">
+      <Filter>소스 파일\03.View\02.ToolForm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
