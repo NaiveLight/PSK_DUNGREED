@@ -10,10 +10,14 @@ public:
 	virtual ~CTextureManager();
 
 public:
+	const TEXINFO* GetTexture(const std::wstring& wstrObjKey, const std::wstring& wstrStateKey = L"", const int& iCount = 0);
+
+public:
 	const TEXINFO* InsertTexture(const std::wstring& wstrObjKey, const std::wstring& wstrStateKey = L"", const int& iCount = 0);
 
 public:
-	virtual HRESULT InsertTexture(const std::wstring& wstrFilePath, const std::wstring& wstrObjKey, TEXTYPE eTexType, const std::wstring& wstrStateKey = L"", const int& iCount = 0);
+	HRESULT InsertTexture(const std::wstring& wstrFilePath, const std::wstring& wstrObjKey, TEXTYPE eTexType, const std::wstring& wstrStateKey = L"", const int& iCount = 0);
+	HRESULT ReadImagePath(const std::wstring& wstrPath);
 
 private:
 	void Release();

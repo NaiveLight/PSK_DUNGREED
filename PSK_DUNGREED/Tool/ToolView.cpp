@@ -16,6 +16,7 @@
 #include "Include.h"
 #include "Device.h"
 #include "TextureManager.h"
+#include "Scene.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,6 +32,7 @@ BEGIN_MESSAGE_MAP(CToolView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT, &CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 // CToolView 생성/소멸
@@ -66,6 +68,7 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 	Device->BeginDraw();
 
 	// Rendering Section
+	m_pScene->Render();
 
 	Device->EndDraw(m_hWnd);
 }
@@ -155,11 +158,39 @@ void CToolView::OnInitialUpdate()
 	if (m_pFont == nullptr)
 		return;
 
+	TextureManager->ReadImagePath(L"../Data/ImgPath.txt");
+
+	m_pScene = new CScene;
+	if(FAILED(m_pScene->Initialize()))
+	{
+		AfxMessageBox(L"Scene Create Failed");
+		return;
+	}
+
 }
 
 
 void CToolView::PostNcDestroy()
 {
+	Safe_Delete(m_pScene);
+	TextureManager->DestroyInstance();
 	Device->DestroyInstance();
 	CScrollView::PostNcDestroy();
+}
+
+
+void CToolView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	switch (nChar)
+	{
+	case VK_F1:
+		m_pScene->SetShowCollider();
+		break;
+	case VK_F2:
+		m_pScene->SetShowMapObj();
+		break;
+	}
+
+	CScrollView::OnKeyDown(nChar, nRepCnt, nFlags);
 }

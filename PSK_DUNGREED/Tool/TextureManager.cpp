@@ -14,6 +14,15 @@ CTextureManager::~CTextureManager()
 	Release();
 }
 
+const TEXINFO * CTextureManager::GetTexture(const std::wstring & wstrObjKey, const std::wstring & wstrStateKey, const int & iCount)
+{
+	auto iter = m_mapTexture.find(wstrObjKey);
+	if (iter == m_mapTexture.end())
+		return nullptr;
+
+	return iter->second->GetTexture(wstrStateKey, iCount);
+}
+
 const TEXINFO * CTextureManager::InsertTexture(const std::wstring & wstrObjKey, const std::wstring & wstrStateKey, const int & iCount)
 {
 	auto iter = m_mapTexture.find(wstrObjKey);
@@ -61,6 +70,36 @@ HRESULT CTextureManager::InsertTexture(const std::wstring & wstrFilePath, const 
 		}
 	}
 
+	return S_OK;
+}
+
+HRESULT CTextureManager::ReadImagePath(const std::wstring & wstrPath)
+{
+	std::wifstream		LoadFile;
+	LoadFile.open(wstrPath.c_str(), std::ios::in);
+
+	TCHAR		szObjKey[128] = L"";
+	TCHAR		szStateKey[128] = L"";
+	TCHAR		szCount[128] = L"";
+	TCHAR		szImgPath[MAX_PATH] = L"";
+
+	while (!LoadFile.eof())
+	{
+		LoadFile.getline(szObjKey, 128, '|');
+		LoadFile.getline(szStateKey, 128, '|');
+		LoadFile.getline(szCount, 128, '|');
+		LoadFile.getline(szImgPath, MAX_PATH);
+
+		int		iCount = _ttoi(szCount);
+
+		if (FAILED(InsertTexture(szImgPath, szObjKey, TEX_MULTI, szStateKey, iCount)))
+		{
+			MSG_BOX(szObjKey);
+			return E_FAIL;
+		}
+	}
+
+	LoadFile.close();
 	return S_OK;
 }
 

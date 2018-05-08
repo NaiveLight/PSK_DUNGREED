@@ -4,6 +4,7 @@
 
 #pragma once
 
+class CScene;
 class CToolDoc;
 class CToolView : public CScrollView
 {
@@ -22,6 +23,9 @@ public:
 	LPD3DXSPRITE			m_pSprite = nullptr;
 	LPD3DXFONT			m_pFont = nullptr;
 	D3DXIMAGE_INFO			m_tImgInfo = {};
+
+public:
+	CScene* m_pScene = nullptr;
 
 
 // 재정의입니다.
@@ -49,6 +53,7 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	virtual void PostNcDestroy();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전
