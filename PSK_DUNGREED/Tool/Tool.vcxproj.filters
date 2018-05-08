@@ -13,45 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\00.App">
+      <UniqueIdentifier>{fd7ee6e2-bf62-46c3-8831-c48fc7ccb399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.MainFrame">
+      <UniqueIdentifier>{78fbd50b-4962-4136-ae62-3712d71482a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Dlg">
+      <UniqueIdentifier>{d6cb14b7-6c6a-4adf-9933-be9bf19a3ca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.View">
+      <UniqueIdentifier>{8f07aee5-4910-4378-bfe0-9a2fe2b2d1bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Object">
+      <UniqueIdentifier>{233a5d68-4518-4530-814c-c16d373286e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Manager">
+      <UniqueIdentifier>{3397face-0c66-49c5-b6c4-42d444403381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Default">
+      <UniqueIdentifier>{a26d26b0-e42b-4bd2-bb5d-e0110968618f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Headers">
+      <UniqueIdentifier>{088870ab-94f8-4a4c-8864-2f676589cf13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Manager\00.Device">
+      <UniqueIdentifier>{042f57a8-770e-47a4-804b-61faf207e3a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tool.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="MainFrm.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\01.MainFrame</Filter>
     </ClInclude>
-    <ClInclude Include="ToolDoc.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ToolView.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Tool.h">
+      <Filter>소스 파일\00.App</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolDoc.h">
+      <Filter>소스 파일\99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolView.h">
+      <Filter>소스 파일\03.View</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>소스 파일\05.Manager\00.Device</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>소스 파일\01.MainFrame</Filter>
+    </ClCompile>
     <ClCompile Include="Tool.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\00.App</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\99.Default</Filter>
     </ClCompile>
     <ClCompile Include="ToolDoc.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\99.Default</Filter>
     </ClCompile>
     <ClCompile Include="ToolView.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\03.View</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>소스 파일\05.Manager\00.Device</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -51,4 +51,19 @@
 #endif
 #endif
 
+#include <string>
+#include <map>
+#include <list>
+#include <vector>
+#include <algorithm>
+#include <d3dx9.h>
+#include <d3d9.h>
+#include <unordered_map>
+#include <fstream>
+#include <afxdlgs.h>
 
+#pragma comment(lib, "d3d9.lib")
+#pragma comment(lib, "d3dx9.lib")
+
+#include <iostream>
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
