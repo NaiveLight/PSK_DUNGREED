@@ -64,9 +64,9 @@ typedef struct tagUnitData
 
 typedef struct tagTexturePath
 {
-	wstring wstrObjKey = L"";
-	wstring wstrStateKey = L"";
-	wstring wstrPath = L"";
+	std::wstring wstrObjKey = L"";
+	std::wstring wstrStateKey = L"";
+	std::wstring wstrPath = L"";
 	int iCount = 0;
 }IMGPATH;
 

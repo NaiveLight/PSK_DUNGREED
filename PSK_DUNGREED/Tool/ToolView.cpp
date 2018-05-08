@@ -11,6 +11,9 @@
 
 #include "ToolDoc.h"
 #include "ToolView.h"
+#include "MainFrm.h"
+
+#include "Device.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -58,6 +61,7 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+
 }
 
 

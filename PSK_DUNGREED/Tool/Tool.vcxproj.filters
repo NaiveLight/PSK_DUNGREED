@@ -40,6 +40,18 @@
     <Filter Include="소스 파일\05.Manager\00.Device">
       <UniqueIdentifier>{042f57a8-770e-47a4-804b-61faf207e3a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05.Manager\01.TextureManager">
+      <UniqueIdentifier>{c20fe630-c282-4cd7-b32f-728cc767dcd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Manager\01.TextureManager\Texture">
+      <UniqueIdentifier>{c22fec66-79da-4545-820e-a3082f870d2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Manager\01.TextureManager\Texture\SingleTexture">
+      <UniqueIdentifier>{ab3eded3-082c-4252-b8f9-7966c1d44878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Manager\01.TextureManager\Texture\MultiTexture">
+      <UniqueIdentifier>{3d51bd12-fa30-4eaf-bf02-757ab44e1b99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -66,6 +78,9 @@
     <ClInclude Include="Device.h">
       <Filter>소스 파일\05.Manager\00.Device</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\05.Manager\01.TextureManager\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -85,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>소스 파일\05.Manager\00.Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\05.Manager\01.TextureManager\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

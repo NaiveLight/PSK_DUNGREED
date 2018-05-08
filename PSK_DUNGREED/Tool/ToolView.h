@@ -17,6 +17,11 @@ public:
 
 // 작업입니다.
 public:
+	LPDIRECT3DTEXTURE9		m_pTexture = nullptr;
+	LPDIRECT3DDEVICE9		m_pDevice = nullptr;
+	LPD3DXSPRITE			m_pSprite = nullptr;
+	D3DXIMAGE_INFO			m_tImgInfo = {};
+
 
 // 재정의입니다.
 public:
