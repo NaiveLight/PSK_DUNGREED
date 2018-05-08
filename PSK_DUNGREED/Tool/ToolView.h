@@ -4,8 +4,8 @@
 
 #pragma once
 
-
-class CToolView : public CView
+class CToolDoc;
+class CToolView : public CScrollView
 {
 protected: // serialization에서만 만들어집니다.
 	CToolView();
@@ -20,6 +20,7 @@ public:
 	LPDIRECT3DTEXTURE9		m_pTexture = nullptr;
 	LPDIRECT3DDEVICE9		m_pDevice = nullptr;
 	LPD3DXSPRITE			m_pSprite = nullptr;
+	LPD3DXFONT			m_pFont = nullptr;
 	D3DXIMAGE_INFO			m_tImgInfo = {};
 
 
@@ -45,6 +46,9 @@ protected:
 // 생성된 메시지 맵 함수
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual void OnInitialUpdate();
+	virtual void PostNcDestroy();
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전

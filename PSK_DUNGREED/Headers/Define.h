@@ -26,3 +26,6 @@ private:										\
 
 #define IMPLEMENT_SINGLETON(ClassName)			\
 ClassName* ClassName::m_pInstance = nullptr;
+
+#define Device CDevice::GetInstance()
+#define TextureManager CTextureManager::GetInstance()

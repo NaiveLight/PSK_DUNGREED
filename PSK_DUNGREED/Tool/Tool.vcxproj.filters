@@ -87,6 +87,9 @@
     <ClInclude Include="MultiTexture.h">
       <Filter>소스 파일\05.Manager\01.TextureManager\Texture\MultiTexture</Filter>
     </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>소스 파일\05.Manager\01.TextureManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="MultiTexture.cpp">
       <Filter>소스 파일\05.Manager\01.TextureManager\Texture\MultiTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>소스 파일\05.Manager\01.TextureManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

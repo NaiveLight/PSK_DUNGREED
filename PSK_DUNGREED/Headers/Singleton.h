@@ -15,7 +15,7 @@ public:
 		return m_pInstance;
 	}
 
-	static void DestoryInstance()
+	static void DestroyInstance()
 	{
 		if (m_pInstance != nullptr)
 		{

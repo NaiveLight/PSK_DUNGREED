@@ -13,22 +13,24 @@
 #include "ToolView.h"
 #include "MainFrm.h"
 
+#include "Include.h"
 #include "Device.h"
+#include "TextureManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-
+HWND g_hWnd;
 // CToolView
 
-IMPLEMENT_DYNCREATE(CToolView, CView)
+IMPLEMENT_DYNCREATE(CToolView, CScrollView)
 
-BEGIN_MESSAGE_MAP(CToolView, CView)
+BEGIN_MESSAGE_MAP(CToolView, CScrollView)
 	// 표준 인쇄 명령입니다.
-	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
+	ON_COMMAND(ID_FILE_PRINT, &CScrollView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 END_MESSAGE_MAP()
 
 // CToolView 생성/소멸
@@ -48,7 +50,7 @@ BOOL CToolView::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: CREATESTRUCT cs를 수정하여 여기에서
 	//  Window 클래스 또는 스타일을 수정합니다.
 
-	return CView::PreCreateWindow(cs);
+	return CScrollView::PreCreateWindow(cs);
 }
 
 // CToolView 그리기
@@ -61,7 +63,17 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	m_pDevice->Clear(0, nullptr
+		, D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET
+		, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
+	m_pDevice->BeginScene();
+	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
 
+	// Rendering Section
+
+	m_pSprite->End();
+	m_pDevice->EndScene();
+	m_pDevice->Present(nullptr, nullptr, m_hWnd, nullptr);
 }
 
 
@@ -89,12 +101,12 @@ void CToolView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 #ifdef _DEBUG
 void CToolView::AssertValid() const
 {
-	CView::AssertValid();
+	CScrollView::AssertValid();
 }
 
 void CToolView::Dump(CDumpContext& dc) const
 {
-	CView::Dump(dc);
+	CScrollView::Dump(dc);
 }
 
 CToolDoc* CToolView::GetDocument() const // 디버그되지 않은 버전은 인라인으로 지정됩니다.
@@ -106,3 +118,54 @@ CToolDoc* CToolView::GetDocument() const // 디버그되지 않은 버전은 인라인으로 지
 
 
 // CToolView 메시지 처리기
+
+
+void CToolView::OnInitialUpdate()
+{
+	CScrollView::OnInitialUpdate();
+
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+
+
+	SetScrollSizes(MM_TEXT, CSize(TILECX * TILEX, TILECY * TILEY));
+
+	CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
+	RECT rcFrameWindows;
+	pMainFrame->GetWindowRect(&rcFrameWindows);
+
+	SetRect(&rcFrameWindows, 0, 0, rcFrameWindows.right - rcFrameWindows.left, rcFrameWindows.bottom - rcFrameWindows.top);
+
+	RECT rcMainView;
+	GetClientRect(&rcMainView);
+
+	int iRowFrm = rcFrameWindows.right - rcMainView.right;
+	int iColFrm = rcFrameWindows.bottom - rcMainView.bottom;
+
+	pMainFrame->SetWindowPos(nullptr, 200, 200, int(WINCX + iRowFrm), int(WINCY + iColFrm), SWP_NOZORDER);
+
+	if (FAILED(Device->Initialize()))
+	{
+		AfxMessageBox(L"Device Create Failed");
+		return;
+	}
+
+	m_pDevice = Device->GetDevice();
+	if (m_pDevice == nullptr)
+		return;
+
+	m_pSprite = Device->GetSprite();
+	if (m_pSprite == nullptr)
+		return;
+
+	m_pFont = Device->GetFont();
+	if (m_pFont == nullptr)
+		return;
+
+}
+
+
+void CToolView::PostNcDestroy()
+{
+	Device->DestroyInstance();
+	CScrollView::PostNcDestroy();
+}

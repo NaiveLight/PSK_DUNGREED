@@ -28,7 +28,7 @@ HRESULT CSingleTexture::InsertTexture(const std::wstring & wstrFilePath, const s
 		return E_FAIL;
 	}
 
-	if (FAILED(D3DXCreateTextureFromFileEx(CDevice::GetInstance()->GetDevice()
+	if (FAILED(D3DXCreateTextureFromFileEx(Device->GetDevice()
 		, wstrFilePath.c_str()
 		, m_pTexInfo->tImgInfo.Width
 		, m_pTexInfo->tImgInfo.Height

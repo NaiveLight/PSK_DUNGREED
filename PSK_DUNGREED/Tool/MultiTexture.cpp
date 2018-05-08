@@ -39,7 +39,7 @@ HRESULT CMultiTexture::InsertTexture(const std::wstring & wstrFilePath, const st
 			return E_FAIL;
 		}
 
-		if (FAILED(D3DXCreateTextureFromFileEx(CDevice::GetInstance()->GetDevice()
+		if (FAILED(D3DXCreateTextureFromFileEx(Device->GetDevice()
 			, szPath
 			, pTexInfo->tImgInfo.Width
 			, pTexInfo->tImgInfo.Height
@@ -54,7 +54,7 @@ HRESULT CMultiTexture::InsertTexture(const std::wstring & wstrFilePath, const st
 			, nullptr
 			, &pTexInfo->pTexture)))
 		{
-			MessageBox(NULL, szPath, L"System Message", MB_OK);
+			MSG_BOX(L"Insert Multi Texture Create Texture Failed");
 			return E_FAIL;
 		}
 
