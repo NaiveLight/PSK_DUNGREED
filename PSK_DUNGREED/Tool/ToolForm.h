@@ -3,6 +3,8 @@
 
 
 // CToolForm Æû ºäÀÔ´Ï´Ù.
+#include "MapTool.h"
+#include "PathFind.h"
 
 class CToolForm : public CFormView
 {
@@ -30,6 +32,10 @@ protected:
 public:
 	afx_msg void OnBnClickedMapTool();
 	afx_msg void OnBnClickedPathFind();
+
+public:
+	CMapTool m_MapTool;
+	CPathFind m_PathFind;
 };
 
 

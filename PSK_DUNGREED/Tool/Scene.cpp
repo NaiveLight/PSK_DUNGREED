@@ -52,6 +52,24 @@ void CScene::MapObjRender()
 {
 }
 
+void CScene::MiniViewRender()
+{
+}
+
+void CScene::ObjViewRender()
+{
+	if (m_bisTile)
+	{
+		if (m_pCurTile == nullptr)
+			return;
+	}
+	else
+	{
+		if (m_pCurMapObj == nullptr)
+			return;
+	}
+}
+
 void CScene::Picking()
 {
 }

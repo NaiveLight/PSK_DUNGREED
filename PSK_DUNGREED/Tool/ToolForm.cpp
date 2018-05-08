@@ -53,11 +53,17 @@ void CToolForm::Dump(CDumpContext& dc) const
 
 void CToolForm::OnBnClickedMapTool()
 {
+	if (m_MapTool.GetSafeHwnd() == NULL)
+		m_MapTool.Create(IDD_MAPTOOL);
 
+	m_MapTool.ShowWindow(SW_SHOW);
 }
 
 
 void CToolForm::OnBnClickedPathFind()
 {
+	if (m_PathFind.GetSafeHwnd() == NULL)
+		m_PathFind.Create(IDD_PATHFIND);
 
+	m_PathFind.ShowWindow(SW_SHOW);
 }

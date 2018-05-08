@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CPathFind 대화 상자입니다.
@@ -20,4 +21,10 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnDropFiles(HDROP hDropInfo);
+	afx_msg void OnBnClickedSave();
+	afx_msg void OnBnClickedLoad();
+	afx_msg void OnBnClickedDelete();
+	CListBox m_ListBox;
 };

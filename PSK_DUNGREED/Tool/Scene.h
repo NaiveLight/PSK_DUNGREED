@@ -10,6 +10,10 @@ public:
 	~CScene();
 
 public:
+	void SetCurTile();
+	void SetCurMapObj();
+
+public:
 	HRESULT Initialize();
 	void Update();
 	void Render();
@@ -23,6 +27,8 @@ public:
 	void TileRender();
 	void ColliderRender();
 	void MapObjRender();
+	void MiniViewRender();
+	void ObjViewRender();
 
 public:
 	void Picking();
@@ -46,6 +52,9 @@ private:
 	int m_iTileX = 0;
 	int m_iTileY = 0;
 
+	TILE* m_pCurTile = nullptr;
+	MAPOBJ* m_pCurMapObj = nullptr;
+	bool m_bisTile = false;
 	bool m_bCollRender = false;
 	bool m_bMapObjRender = false;
 };

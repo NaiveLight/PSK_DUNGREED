@@ -61,11 +61,17 @@
     <Filter Include="소스 파일\02.Dlg\01.PathFind">
       <UniqueIdentifier>{eb807f61-6f92-4a67-b496-e84d23f2247a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\04.Scene">
-      <UniqueIdentifier>{233a5d68-4518-4530-814c-c16d373286e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\03.View\03.ObjView">
       <UniqueIdentifier>{bf654a15-c038-4726-90f2-8978119165ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Object">
+      <UniqueIdentifier>{233a5d68-4518-4530-814c-c16d373286e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Object\00.Scene">
+      <UniqueIdentifier>{1b16b43d-2111-45c2-bc28-b0e4621f51a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Object\01.FileInfo">
+      <UniqueIdentifier>{d8480946-a465-45fd-8ff5-4704be8961ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,11 +123,14 @@
     <ClInclude Include="PathFind.h">
       <Filter>소스 파일\02.Dlg\01.PathFind</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>소스 파일\04.Scene</Filter>
-    </ClInclude>
     <ClInclude Include="ObjView.h">
       <Filter>소스 파일\03.View\03.ObjView</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\04.Object\00.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FileInfo.h">
+      <Filter>소스 파일\04.Object\01.FileInfo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,11 +176,14 @@
     <ClCompile Include="PathFind.cpp">
       <Filter>소스 파일\02.Dlg\01.PathFind</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>소스 파일\04.Scene</Filter>
-    </ClCompile>
     <ClCompile Include="ObjView.cpp">
       <Filter>소스 파일\03.View\03.ObjView</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\04.Object\00.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInfo.cpp">
+      <Filter>소스 파일\04.Object\01.FileInfo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
