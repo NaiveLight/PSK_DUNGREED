@@ -233,8 +233,10 @@ void CScene::ObjViewRender()
 
 	((CMainFrame*)AfxGetMainWnd())->m_pObjView->GetWindowRect(&rc);
 
-	float fX = float(rc.right - rc.left);
-	float fY = float(rc.bottom - rc.top);
+	float fX = WINCX;
+	float fY = WINCY;
+
+	float fScale = 4.0f;
 
 	if (m_bisTile)
 	{
@@ -247,13 +249,13 @@ void CScene::ObjViewRender()
 		if (pTexInfo == nullptr)
 			return;
 
-		float fScale = 1.0f;
+		
 
 		if (pTexInfo->tImgInfo.Width > 300.f)
-			fScale = 0.3f;
+			fScale = 2.0f;
 
 		D3DXMatrixScaling(&matScale, fScale, fScale, 0.f);
-		D3DXMatrixTranslation(&matTrans	, (fX * 0.5f)* fScale, (fX * 0.5f)* fScale, 0.f);
+		D3DXMatrixTranslation(&matTrans	, (fX * 0.5f), (fX * 0.5f), 0.f);
 
 		matWorld = matScale * matTrans;
 
@@ -275,13 +277,11 @@ void CScene::ObjViewRender()
 		if (pTexInfo == nullptr)
 			return;
 
-		float fScale = 1.0f;
-
 		if (pTexInfo->tImgInfo.Width > 300.f)
 			fScale = 0.3f;
 
 		D3DXMatrixScaling(&matScale, fScale, fScale, 0.f);
-		D3DXMatrixTranslation(&matTrans, (fX * 0.5f)* fScale, (fY * 0.5f)* fScale, 0.f);
+		D3DXMatrixTranslation(&matTrans, (fX * 0.5f), (fY * 0.5f), 0.f);
 
 		matWorld = matScale * matTrans;
 

@@ -13,27 +13,102 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\00.MainGame">
+      <UniqueIdentifier>{b87132de-afa2-49af-8c0e-eb77e9448283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene">
+      <UniqueIdentifier>{808341f6-d58d-4ea7-80db-be240328fa28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object">
+      <UniqueIdentifier>{ba68c6a1-a8f0-47e8-b485-5a849228dccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager">
+      <UniqueIdentifier>{1875d8ea-7005-4a1d-94c1-8de534512daf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.DesignPattern">
+      <UniqueIdentifier>{f3b8ccfd-3990-4e96-91ae-eec31a0bf7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Default">
+      <UniqueIdentifier>{4dd0d5dd-107b-441c-a8a7-79351fe1b7ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\00.Logo">
+      <UniqueIdentifier>{2c99d2c4-d9eb-41a0-a560-42368fecbd6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\01.Title">
+      <UniqueIdentifier>{25f6d4a8-a0a6-4ed9-a348-040c15d58183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\02.Town">
+      <UniqueIdentifier>{74902a33-6a60-45bf-b7da-bc711db01c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Dungeon">
+      <UniqueIdentifier>{f7dbfd43-c343-4f84-a1d8-a39e1128fb35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\00.BackGround">
+      <UniqueIdentifier>{b68030d2-c8c5-4c03-a381-edb2944d63e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\01.Layer">
+      <UniqueIdentifier>{4811384a-e886-4cc4-b6ee-e4f756971d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\02.Player">
+      <UniqueIdentifier>{c6e5872a-e288-45b4-a53f-e0a925d35779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\03.MapObject">
+      <UniqueIdentifier>{45fb1a13-06d4-4696-a655-1f1a4ea49bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\04.Effect">
+      <UniqueIdentifier>{f8b1dcfc-ad3d-4c95-9e50-6c960ec38223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.UI">
+      <UniqueIdentifier>{5debea95-a7f9-44a4-8e22-bbd66fcf3a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\00.Device">
+      <UniqueIdentifier>{952853bb-6abe-42e5-bcae-026bb48ff005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\01.ObjectManager">
+      <UniqueIdentifier>{650ea7ca-6671-41d2-80a6-aaa9c5b19edb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\02.ScrollManager">
+      <UniqueIdentifier>{1f4eaa5c-0928-45b2-86c6-818c236d589b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\03.KeyManager">
+      <UniqueIdentifier>{6e69b6fd-cd4c-4ad1-9c60-fe357005ef01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\04.TimeManager">
+      <UniqueIdentifier>{880d7f56-4c8d-4620-bcc2-cebbcd35a603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\05.TextureManager">
+      <UniqueIdentifier>{1a1bd7fa-4fdf-4aef-810d-38d5aae6c8c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\06.CollisionManager">
+      <UniqueIdentifier>{a9e206c8-3281-4a2f-a162-3f4049863bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.DesignPattern\00.Bridge">
+      <UniqueIdentifier>{fd5c0c13-fb38-4229-a05d-80c5ea50db2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.DesignPattern\01.Observer">
+      <UniqueIdentifier>{289b4cf0-0215-44e9-b0c3-43553527769c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Client.h">
+      <Filter>소스 파일\99.Default</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\99.Default</Filter>
     </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="targetver.h">
+      <Filter>소스 파일\99.Default</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Client.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\99.Default</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

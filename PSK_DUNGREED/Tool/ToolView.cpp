@@ -217,7 +217,6 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		m_wstrStateKey = ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_wstrStateKey;
 		m_iCount= ((CMainFrame*)AfxGetMainWnd())->m_pToolForm->m_MapTool.m_iCount;
 		m_pScene->InsertMapObj(vMouse, m_wstrStateKey, m_iCount);
-		std::cout << m_pScene->GetVecMapObj()->size() << std::endl;
 	}
 
 	CScrollView::OnLButtonDown(nFlags, point);

@@ -113,6 +113,15 @@ void CMapTool::OnLbnSelchangeTileList()
 
 	((CMainFrame*)AfxGetMainWnd())->m_pMainView->m_bTilePicking = true;
 
+	m_pScene->CurTileRelease();
+
+	TILE* pTile = new TILE;
+
+	lstrcpy(pTile->szStateKey, m_wstrStateKey.c_str());
+	pTile->byDrawID = m_byDrawID;
+
+	m_pScene->SetCurTile(pTile);
+
 	UpdateData(FALSE);
 }
 
@@ -143,6 +152,15 @@ void CMapTool::OnLbnSelchangeMapObjList()
 	m_iCount = _tstoi(strSelectDigit);
 
 	((CMainFrame*)AfxGetMainWnd())->m_pMainView->m_bTilePicking = false;
+
+	m_pScene->CurMapObjRelease();
+
+	MAPOBJ* pMapObj = new MAPOBJ;
+
+	lstrcpy(pMapObj->szStateKey, m_wstrStateKey.c_str());
+	pMapObj->iCount = m_iCount;
+
+	m_pScene->SetCurMapObj(pMapObj);
 
 	UpdateData(FALSE);
 }

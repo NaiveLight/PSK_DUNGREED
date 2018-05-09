@@ -13,10 +13,6 @@ OBJECT|Tree|2|..\Texture\OBJECT\Tree\Tree0%d.png
 OBJECT|TStone|3|..\Texture\OBJECT\TStone\TStone0%d.png
 OBJECT|TTemple|1|..\Texture\OBJECT\TTemple\TTemple0%d.png
 OBJECT|Well|1|..\Texture\OBJECT\Well\Well0%d.png
-PLAYER|Die|1|..\Texture\PLAYER\Die\Player_Die0%d.png
-PLAYER|Idle|5|..\Texture\PLAYER\Idle\Player_Idle0%d.png
-PLAYER|Jump|1|..\Texture\PLAYER\Jump\Player_Jump0%d.png
-PLAYER|Walk|8|..\Texture\PLAYER\Walk\Player_Walk0%d.png
 TILE|Collider|7|..\Texture\TILE\Collider\Collider0%d.png
 TILE|Default|1|..\Texture\TILE\Default\Default0%d.png
 TILE|Dungeon|18|..\Texture\TILE\Dungeon\Dungeon00%d.png

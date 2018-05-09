@@ -14,8 +14,8 @@ public:
 	std::vector<MAPOBJ*>* GetVecMapObj() { return &m_vecMapObj; }
 
 public:
-	void SetCurTile();
-	void SetCurMapObj();
+	void SetCurTile(TILE* pTile) { m_pCurTile = pTile; }
+	void SetCurMapObj(MAPOBJ* pMapObj) { m_pCurMapObj = pMapObj; }
 	void SetTileSize(int iTileX, int iTileY) { m_iTileX = iTileX; m_iTileY = iTileY; }
 	void SetShowCollider() { m_bCollRender = !m_bCollRender; }
 	void SetShowMapObj() { m_bMapObjRender = !m_bMapObjRender; }
