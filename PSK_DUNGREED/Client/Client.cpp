@@ -3,7 +3,8 @@
 
 #include "stdafx.h"
 #include "Client.h"
-#include "Include.h"
+
+#include "MainGame.h"
 
 #define MAX_LOADSTRING 100
 
@@ -44,16 +45,30 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
     MSG msg;
+	msg.message = WM_NULL;
+	
+	CMainGame* pMainGame = new CMainGame;
+	if (FAILED(pMainGame->Initialize()))
+	{
+		MSG_BOX(L"MainGame Init Failed in Cilent");
+		return 0;
+	}
 
     // 기본 메시지 루프입니다.
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }
+	while (msg.message != WM_QUIT)
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		pMainGame->Update();
+		pMainGame->Render();
+	}
+
+	delete pMainGame;
+	pMainGame = nullptr;
 
     return (int) msg.wParam;
 }
@@ -105,7 +120,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {

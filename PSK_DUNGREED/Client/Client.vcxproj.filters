@@ -105,6 +105,9 @@
     <ClInclude Include="Device.h">
       <Filter>소스 파일\03.Manager\00.Device</Filter>
     </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>소스 파일\00.MainGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>소스 파일\03.Manager\00.Device</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>소스 파일\00.MainGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
