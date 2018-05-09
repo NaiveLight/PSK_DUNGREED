@@ -40,9 +40,6 @@
     <Filter Include="소스 파일\01.Scene\02.Town">
       <UniqueIdentifier>{74902a33-6a60-45bf-b7da-bc711db01c9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.Scene\03.Dungeon">
-      <UniqueIdentifier>{f7dbfd43-c343-4f84-a1d8-a39e1128fb35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\00.BackGround">
       <UniqueIdentifier>{b68030d2-c8c5-4c03-a381-edb2944d63e9}</UniqueIdentifier>
     </Filter>
@@ -51,9 +48,6 @@
     </Filter>
     <Filter Include="소스 파일\02.Object\02.Player">
       <UniqueIdentifier>{c6e5872a-e288-45b4-a53f-e0a925d35779}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\03.MapObject">
-      <UniqueIdentifier>{45fb1a13-06d4-4696-a655-1f1a4ea49bf6}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\04.Effect">
       <UniqueIdentifier>{f8b1dcfc-ad3d-4c95-9e50-6c960ec38223}</UniqueIdentifier>
@@ -87,6 +81,18 @@
     </Filter>
     <Filter Include="소스 파일\04.DesignPattern\01.Observer">
       <UniqueIdentifier>{289b4cf0-0215-44e9-b0c3-43553527769c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\04.MapObject">
+      <UniqueIdentifier>{45fb1a13-06d4-4696-a655-1f1a4ea49bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\03.Tile">
+      <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\07.SceneManager">
+      <UniqueIdentifier>{621a5ce5-f1a0-4649-a01e-a11ebd58cdab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage">
+      <UniqueIdentifier>{f7dbfd43-c343-4f84-a1d8-a39e1128fb35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

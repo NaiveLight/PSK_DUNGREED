@@ -7,16 +7,16 @@
 #include "Device.h"
 #include "TextureManager.h"
 
-CScene::CScene()
+CToolScene::CToolScene()
 {
 }
 
-CScene::~CScene()
+CToolScene::~CToolScene()
 {
 	Release();
 }
 
-HRESULT CScene::Initialize()
+HRESULT CToolScene::Initialize()
 {
 	m_pMainView = ((CMainFrame*)AfxGetMainWnd())->m_pMainView;
 	m_pSprite = Device->GetSprite();
@@ -27,11 +27,11 @@ HRESULT CScene::Initialize()
 	return S_OK;
 }
 
-void CScene::Update()
+void CToolScene::Update()
 {
 }
 
-void CScene::Render()
+void CToolScene::Render()
 {
 	TileRender();
 	if (m_bMapObjRender)
@@ -40,27 +40,27 @@ void CScene::Render()
 		ColliderRender();
 }
 
-void CScene::Release()
+void CToolScene::Release()
 {
 	TileRelease();
 	MapObjRelease();
 }
 
-void CScene::TileRelease()
+void CToolScene::TileRelease()
 {
 	std::for_each(m_vecTile.begin(), m_vecTile.end(), DeleteObj());
 	m_vecTile.clear();
 	m_vecTile.shrink_to_fit();
 }
 
-void CScene::MapObjRelease()
+void CToolScene::MapObjRelease()
 {
 	std::for_each(m_vecMapObj.begin(), m_vecMapObj.end(), DeleteObj());
 	m_vecMapObj.clear();
 	m_vecMapObj.shrink_to_fit();
 }
 
-void CScene::TileRender()
+void CToolScene::TileRender()
 {
 	D3DXMATRIX		matTrans;
 	TCHAR			szBuf[128] = L"";
@@ -105,7 +105,7 @@ void CScene::TileRender()
 	}
 }
 
-void CScene::ColliderRender()
+void CToolScene::ColliderRender()
 {
 	D3DXMATRIX		matTrans;
 
@@ -144,7 +144,7 @@ void CScene::ColliderRender()
 	}
 }
 
-void CScene::MapObjRender()
+void CToolScene::MapObjRender()
 {
 	D3DXMATRIX		matTrans;
 
@@ -170,7 +170,7 @@ void CScene::MapObjRender()
 	}
 }
 
-void CScene::MiniViewRender()
+void CToolScene::MiniViewRender()
 {
 	D3DXMATRIX		matScale, matTrans, matWorld;
 
@@ -227,7 +227,7 @@ void CScene::MiniViewRender()
 	}
 }
 
-void CScene::ObjViewRender()
+void CToolScene::ObjViewRender()
 {
 	RECT rc = {};
 
@@ -294,7 +294,7 @@ void CScene::ObjViewRender()
 	}
 }
 
-const int CScene::Picking(const D3DXVECTOR3& vMouse)
+const int CToolScene::Picking(const D3DXVECTOR3& vMouse)
 {
 	int x = int(vMouse.x / TILECX);
 	int y = int(vMouse.y / TILECY);
@@ -306,7 +306,7 @@ const int CScene::Picking(const D3DXVECTOR3& vMouse)
 	return iPicked;
 }
 
-void CScene::TileChange(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKey /*= L"Default"*/, const int& iOption /*= 0*/, const int& iDrawID /*= 0*/)
+void CToolScene::TileChange(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKey /*= L"Default"*/, const int& iOption /*= 0*/, const int& iDrawID /*= 0*/)
 {
 	int	iIndex = Picking(vPos);
 	if (iIndex == -1)
@@ -317,7 +317,7 @@ void CScene::TileChange(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKe
 	lstrcpy(m_vecTile[iIndex]->szStateKey, wstrStateKey.c_str());
 }
 
-void CScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKey, const int& iCount)
+void CToolScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrStateKey, const int& iCount)
 {
 	int	iIndex = Picking(vPos);
 	if (iIndex == -1)
@@ -337,7 +337,7 @@ void CScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrState
 	m_vecMapObj.push_back(pMapObj);
 }
 
-void CScene::CreateTileMap(int iTileX, int iTileY)
+void CToolScene::CreateTileMap(int iTileX, int iTileY)
 {
 	TileRelease();
 

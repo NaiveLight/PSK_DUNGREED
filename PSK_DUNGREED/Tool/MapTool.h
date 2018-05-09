@@ -4,7 +4,7 @@
 
 // CMapTool 대화 상자입니다.
 
-class CScene;
+class CToolScene;
 class CMapTool : public CDialog
 {
 	DECLARE_DYNAMIC(CMapTool)
@@ -59,5 +59,5 @@ public:
 	int m_iCount = 0;
 
 public:
-	CScene* m_pScene = nullptr;
+	CToolScene* m_pScene = nullptr;
 };

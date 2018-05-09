@@ -3,11 +3,11 @@
 #include "Include.h"
 
 class CToolView;
-class CScene
+class CToolScene
 {
 public:
-	CScene();
-	~CScene();
+	CToolScene();
+	~CToolScene();
 
 public:
 	std::vector<TILE*>* GetVecTile() { return &m_vecTile; }

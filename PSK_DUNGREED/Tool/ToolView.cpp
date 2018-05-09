@@ -165,7 +165,7 @@ void CToolView::OnInitialUpdate()
 
 	TextureManager->ReadImagePath(L"../Data/ImgPath.txt");
 
-	m_pScene = new CScene;
+	m_pScene = new CToolScene;
 	if(FAILED(m_pScene->Initialize()))
 	{
 		AfxMessageBox(L"Scene Create Failed");

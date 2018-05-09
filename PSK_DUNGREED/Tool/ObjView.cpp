@@ -33,7 +33,7 @@ void CObjView::OnDraw(CDC* pDC)
 	CDocument* pDoc = GetDocument();
 	// TODO: 여기에 그리기 코드를 추가합니다.
 
-	CScene*	pScene = ((CMainFrame*)AfxGetMainWnd())->m_pMainView->m_pScene;
+	CToolScene*	pScene = ((CMainFrame*)AfxGetMainWnd())->m_pMainView->m_pScene;
 
 	Device->BeginDraw();
 

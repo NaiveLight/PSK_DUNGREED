@@ -4,7 +4,7 @@
 
 #pragma once
 
-class CScene;
+class CToolScene;
 class CToolDoc;
 class CToolView : public CScrollView
 {
@@ -25,7 +25,7 @@ public:
 	D3DXIMAGE_INFO			m_tImgInfo = {};
 
 public:
-	CScene* m_pScene = nullptr;
+	CToolScene* m_pScene = nullptr;
 	bool			m_bTilePicking = true;
 
 public:
