@@ -203,10 +203,12 @@ void CMapTool::OnBnClickedTileLoad()
 
 	ReadFile(hFile, &m_iTileX, sizeof(int), &dwByte, nullptr);
 	ReadFile(hFile, &m_iTileY, sizeof(int), &dwByte, nullptr);
+	
+	((CMainFrame*)AfxGetMainWnd())->m_pMainView->SetScrollSizes(MM_TEXT, CSize(m_iTileX * TILECX, m_iTileY * TILECY));
 
 	m_pScene->TileRelease();
 	std::vector<TILE*>* pVecTile = m_pScene->GetVecTile();
-
+	m_pScene->SetTileSize(m_iTileX, m_iTileY);
 	while (true)
 	{
 		TILE* pTile = new TILE;
@@ -228,12 +230,80 @@ void CMapTool::OnBnClickedTileLoad()
 void CMapTool::OnBnClickedMapObjSave()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CFileDialog Dlg(FALSE, L".dat", L".dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+
+	HMODULE hModule = GetModuleHandle(nullptr);
+	ASSERT(hModule != 0);
+
+	TCHAR szFullPath[MAX_PATH] = L"";
+	GetModuleFileName(hModule, szFullPath, MAX_PATH);
+	PathRemoveFileSpec(szFullPath);
+	PathRemoveFileSpec(szFullPath);
+	lstrcat(szFullPath, L"%s\\Data\\");
+
+	Dlg.m_ofn.lpstrInitialDir = szFullPath;
+	if (Dlg.DoModal() == IDCANCEL)
+		return;
+
+	HANDLE hFile = CreateFile(Dlg.GetPathName(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+
+	DWORD dwByte = 0;
+
+	std::vector<MAPOBJ*>* pVecObj = m_pScene->GetVecMapObj();
+
+	int iVecSize = pVecObj->size();
+	WriteFile(hFile, &iVecSize, sizeof(int), &dwByte, nullptr);
+
+	for (auto& pTile : *pVecObj)
+		WriteFile(hFile, pTile, sizeof(MAPOBJ), &dwByte, nullptr);
+
+	CloseHandle(hFile);
 }
 
 
 void CMapTool::OnBnClickedMapObjLoad()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CFileDialog Dlg(TRUE, L".dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+
+	HMODULE hModule = GetModuleHandle(nullptr);
+	ASSERT(hModule != 0);
+
+	TCHAR szFullPath[MAX_PATH] = L"";
+	GetModuleFileNameW(hModule, szFullPath, MAX_PATH);
+	PathRemoveFileSpecW(szFullPath);
+	PathRemoveFileSpecW(szFullPath);
+	lstrcat(szFullPath, L"%s\\Data\\");
+
+	Dlg.m_ofn.lpstrInitialDir = szFullPath;
+	if (Dlg.DoModal() == IDCANCEL)
+		return;
+
+	HANDLE hFile = CreateFile(Dlg.GetPathName(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+
+	DWORD dwByte = 0;
+
+	int iVecSize = 0;
+	ReadFile(hFile, &iVecSize, sizeof(int), &dwByte, nullptr);
+
+	m_pScene->MapObjRelease();
+	std::vector<MAPOBJ*>* pVecObj = m_pScene->GetVecMapObj();
+
+	while (true)
+	{
+		MAPOBJ* pObj = new MAPOBJ;
+		ReadFile(hFile, pObj, sizeof(MAPOBJ), &dwByte, nullptr);
+
+		if (dwByte == 0)
+		{
+			Safe_Delete(pObj);
+			break;
+		}
+
+		pVecObj->push_back(pObj);
+	}
+
+	CloseHandle(hFile);
 }
 
 void CMapTool::OnBnClickedCreateMap()

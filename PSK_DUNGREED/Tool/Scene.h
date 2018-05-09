@@ -16,6 +16,7 @@ public:
 public:
 	void SetCurTile();
 	void SetCurMapObj();
+	void SetTileSize(int iTileX, int iTileY) { m_iTileX = iTileX; m_iTileY = iTileY; }
 	void SetShowCollider() { m_bCollRender = !m_bCollRender; }
 	void SetShowMapObj() { m_bMapObjRender = !m_bMapObjRender; }
 	void SetObjViewRenderMode(bool bisTile) { m_bisTile = bisTile; }

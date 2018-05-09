@@ -148,7 +148,7 @@ void CScene::MapObjRender()
 {
 	D3DXMATRIX		matTrans;
 
-	for (int i = 0; i < m_vecMapObj.size(); ++i)
+	for (size_t i = 0; i < m_vecMapObj.size(); ++i)
 	{
 		const TEXINFO*		pTexInfo = TextureManager->GetTexture(L"OBJECT", m_vecMapObj[i]->szStateKey, m_vecMapObj[i]->iCount);
 		if (pTexInfo == nullptr)
@@ -201,7 +201,7 @@ void CScene::MiniViewRender()
 		}
 	}
 
-	for (int i = 0; i < m_vecMapObj.size(); ++i)
+	for (size_t i = 0; i < m_vecMapObj.size(); ++i)
 	{
 		const TEXINFO*		pTexInfo = TextureManager->GetTexture(L"OBJECT", m_vecMapObj[i]->szStateKey, m_vecMapObj[i]->iCount);
 		if (pTexInfo == nullptr)
@@ -358,7 +358,7 @@ void CScene::CreateTileMap(int iTileX, int iTileY)
 			pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
 			pTile->byOption = 0;
 			pTile->byDrawID = 0;
-			lstrcpy(pTile->szStateKey, L"Dungeon");
+			lstrcpy(pTile->szStateKey, L"Default");
 
 			m_vecTile.push_back(pTile);
 		}
