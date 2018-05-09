@@ -88,9 +88,6 @@
     <Filter Include="소스 파일\02.Object\03.Tile">
       <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03.Manager\07.SceneManager">
-      <UniqueIdentifier>{621a5ce5-f1a0-4649-a01e-a11ebd58cdab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\01.Scene\03.Stage">
       <UniqueIdentifier>{f7dbfd43-c343-4f84-a1d8-a39e1128fb35}</UniqueIdentifier>
     </Filter>
@@ -117,6 +114,12 @@
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\01.Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>소스 파일\01.Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -132,6 +135,12 @@
       <Filter>소스 파일\00.MainGame</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\01.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\01.Scene</Filter>
     </ClCompile>
   </ItemGroup>
