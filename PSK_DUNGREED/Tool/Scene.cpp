@@ -344,7 +344,7 @@ void CScene::CreateTileMap(int iTileX, int iTileY)
 	m_iTileX = iTileX;
 	m_iTileY = iTileY;
 
-	m_pMainView->SetScrollSizes(MM_TEXT, CSize(m_iTileX* TILECX, m_iTileY * TILECY));
+	m_pMainView->SetScrollSizes(MM_TEXT, CSize((m_iTileX + 1) * TILECX, (m_iTileY + 1)* TILECY));
 
 	for (int i = 0; i < m_iTileY; ++i)
 	{

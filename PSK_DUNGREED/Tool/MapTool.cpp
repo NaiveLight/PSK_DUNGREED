@@ -167,7 +167,7 @@ void CMapTool::OnLbnSelchangeMapObjList()
 
 void CMapTool::OnBnClickedTileSave()
 {
-	CFileDialog Dlg(FALSE, L".dat", L".dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+	CFileDialog Dlg(FALSE, L".dat", L".dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat||", this);
 
 	HMODULE hModule = GetModuleHandle(nullptr);
 	ASSERT(hModule != 0);
@@ -200,7 +200,7 @@ void CMapTool::OnBnClickedTileSave()
 
 void CMapTool::OnBnClickedTileLoad()
 {
-	CFileDialog Dlg(TRUE, L".dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+	CFileDialog Dlg(TRUE, L".dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat||" , this);
 
 	HMODULE hModule = GetModuleHandle(nullptr);
 	ASSERT(hModule != 0);
@@ -222,7 +222,7 @@ void CMapTool::OnBnClickedTileLoad()
 	ReadFile(hFile, &m_iTileX, sizeof(int), &dwByte, nullptr);
 	ReadFile(hFile, &m_iTileY, sizeof(int), &dwByte, nullptr);
 	
-	((CMainFrame*)AfxGetMainWnd())->m_pMainView->SetScrollSizes(MM_TEXT, CSize(m_iTileX * TILECX, m_iTileY * TILECY));
+	((CMainFrame*)AfxGetMainWnd())->m_pMainView->SetScrollSizes(MM_TEXT, CSize((m_iTileX+1) * TILECX, (m_iTileY+1)* TILECY));
 
 	m_pScene->TileRelease();
 	std::vector<TILE*>* pVecTile = m_pScene->GetVecTile();
@@ -248,7 +248,7 @@ void CMapTool::OnBnClickedTileLoad()
 void CMapTool::OnBnClickedMapObjSave()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	CFileDialog Dlg(FALSE, L".dat", L".dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+	CFileDialog Dlg(FALSE, L".dat", L".dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat||", this);
 
 	HMODULE hModule = GetModuleHandle(nullptr);
 	ASSERT(hModule != 0);
@@ -282,7 +282,7 @@ void CMapTool::OnBnClickedMapObjSave()
 void CMapTool::OnBnClickedMapObjLoad()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	CFileDialog Dlg(TRUE, L".dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat", this);
+	CFileDialog Dlg(TRUE, L".dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, L"*.dat||", this);
 
 	HMODULE hModule = GetModuleHandle(nullptr);
 	ASSERT(hModule != 0);

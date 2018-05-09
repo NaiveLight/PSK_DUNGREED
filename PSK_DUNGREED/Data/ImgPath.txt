@@ -3,6 +3,7 @@ OBJECT|DFloor|1|..\Texture\OBJECT\DFloor\DFloor0%d.png
 OBJECT|Door|10|..\Texture\OBJECT\Door\Door0%d.png
 OBJECT|DungeonSign|2|..\Texture\OBJECT\DungeonSign\DungeonSign0%d.png
 OBJECT|Fence|1|..\Texture\OBJECT\Fence\Fence0%d.png
+OBJECT|Gargoyle|2|..\Texture\OBJECT\Gargoyle\Gargoyle0%d.png
 OBJECT|Grass|3|..\Texture\OBJECT\Grass\Grass0%d.png
 OBJECT|Hole|2|..\Texture\OBJECT\Hole\Hole0%d.png
 OBJECT|Light|1|..\Texture\OBJECT\Light\Light0%d.png
@@ -19,5 +20,5 @@ TILE|Dungeon|18|..\Texture\TILE\Dungeon\Dungeon00%d.png
 TILE|Floor|6|..\Texture\TILE\Floor\Floor0%d.png
 TILE|Pillar|4|..\Texture\TILE\Pillar\Pillar0%d.png
 TILE|Sand|9|..\Texture\TILE\Sand\Sand0%d.png
-TILE|Stone|21|..\Texture\TILE\Stone\Stone00%d.png
+TILE|Stone|23|..\Texture\TILE\Stone\Stone00%d.png
 TILE|Town|12|..\Texture\TILE\Town\Town0%d.png
