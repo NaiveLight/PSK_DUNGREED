@@ -114,6 +114,9 @@
     <ClInclude Include="MainGame.h">
       <Filter>소스 파일\00.MainGame</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\01.Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -127,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>소스 파일\00.MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\01.Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
