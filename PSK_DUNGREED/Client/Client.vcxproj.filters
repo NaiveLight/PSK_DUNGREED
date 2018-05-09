@@ -102,6 +102,9 @@
     <ClInclude Include="targetver.h">
       <Filter>소스 파일\99.Default</Filter>
     </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>소스 파일\03.Manager\00.Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일\99.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>소스 파일\03.Manager\00.Device</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
