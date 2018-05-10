@@ -126,6 +126,4 @@ void CDevice::Release()
 	Safe_Release(m_pSprite);
 	Safe_Release(m_pDevice);
 	Safe_Release(m_p3D);
-
-	D3DXMatrixIdentity( )
 }

@@ -1,3 +1,4 @@
+BACKGROUND|TITLE|1|..\Texture\BACKGROUND\TITLE\Title0%d.png
 OBJECT|Chain|1|..\Texture\OBJECT\Chain\Chain0%d.png
 OBJECT|DFloor|1|..\Texture\OBJECT\DFloor\DFloor0%d.png
 OBJECT|Door|10|..\Texture\OBJECT\Door\Door0%d.png

@@ -29,4 +29,5 @@ ClassName* ClassName::m_pInstance = nullptr;
 
 #define Device CDevice::GetInstance()
 #define TextureManager CTextureManager::GetInstance()
+#define KeyManager CKeyManager::GetInstance()
 #define ObjectManager CObjectManager::GetInstance()

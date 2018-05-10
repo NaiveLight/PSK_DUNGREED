@@ -25,4 +25,3 @@ private:
 private:
 	std::unordered_map<std::wstring, CTexture*> m_mapTexture;
 };
-

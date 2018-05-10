@@ -6,14 +6,14 @@ CLogo::CLogo()
 {
 }
 
-
 CLogo::~CLogo()
 {
+	Release();
 }
 
 HRESULT CLogo::Initialize()
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 int CLogo::Update()

@@ -1,10 +1,7 @@
 #pragma once
 
 const int WINCX = 1280;
-const int WINCY = 960;
-
-const int BUFCX = 1280;
-const int BUFCY = 960;
+const int WINCY = 720;
 
 const int TILECX = 64;
 const int TILECY = 64;

@@ -2,6 +2,7 @@
 #include "MainGame.h"
 
 #include "Device.h"
+#include "TextureManager.h"
 
 CMainGame::CMainGame()
 {
@@ -30,6 +31,12 @@ HRESULT CMainGame::Initialize()
 	if (m_pSprite == nullptr)
 		return E_FAIL;
 
+	if (FAILED(TextureManager->ReadImagePath(L"../Data/ImgPath.txt")))
+	{
+		MSG_BOX(L"TextureManager ReadImage Failed in MainGame");
+		return E_FAIL;
+	}
+
 	return S_OK;
 }
 
@@ -45,5 +52,6 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
+	TextureManager->DestroyInstance();
 	Device->DestroyInstance();
 }

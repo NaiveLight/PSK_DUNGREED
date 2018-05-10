@@ -249,8 +249,6 @@ void CToolScene::ObjViewRender()
 		if (pTexInfo == nullptr)
 			return;
 
-		
-
 		if (pTexInfo->tImgInfo.Width > 300.f)
 			fScale = 2.0f;
 
@@ -324,9 +322,6 @@ void CToolScene::InsertMapObj(const D3DXVECTOR3& vPos, const std::wstring& wstrS
 		return;
 
 	D3DXVECTOR3 vTempPos = m_vecTile[iIndex]->vPos;
-	
-	//vTempPos.x -= ;
-	//vTempPos.y -= ;
 
 	MAPOBJ* pMapObj = new MAPOBJ;
 

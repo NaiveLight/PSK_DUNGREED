@@ -144,6 +144,12 @@
     <ClInclude Include="SingleTexture.h">
       <Filter>소스 파일\03.Manager\05.TextureManager\Texture\SingleTexture</Filter>
     </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -181,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="SingleTexture.cpp">
       <Filter>소스 파일\03.Manager\05.TextureManager\Texture\SingleTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

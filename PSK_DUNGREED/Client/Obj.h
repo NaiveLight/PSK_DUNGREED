@@ -6,6 +6,11 @@ class CObj abstract
 public:
 	CObj();
 	virtual ~CObj();
+	
+public:
+	void SetPos(const D3DXVECTOR3* pPos);
+	void SetObjKey(const std::wstring& wstrObjKey);
+	void SetStateKey(const std::wstring& wstrStateKey);
 
 public:
 	virtual HRESULT Initialize() PURE;
@@ -21,5 +26,6 @@ protected:
 	INFO m_tInfo = {};	
 	FRAME m_tFrame = {};
 	std::wstring m_wstrObjKey = L"";
+	std::wstring m_wstrStateKey = L"";
 };
 
