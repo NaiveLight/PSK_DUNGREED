@@ -5,7 +5,6 @@ CKeyManager::CKeyManager()
 {
 }
 
-
 CKeyManager::~CKeyManager()
 {
 }

@@ -21,6 +21,9 @@ private:
 	LPD3DXSPRITE				m_pSprite = nullptr;
 
 private:
+	float m_fTime = 0.f;
+	DWORD m_dwCount = 0;
+	TCHAR m_szFps[128] = L"";
 	D3DXMATRIX	m_matIdentity;
 };
 

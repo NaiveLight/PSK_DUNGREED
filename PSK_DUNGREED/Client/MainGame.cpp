@@ -3,6 +3,9 @@
 
 #include "Device.h"
 #include "TextureManager.h"
+#include "SceneManager.h"
+#include "KeyManager.h"
+#include "TimeManager.h"
 
 CMainGame::CMainGame()
 {
@@ -37,21 +40,30 @@ HRESULT CMainGame::Initialize()
 		return E_FAIL;
 	}
 
+	SceneManager->ChangeScene(SCENE_LOGO);
+	TimeManager->InitTime();
+
 	return S_OK;
 }
 
 void CMainGame::Update()
 {
+	TimeManager->SetTime();
+	KeyManager->Update();
 }
 
 void CMainGame::Render()
 {
 	Device->BeginDraw();
+	SceneManager->Render();
 	Device->EndDraw(g_hWnd);
 }
 
 void CMainGame::Release()
 {
+	KeyManager->DestroyInstance();
+	TimeManager->DestroyInstance();
+	SceneManager->DestroyInstance();
 	TextureManager->DestroyInstance();
 	Device->DestroyInstance();
 }

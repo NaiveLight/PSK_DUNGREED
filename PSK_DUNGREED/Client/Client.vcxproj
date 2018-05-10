@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractObjFactory.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Device.h" />

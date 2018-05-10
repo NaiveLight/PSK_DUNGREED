@@ -1,6 +1,6 @@
 #pragma once
 #include "Obj.h"
-class CBackGround :
+class CBackGround final:
 	public CObj
 {
 public:
