@@ -148,6 +148,9 @@
       <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
     </ClInclude>
     <ClInclude Include="KeyManager.h">
+      <Filter>소스 파일\03.Manager\03.KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -192,6 +195,9 @@
       <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
     </ClCompile>
     <ClCompile Include="KeyManager.cpp">
+      <Filter>소스 파일\03.Manager\03.KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
