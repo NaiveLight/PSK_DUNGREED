@@ -156,6 +156,9 @@
     <ClInclude Include="ScrollManager.h">
       <Filter>소스 파일\03.Manager\02.ScrollManager</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\03.Manager\01.ObjectManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="ScrollManager.cpp">
       <Filter>소스 파일\03.Manager\02.ScrollManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\03.Manager\01.ObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
