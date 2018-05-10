@@ -14,6 +14,10 @@ public:
 	virtual void Release() PURE;
 
 protected:
+	LPDIRECT3DDEVICE9		m_pDevice = nullptr;
+	LPD3DXSPRITE					m_pSprite = nullptr;
+
+protected:
 	INFO m_tInfo = {};	
 	FRAME m_tFrame = {};
 	std::wstring m_wstrObjKey = L"";

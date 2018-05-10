@@ -10,6 +10,11 @@ CDevice::~CDevice()
 	Release();
 }
 
+void CDevice::SetBuffColor(const D3DXCOLOR & buffColor)
+{
+	m_backBuffColor = buffColor;
+}
+
 const LPDIRECT3DDEVICE9 CDevice::GetDevice()
 {
 	return m_pDevice;
@@ -82,7 +87,7 @@ HRESULT CDevice::Initialize()
 
 void CDevice::BeginDraw()
 {
-	m_pDevice->Clear(0, nullptr , D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET, D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
+	m_pDevice->Clear(0, nullptr , D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET, m_backBuffColor, 1.f, 0);
 	m_pDevice->BeginScene();
 	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
 }
