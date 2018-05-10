@@ -189,6 +189,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Client\TextureManager.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="FileInfo.h" />
     <ClInclude Include="MainFrm.h" />
@@ -210,6 +211,7 @@
     <ClInclude Include="ToolView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Client\TextureManager.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="FileInfo.cpp" />
     <ClCompile Include="MainFrm.cpp" />
