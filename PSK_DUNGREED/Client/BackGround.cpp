@@ -8,7 +8,6 @@ CBackGround::CBackGround()
 {
 }
 
-
 CBackGround::~CBackGround()
 {
 	Release();
@@ -50,10 +49,10 @@ int CBackGround::Update()
 
 void CBackGround::Render()
 {
-	const TEXINFO* pTexInfo = TextureManager->GetTexture(m_wstrObjKey, m_wstrStateKey);
+	const TEXINFO* pTexInfo = CTextureManager::GetInstance()->GetTexture(m_wstrObjKey, m_wstrStateKey, 0);
 	if (pTexInfo == nullptr)
 	{
-		MSG_BOX(L"Get TexInfo failed in BackGround ");
+		MSG_BOX(L"Get TexInfo failed in BackGround");
 		return;
 	}
 
@@ -74,6 +73,4 @@ void CBackGround::InitBackGroundAttributes()
 	m_tInfo.vPos = D3DXVECTOR3(WINCX * 0.5f, WINCY * 0.5f, 0.f);
 	m_tInfo.vLook = m_tInfo.vDir = D3DXVECTOR3(0.f, 0.f, 0.f);
 	D3DXMatrixIdentity(&m_tInfo.matWorld);
-
-	m_wstrObjKey = L"BACKGROUND";
 }

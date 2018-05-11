@@ -49,6 +49,7 @@ HRESULT CMainGame::Initialize()
 void CMainGame::Update()
 {
 	TimeManager->SetTime();
+	SceneManager->Update();
 	KeyManager->Update();
 }
 

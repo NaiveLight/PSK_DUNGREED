@@ -8,7 +8,6 @@ CTextureManager::CTextureManager()
 {
 }
 
-
 CTextureManager::~CTextureManager()
 {
 	Release();

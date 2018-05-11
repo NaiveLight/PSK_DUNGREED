@@ -73,15 +73,6 @@
     <Filter Include="소스 파일\01.Scene\03.Stage">
       <UniqueIdentifier>{f7dbfd43-c343-4f84-a1d8-a39e1128fb35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03.Manager\05.TextureManager\Texture">
-      <UniqueIdentifier>{1de616d9-1209-48fc-9a48-31e14acc9c77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\05.TextureManager\Texture\SingleTexture">
-      <UniqueIdentifier>{8905c354-0bcd-4724-9613-ee185aad117f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\03.Manager\05.TextureManager\Texture\MultiTexture">
-      <UniqueIdentifier>{757fadbc-cd7e-4dd5-a2fe-fa2297f39534}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\01.Layer">
       <UniqueIdentifier>{4811384a-e886-4cc4-b6ee-e4f756971d97}</UniqueIdentifier>
     </Filter>
@@ -105,6 +96,9 @@
     </Filter>
     <Filter Include="소스 파일\02.Object\08.UI">
       <UniqueIdentifier>{2c14e065-a7cc-4230-82b2-a44c2ec1b72d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.Manager\05.TextureManager\Texture">
+      <UniqueIdentifier>{97bb20c2-2136-4c60-b568-65877f19b668}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,18 +135,6 @@
     <ClInclude Include="BackGround.h">
       <Filter>소스 파일\02.Object\00.BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="MultiTexture.h">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture\MultiTexture</Filter>
-    </ClInclude>
-    <ClInclude Include="SingleTexture.h">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture\SingleTexture</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
-    </ClInclude>
     <ClInclude Include="KeyManager.h">
       <Filter>소스 파일\03.Manager\03.KeyManager</Filter>
     </ClInclude>
@@ -167,6 +149,18 @@
     </ClInclude>
     <ClInclude Include="AbstractObjFactory.h">
       <Filter>소스 파일\02.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiTexture.h">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTexture.h">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,18 +191,6 @@
     <ClCompile Include="BackGround.cpp">
       <Filter>소스 파일\02.Object\00.BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="MultiTexture.cpp">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture\MultiTexture</Filter>
-    </ClCompile>
-    <ClCompile Include="SingleTexture.cpp">
-      <Filter>소스 파일\03.Manager\05.TextureManager\Texture\SingleTexture</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
-    </ClCompile>
     <ClCompile Include="KeyManager.cpp">
       <Filter>소스 파일\03.Manager\03.KeyManager</Filter>
     </ClCompile>
@@ -220,6 +202,18 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>소스 파일\03.Manager\01.ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>소스 파일\03.Manager\05.TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTexture.cpp">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTexture.cpp">
+      <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

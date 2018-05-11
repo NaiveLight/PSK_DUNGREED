@@ -15,8 +15,5 @@ public:
 
 public:
 	void InitBackGroundAttributes();
-
-private:
-	std::wstring m_wstrStateKey;
 };
 
