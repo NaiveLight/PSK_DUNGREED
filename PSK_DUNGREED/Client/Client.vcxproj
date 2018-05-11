@@ -169,6 +169,9 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="TownScene.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Button.h" />
+    <ClInclude Include="UI_Cursor.h" />
+    <ClInclude Include="UI_Logo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
@@ -197,6 +200,9 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TownScene.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UI_Button.cpp" />
+    <ClCompile Include="UI_Cursor.cpp" />
+    <ClCompile Include="UI_Logo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

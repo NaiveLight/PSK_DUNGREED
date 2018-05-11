@@ -17,6 +17,7 @@ public:
 public:
 	void SetBridge(CBridge* pBridge);
 	void SetPos(const D3DXVECTOR3* pPos);
+	void SetFrame(const FRAME* pFrame);
 	void SetObjKey(const std::wstring& wstrObjKey);
 	void SetStateKey(const std::wstring& wstrStateKey);
 
@@ -25,6 +26,9 @@ public:
 	virtual int Update()	PURE;
 	virtual void Render() PURE;
 	virtual void Release() PURE;
+
+public:
+	virtual void UpdateMatrix();
 
 protected:
 	LPDIRECT3DDEVICE9		m_pDevice = nullptr;

@@ -6,7 +6,8 @@
 #include "Bridge.h"
 
 #include "BackGround.h"
-#include "UI.h"
+#include "UI_Logo.h"
+#include "UI_Cursor.h"
 
 template <typename T>
 class CAbstractFactory
@@ -21,6 +22,7 @@ public:
 		return pObj;
 	}
 
+	// OBJ_BACKGROUND
 	static CObj* CreateBackGround(const std::wstring& wstrStateKey)
 	{
 		CObj* pObj = new CBackGround;
@@ -33,16 +35,30 @@ public:
 
 		return pObj;
 	}
+	// OBJ_LAYER
 
-	static CObj* CreateUI(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
+	// OBJ_TILEMAP
+
+	//	OBJ_MAPOBJ
+
+	// OBJ_ACTOR (monster, npc, etc.)
+
+	// OBJ_WEAPON
+
+	// OBJ_PLAYER
+
+	// OBJ_BULLET
+
+	// OBJ_ITEM
+
+	// OBJ_EFFECT
+
+	// OBJ_UI
+	static CObj* CreateLogo(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr, const bool bAlpha = false)
 	{
-		CObj* pObj = new CUI;
-		CBridge* pBridge = new T;
+		CObj* pObj = new CUI_Logo;
 
 		if (FAILED(pObj->Initialize()))
-			return nullptr;
-
-		if (FAILED(pBridge->Initialize()))
 			return nullptr;
 
 		pObj->SetObjKey(L"UI");
@@ -51,7 +67,22 @@ public:
 		if (pPos != nullptr)
 			pObj->SetPos(pPos);
 		if (pFrame != nullptr)
-			pBridge->SetFrame(pFrame);
+			pObj->SetFrame(pFrame);
+
+		dynamic_cast<CUI_Logo*>(pObj)->SetAlphaBlend(bAlpha);
+
+		return pObj;
+	}
+
+	static CObj* CreateCursor()
+	{
+		CObj* pObj = new CUI_Cursor;
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		pObj->SetObjKey(L"UI");
+		pObj->SetStateKey(L"Cursor");
+		pObj->SetFrame(&FRAME(0, 0, 1));
 
 		return pObj;
 	}

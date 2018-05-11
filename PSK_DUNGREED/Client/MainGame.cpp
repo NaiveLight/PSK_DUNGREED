@@ -18,6 +18,8 @@ CMainGame::~CMainGame()
 
 HRESULT CMainGame::Initialize()
 {
+	ShowCursor(FALSE);
+
 	D3DXMatrixIdentity(&m_matIdentity);
 
 	if (FAILED(Device->Initialize()))
@@ -40,6 +42,20 @@ HRESULT CMainGame::Initialize()
 		return E_FAIL;
 	}
 
+	D3DXFONT_DESC		tFontInfo;
+	tFontInfo.Width = 10;
+	tFontInfo.Height = 15;
+	tFontInfo.Italic = FALSE;
+	tFontInfo.Weight = FW_BOLD;
+	tFontInfo.CharSet = HANGUL_CHARSET;
+	lstrcpy(tFontInfo.FaceName, L"메이플스토리");
+
+	if (FAILED(D3DXCreateFontIndirect(m_pDevice, &tFontInfo, &m_pFont)))
+	{
+		MSG_BOX(L"Create Font Failed in MainGame");
+		return E_FAIL;
+	}
+
 	SceneManager->ChangeScene(SCENE_LOGO);
 	TimeManager->InitTime();
 
@@ -55,8 +71,15 @@ void CMainGame::Update()
 
 void CMainGame::Render()
 {
+	CalcFPS();
+
 	Device->BeginDraw();
+
 	SceneManager->Render();
+
+	m_pSprite->SetTransform(&m_matIdentity);
+	m_pFont->DrawTextW(m_pSprite, m_szFps, lstrlen(m_szFps), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
 	Device->EndDraw(g_hWnd);
 }
 
@@ -67,4 +90,17 @@ void CMainGame::Release()
 	SceneManager->DestroyInstance();
 	TextureManager->DestroyInstance();
 	Device->DestroyInstance();
+}
+
+void CMainGame::CalcFPS()
+{
+	m_fTime += TimeManager->GetTime();
+	++m_dwCount;
+
+	if (m_fTime > 1.f)
+	{
+		m_fTime = 0.f;
+		wsprintf(m_szFps, L"FPS : %d", m_dwCount);
+		m_dwCount = 0;
+	}
 }

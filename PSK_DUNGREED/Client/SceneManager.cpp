@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 
 #include "LogoScene.h"
+#include "TitleScene.h"
 
 CSceneManager::CSceneManager()
 {
@@ -23,6 +24,8 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 	case SCENE_LOGO:
 		m_pScene = new CLogoScene;
 		break;
+	case SCENE_TITLE:
+		m_pScene = new CTitleScene;
 	case SCENE_STAGE:
 		break;
 	}

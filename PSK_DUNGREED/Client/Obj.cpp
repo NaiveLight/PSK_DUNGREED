@@ -35,6 +35,11 @@ void CObj::SetPos(const D3DXVECTOR3 * pPos)
 	m_tInfo.vPos = *pPos;
 }
 
+void CObj::SetFrame(const FRAME * pFrame)
+{
+	m_tFrame = *pFrame;
+}
+
 void CObj::SetObjKey(const std::wstring & wstrObjKey)
 {
 	m_wstrObjKey = wstrObjKey;
@@ -43,4 +48,15 @@ void CObj::SetObjKey(const std::wstring & wstrObjKey)
 void CObj::SetStateKey(const std::wstring & wstrStateKey)
 {
 	m_wstrStateKey = wstrStateKey;
+}
+
+void CObj::UpdateMatrix()
+{
+	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
+	D3DXMatrixTranslation(&m_tInfo.matWorld
+		, m_tInfo.vPos.x
+		, m_tInfo.vPos.y
+		, 0.f);
 }

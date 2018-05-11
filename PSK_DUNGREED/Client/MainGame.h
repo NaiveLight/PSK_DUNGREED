@@ -17,8 +17,12 @@ private:
 	void Release();
 
 private:
+	void CalcFPS();
+
+private:
 	LPDIRECT3DDEVICE9	m_pDevice = nullptr;
 	LPD3DXSPRITE				m_pSprite = nullptr;
+	LPD3DXFONT				m_pFont = nullptr;
 
 private:
 	float m_fTime = 0.f;

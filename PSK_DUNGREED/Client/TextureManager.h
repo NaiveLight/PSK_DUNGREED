@@ -10,6 +10,9 @@ public:
 	virtual ~CTextureManager();
 
 public:
+	const TCHAR* GetLoadingMessage(void) const;
+
+public:
 	const TEXINFO* GetTexture(const std::wstring& wstrObjKey, const std::wstring& wstrStateKey = L"", const int& iCount = 0);
 
 public:
@@ -24,5 +27,8 @@ private:
 
 private:
 	std::unordered_map<std::wstring, CTexture*> m_mapTexture;
+
+private:
+	TCHAR		m_szLoadingMessage[MAX_PATH] = L"";
 };
 

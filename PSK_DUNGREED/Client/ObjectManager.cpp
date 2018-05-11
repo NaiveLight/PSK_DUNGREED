@@ -12,6 +12,13 @@ CObjectManager::~CObjectManager()
 	Release();
 }
 
+std::list<CObj*>* CObjectManager::GetObjectList(OBJID eObjID)
+{
+	if (eObjID == OBJ_END)
+		return nullptr;
+	return &m_ObjList[eObjID];
+}
+
 void CObjectManager::AddObject(OBJID eObjID, CObj * pObj)
 {
 	if (pObj == nullptr)

@@ -100,6 +100,15 @@
     <Filter Include="소스 파일\02.Object\02.TileMap">
       <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\00.Logo">
+      <UniqueIdentifier>{3534779b-5396-4123-a4a0-3df279c60f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\01.Cursor">
+      <UniqueIdentifier>{3be7e025-68b8-4542-a87c-4cad98602e7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\02.Button">
+      <UniqueIdentifier>{e4036f30-92f0-45f3-b29d-ddbedbca23c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -174,6 +183,15 @@
     <ClInclude Include="TitleScene.h">
       <Filter>소스 파일\01.Scene\01.Title</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Logo.h">
+      <Filter>소스 파일\02.Object\08.UI\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Cursor.h">
+      <Filter>소스 파일\02.Object\08.UI\01.Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Button.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -238,6 +256,15 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>소스 파일\01.Scene\01.Title</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Logo.cpp">
+      <Filter>소스 파일\02.Object\08.UI\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Cursor.cpp">
+      <Filter>소스 파일\02.Object\08.UI\01.Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Button.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

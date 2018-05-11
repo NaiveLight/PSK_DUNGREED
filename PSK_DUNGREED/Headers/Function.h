@@ -46,7 +46,7 @@ struct DeleteObj
 	}
 };
 
-static D3DXVECTOR3 GetMouse(void)
+static D3DXVECTOR3 GetMousePos(void)
 {
 	POINT	pt;
 

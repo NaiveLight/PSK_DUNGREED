@@ -9,12 +9,15 @@ public:
 	virtual ~CUI();
 
 public:
-	virtual HRESULT Initialize() override;
-	virtual int Update() override;
-	virtual void Render() override;
-	virtual void Release() override;
+	void SetAlpha(const float& fAlpha) { m_fAlpha = fAlpha; }
 
-private:
-	int	m_iAlpha = 0;
+public:
+	virtual HRESULT Initialize() PURE;
+	virtual int Update() PURE;
+	virtual void Render() PURE;
+	virtual void Release() PURE;
+
+protected:
+	float	m_fAlpha = 0.f;
 };
 

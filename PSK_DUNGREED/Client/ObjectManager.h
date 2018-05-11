@@ -11,6 +11,9 @@ public:
 	virtual ~CObjectManager();
 
 public:
+	std::list<CObj*>* GetObjectList(OBJID eObjID);
+
+public:
 	void AddObject(OBJID eObjID, CObj* pObj);
 	void ReleaseObject(OBJID eObjID);
 

@@ -16,7 +16,7 @@ CTitleScene::~CTitleScene()
 
 HRESULT CTitleScene::Initialize()
 {
-	Device->SetBuffColor(D3DCOLOR_ARGB(255, 0, 0, 0));
+	Device->SetBuffColor(D3DCOLOR_ARGB(255, 121, 185, 255));
 
 	return S_OK;
 }

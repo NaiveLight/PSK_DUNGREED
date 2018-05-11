@@ -69,8 +69,8 @@ HRESULT CDevice::Initialize()
 	}
 
 	D3DXFONT_DESC		tFontInfo;
-	tFontInfo.Width = 10;
-	tFontInfo.Height = 15;
+	tFontInfo.Width = 25;
+	tFontInfo.Height = 30;
 	tFontInfo.Italic = FALSE;
 	tFontInfo.Weight = FW_NORMAL;
 	tFontInfo.CharSet = HANGUL_CHARSET;

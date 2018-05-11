@@ -13,6 +13,11 @@ CTextureManager::~CTextureManager()
 	Release();
 }
 
+const TCHAR * CTextureManager::GetLoadingMessage(void) const
+{
+	return m_szLoadingMessage;
+}
+
 const TEXINFO * CTextureManager::GetTexture(const std::wstring & wstrObjKey, const std::wstring & wstrStateKey, const int & iCount)
 {
 	auto iter = m_mapTexture.find(wstrObjKey);
@@ -96,9 +101,13 @@ HRESULT CTextureManager::ReadImagePath(const std::wstring & wstrPath)
 			MSG_BOX(szObjKey);
 			return E_FAIL;
 		}
+		lstrcpy(m_szLoadingMessage, szImgPath);
 	}
 
 	LoadFile.close();
+
+	lstrcpy(m_szLoadingMessage, L"Loading Complete...");
+
 	return S_OK;
 }
 
