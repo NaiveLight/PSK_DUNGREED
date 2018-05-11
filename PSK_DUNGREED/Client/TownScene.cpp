@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "TownScene.h"
 
+#include "Device.h"
+#include "ObjectManager.h"
+#include "AbstractObjFactory.h"
+
 CTownScene::CTownScene()
 {
 }
@@ -12,6 +16,8 @@ CTownScene::~CTownScene()
 
 HRESULT CTownScene::Initialize()
 {
+	Device->SetBuffColor(D3DCOLOR_ARGB(255, 0, 0, 0));
+	ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
 
 	return S_OK;
 }

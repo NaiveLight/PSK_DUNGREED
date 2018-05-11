@@ -12,6 +12,7 @@ public:
 
 public:
 	void AddObject(OBJID eObjID, CObj* pObj);
+	void ReleaseObject(OBJID eObjID);
 
 public:
 	int Update();

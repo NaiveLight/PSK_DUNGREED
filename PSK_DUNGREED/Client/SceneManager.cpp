@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 
-#include "Logo.h"
+#include "LogoScene.h"
 
 CSceneManager::CSceneManager()
 {
@@ -21,7 +21,7 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 	switch (eSceneID)
 	{
 	case SCENE_LOGO:
-		m_pScene = new CLogo;
+		m_pScene = new CLogoScene;
 		break;
 	case SCENE_STAGE:
 		break;

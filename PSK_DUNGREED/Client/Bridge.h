@@ -11,6 +11,7 @@ public:
 
 public:
 	void SetObj(CObj* pObj);
+	void SetFrame(const FRAME* pFrame);
 
 public:
 	virtual HRESULT Initialize() PURE;
@@ -20,7 +21,6 @@ public:
 
 protected:
 	CObj* m_pObj = nullptr;
-	std::wstring m_wstrStateKey = L"";
 	FRAME	m_tFrame = {};
 };
 

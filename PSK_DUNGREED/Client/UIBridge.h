@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Bridge.h"
+
 class CUIBridge :
 	public CBridge
 {
@@ -16,5 +18,8 @@ public:
 protected:
 	LPDIRECT3DDEVICE9		m_pDevice = nullptr;
 	LPD3DXSPRITE			m_pSprite = nullptr;
+
+private:
+	int m_iAlpha = 255;
 };
 

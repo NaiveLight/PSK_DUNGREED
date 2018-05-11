@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Include.h"
+
+class CBridge;
 class CObj abstract
 {
 public:
@@ -8,6 +10,12 @@ public:
 	virtual ~CObj();
 	
 public:
+	const std::wstring& GetObjKey();
+	const std::wstring& GetStateKey();
+	const INFO* GetInfo();
+
+public:
+	void SetBridge(CBridge* pBridge);
 	void SetPos(const D3DXVECTOR3* pPos);
 	void SetObjKey(const std::wstring& wstrObjKey);
 	void SetStateKey(const std::wstring& wstrStateKey);
@@ -29,6 +37,6 @@ protected:
 	std::wstring m_wstrStateKey = L"";
 
 protected:
-
+	CBridge* m_pBridge = nullptr;
 };
 

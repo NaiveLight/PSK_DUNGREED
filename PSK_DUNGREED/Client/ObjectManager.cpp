@@ -20,6 +20,12 @@ void CObjectManager::AddObject(OBJID eObjID, CObj * pObj)
 	m_ObjList[eObjID].push_back(pObj);
 }
 
+void CObjectManager::ReleaseObject(OBJID eObjID)
+{
+	std::for_each(m_ObjList[eObjID].begin(), m_ObjList[eObjID].end(), DeleteObj());
+	m_ObjList[eObjID].clear();
+}
+
 int CObjectManager::Update()
 {
 	int iResult = 0;

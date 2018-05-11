@@ -2,12 +2,12 @@
 
 #include "Scene.h"
 
-class CTownScene final:
+class CTitleScene final:
 	public CScene
 {
 public:
-	CTownScene();
-	virtual ~CTownScene();
+	CTitleScene();
+	virtual ~CTitleScene();
 
 public:
 	virtual HRESULT Initialize() override;

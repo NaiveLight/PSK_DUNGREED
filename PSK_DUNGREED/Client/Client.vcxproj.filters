@@ -100,9 +100,6 @@
     <Filter Include="소스 파일\02.Object\02.TileMap">
       <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\08.UI\UIBridge">
-      <UniqueIdentifier>{5abf6fe0-0499-4519-8ccb-c2231f6a5457}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -125,9 +122,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\01.Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Logo.h">
-      <Filter>소스 파일\01.Scene\00.Logo</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>소스 파일\01.Scene</Filter>
@@ -174,8 +168,11 @@
     <ClInclude Include="Bridge.h">
       <Filter>소스 파일\04.DesignPattern\00.Bridge</Filter>
     </ClInclude>
-    <ClInclude Include="UIBridge.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="LogoScene.h">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>소스 파일\01.Scene\01.Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -193,9 +190,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\01.Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Logo.cpp">
-      <Filter>소스 파일\01.Scene\00.Logo</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\01.Scene</Filter>
@@ -239,8 +233,11 @@
     <ClCompile Include="Bridge.cpp">
       <Filter>소스 파일\04.DesignPattern\00.Bridge</Filter>
     </ClCompile>
-    <ClCompile Include="UIBridge.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="LogoScene.cpp">
+      <Filter>소스 파일\01.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\01.Scene\01.Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
