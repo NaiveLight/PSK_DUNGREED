@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractObjFactory.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Bridge.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="KeyManager.h" />
@@ -165,9 +166,13 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TownScene.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UIBridge.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="KeyManager.cpp" />
@@ -189,6 +194,9 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="TownScene.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UIBridge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

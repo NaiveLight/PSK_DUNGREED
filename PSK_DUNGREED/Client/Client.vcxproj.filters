@@ -76,9 +76,6 @@
     <Filter Include="소스 파일\02.Object\01.Layer">
       <UniqueIdentifier>{4811384a-e886-4cc4-b6ee-e4f756971d97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\02.Tile">
-      <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\03.MapObject">
       <UniqueIdentifier>{c6e5872a-e288-45b4-a53f-e0a925d35779}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,12 @@
     </Filter>
     <Filter Include="소스 파일\03.Manager\05.TextureManager\Texture">
       <UniqueIdentifier>{97bb20c2-2136-4c60-b568-65877f19b668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\02.TileMap">
+      <UniqueIdentifier>{d68a916c-2275-400b-b121-0eafc9e8cd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\UIBridge">
+      <UniqueIdentifier>{5abf6fe0-0499-4519-8ccb-c2231f6a5457}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +165,18 @@
     <ClInclude Include="SingleTexture.h">
       <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>소스 파일\02.Object\08.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TownScene.h">
+      <Filter>소스 파일\01.Scene\02.Town</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>소스 파일\04.DesignPattern\00.Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBridge.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -214,6 +229,18 @@
     </ClCompile>
     <ClCompile Include="SingleTexture.cpp">
       <Filter>소스 파일\03.Manager\05.TextureManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>소스 파일\02.Object\08.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TownScene.cpp">
+      <Filter>소스 파일\01.Scene\02.Town</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>소스 파일\04.DesignPattern\00.Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="UIBridge.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

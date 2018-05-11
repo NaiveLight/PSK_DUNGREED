@@ -1,17 +1,20 @@
 #pragma once
-#include "Scene.h"
+#include "Obj.h"
 
-class CLogo :
-	public CScene
+class CUI :
+	public CObj
 {
 public:
-	CLogo();
-	virtual ~CLogo();
+	CUI();
+	virtual ~CUI();
 
 public:
 	virtual HRESULT Initialize() override;
 	virtual int Update() override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+private:
+	int	m_iAlpha = 0;
 };
 
