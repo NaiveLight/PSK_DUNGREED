@@ -11,6 +11,9 @@ public:
 	virtual ~CObjectManager();
 
 public:
+	void SetSceneChange(const bool bChange) { m_bIsSceneChange = bChange; }
+
+public:
 	std::list<CObj*>* GetObjectList(OBJID eObjID);
 
 public:
@@ -24,5 +27,6 @@ public:
 
 private:
 	std::list<CObj*> m_ObjList[OBJ_END];
+	bool m_bIsSceneChange = false;
 };
 

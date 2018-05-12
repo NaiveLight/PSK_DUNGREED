@@ -4,6 +4,7 @@
 #include "Device.h"
 #include "ObjectManager.h"
 #include "AbstractObjFactory.h"
+#include "ScrollManager.h"
 
 CTownScene::CTownScene()
 {
@@ -17,13 +18,17 @@ CTownScene::~CTownScene()
 HRESULT CTownScene::Initialize()
 {
 	Device->SetBuffColor(D3DCOLOR_ARGB(255, 0, 0, 0));
-
+	ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
 	return S_OK;
 }
 
 void CTownScene::LateInit()
 {
-	ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
+	//ScrollManager->SetMinScroll(0.f, 0.f);
+	//ScrollManager->SetMaxScroll(0.f, 0.f);
+	//ScrollManager->SetScroll(0.f, 0.f);
+
+	ObjectManager->SetSceneChange(false);
 }
 
 int CTownScene::Update()

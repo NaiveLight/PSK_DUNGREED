@@ -15,6 +15,6 @@ public:
 
 private:
 	bool m_bIsInit = false;
-
+	int m_bIsChange = 0;
 };
 

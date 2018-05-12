@@ -18,5 +18,6 @@ public:
 
 private:
 	CScene* m_pScene = nullptr;
+	bool m_bIsSceneChange = false;
 };
 

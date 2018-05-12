@@ -38,6 +38,7 @@ HRESULT CUI_Button::Initialize()
 
 int CUI_Button::Update()
 {
+	int iResult = 0;
 	POINT pt = {};
 	GetCursorPos(&pt);
 	ScreenToClient(g_hWnd, &pt);
@@ -49,9 +50,9 @@ int CUI_Button::Update()
 
 	UpdateRect();
 	CObj::UpdateMatrix();
-	CheckInput();
+	iResult = CheckInput();
 
-	return 0;
+	return iResult;
 }
 
 void CUI_Button::Render()
@@ -86,7 +87,7 @@ void CUI_Button::UpdateRect()
 	};
 }
 
-void CUI_Button::CheckInput()
+int  CUI_Button::CheckInput()
 {
 	if (KeyManager->KeyDown(VK_LBUTTON) && m_tFrame.fFrame == 1.0f)
 	{
@@ -108,5 +109,9 @@ void CUI_Button::CheckInput()
 		default:
 			break;
 		}
+
+		return 2;
 	}
+
+	return 0;
 }

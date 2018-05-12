@@ -18,7 +18,7 @@ public:
 
 private:
 	void UpdateRect();
-	void CheckInput();
+	int CheckInput();
 
 private:
 	BUTTONID m_eBtID = BT_END;

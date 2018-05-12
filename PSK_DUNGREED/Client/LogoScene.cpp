@@ -31,14 +31,14 @@ HRESULT CLogoScene::Initialize()
 
 	m_hThread = (HANDLE)_beginthreadex(nullptr, 0, ThreadFunc, this, 0, nullptr);
 
+	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Logo>::CreateLogo(L"TeamLogo", &D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5f, 0.f }, &FRAME{ 0.f, 0.f, 0.f }));
+	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Logo>::CreateLogo(L"TeamLogo", &D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5f, 0.f }, &FRAME{ 1.f, 0.f, 0.f }, true));
+
 	return S_OK;
 }
 
 void CLogoScene::LateInit()
 {
-	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Logo>::CreateLogo(L"TeamLogo", &D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5f, 0.f }, &FRAME{ 0.f, 0.f, 0.f }));
-	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Logo>::CreateLogo(L"TeamLogo", &D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5f, 0.f }, &FRAME{ 1.f, 0.f, 0.f }, true));
-
 }
 
 int CLogoScene::Update()
