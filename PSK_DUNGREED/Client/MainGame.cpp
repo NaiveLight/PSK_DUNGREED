@@ -2,7 +2,9 @@
 #include "MainGame.h"
 
 #include "Device.h"
+#include "ObjectManager.h"
 #include "TextureManager.h"
+#include "ScrollManager.h"
 #include "SceneManager.h"
 #include "KeyManager.h"
 #include "TimeManager.h"
@@ -94,7 +96,9 @@ void CMainGame::Release()
 	KeyManager->DestroyInstance();
 	TimeManager->DestroyInstance();
 	SceneManager->DestroyInstance();
+	ScrollManager->DestroyInstance();
 	TextureManager->DestroyInstance();
+	ObjectManager->DestroyInstance();
 	Device->DestroyInstance();
 }
 

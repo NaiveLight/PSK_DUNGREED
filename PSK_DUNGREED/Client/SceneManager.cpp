@@ -9,7 +9,6 @@ CSceneManager::CSceneManager()
 {
 }
 
-
 CSceneManager::~CSceneManager()
 {
 	Release();
@@ -38,7 +37,6 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 		MSG_BOX(L"Scene Init Failed in SceneManager");
 		return E_FAIL;
 	}
-
 
 	return S_OK;
 }

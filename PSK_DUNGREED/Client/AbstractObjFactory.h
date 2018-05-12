@@ -6,6 +6,9 @@
 #include "Bridge.h"
 
 #include "BackGround.h"
+
+#include "TileMap.h"
+
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
 #include "UI_Button.h"
@@ -39,6 +42,17 @@ public:
 	// OBJ_LAYER
 
 	// OBJ_TILEMAP
+	static CObj* CreateTileMap(const std::wstring& wstrFileName)
+	{
+		CObj* pObj = new CTileMap;
+
+		dynamic_cast<CTileMap*>(pObj)->SetDataPath(wstrFileName);
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		return pObj;
+	}
 
 	//	OBJ_MAPOBJ
 

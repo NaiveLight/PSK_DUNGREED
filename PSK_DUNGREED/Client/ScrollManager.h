@@ -10,9 +10,10 @@ public:
 	virtual ~CScrollManager();
 
 public:
-	void SetScroll(float fX, float fY);
+	void SetCurScroll(float fX, float fY);
 	void SetMinScroll(float fX, float fY);
 	void SetMaxScroll(float fX, float fY);
+	void SetScroll(const D3DXVECTOR3& vScroll);
 
 public:
 	const D3DXVECTOR3& GetScroll() const;

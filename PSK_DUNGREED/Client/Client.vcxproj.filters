@@ -109,6 +109,9 @@
     <Filter Include="소스 파일\02.Object\08.UI\02.Button">
       <UniqueIdentifier>{e4036f30-92f0-45f3-b29d-ddbedbca23c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\00.Player">
+      <UniqueIdentifier>{fcf1fd24-ec1d-4930-9346-f005f7b32fba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -195,6 +198,9 @@
     <ClInclude Include="Layer.h">
       <Filter>소스 파일\02.Object\01.Layer</Filter>
     </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>소스 파일\02.Object\02.TileMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -271,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="Layer.cpp">
       <Filter>소스 파일\02.Object\01.Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일\02.Object\02.TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
