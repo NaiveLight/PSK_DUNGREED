@@ -151,6 +151,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="LogoScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MultiTexture.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogoScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MultiTexture.cpp" />

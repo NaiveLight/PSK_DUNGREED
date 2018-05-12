@@ -1,10 +1,27 @@
 #pragma once
 #include "UI.h"
-class UI_Button :
+class CUI_Button :
 	public CUI
 {
 public:
-	UI_Button();
-	virtual ~UI_Button();
+	CUI_Button();
+	virtual ~CUI_Button();
+
+public:
+	void SetButtonID(BUTTONID eBtID) { m_eBtID = eBtID; }
+
+public:
+	virtual HRESULT Initialize() override;
+	virtual int Update() override;
+	virtual void Render() override;
+	virtual void Release() override;
+
+private:
+	void UpdateRect();
+	void CheckInput();
+
+private:
+	BUTTONID m_eBtID = BT_END;
+	RECT			m_tHitRect = {};
 };
 

@@ -18,7 +18,7 @@ CMainGame::~CMainGame()
 
 HRESULT CMainGame::Initialize()
 {
-	ShowCursor(FALSE);
+	//ShowCursor(FALSE);
 
 	D3DXMatrixIdentity(&m_matIdentity);
 
@@ -64,6 +64,9 @@ HRESULT CMainGame::Initialize()
 
 void CMainGame::Update()
 {
+	if (KeyManager->KeyDown(VK_F1))
+		m_bIsDebug = !m_bIsDebug;
+
 	TimeManager->SetTime();
 	SceneManager->Update();
 	KeyManager->Update();
@@ -77,8 +80,11 @@ void CMainGame::Render()
 
 	SceneManager->Render();
 
-	m_pSprite->SetTransform(&m_matIdentity);
-	m_pFont->DrawTextW(m_pSprite, m_szFps, lstrlen(m_szFps), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+	if (m_bIsDebug)
+	{
+		m_pSprite->SetTransform(&m_matIdentity);
+		m_pFont->DrawTextW(m_pSprite, m_szFps, lstrlen(m_szFps), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 
 	Device->EndDraw(g_hWnd);
 }

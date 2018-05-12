@@ -8,6 +8,7 @@
 #include "BackGround.h"
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
+#include "UI_Button.h"
 
 template <typename T>
 class CAbstractFactory
@@ -61,7 +62,7 @@ public:
 		if (FAILED(pObj->Initialize()))
 			return nullptr;
 
-		pObj->SetObjKey(L"UI");
+		pObj->SetObjKey(L"UI_LOGO");
 		pObj->SetStateKey(wstrStateKey);
 
 		if (pPos != nullptr)
@@ -80,9 +81,24 @@ public:
 		if (FAILED(pObj->Initialize()))
 			return nullptr;
 
-		pObj->SetObjKey(L"UI");
+		pObj->SetObjKey(L"UI_CURSOR");
 		pObj->SetStateKey(L"Cursor");
 		pObj->SetFrame(&FRAME(0, 0, 1));
+
+		return pObj;
+	}
+
+	static CObj* CreateButton(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos, BUTTONID eBtID)
+	{
+		CObj* pObj = new CUI_Button;
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		pObj->SetObjKey(L"UI_BUTTON");
+		pObj->SetStateKey(wstrStateKey);
+		pObj->SetPos(pPos); 
+
+		dynamic_cast<CUI_Button*>(pObj)->SetButtonID(eBtID);
 
 		return pObj;
 	}

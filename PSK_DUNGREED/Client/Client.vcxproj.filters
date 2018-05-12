@@ -190,7 +190,10 @@
       <Filter>소스 파일\02.Object\08.UI\01.Cursor</Filter>
     </ClInclude>
     <ClInclude Include="UI_Button.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\02.Object\08.UI\02.Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>소스 파일\02.Object\01.Layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +267,10 @@
       <Filter>소스 파일\02.Object\08.UI\01.Cursor</Filter>
     </ClCompile>
     <ClCompile Include="UI_Button.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02.Object\08.UI\02.Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>소스 파일\02.Object\01.Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

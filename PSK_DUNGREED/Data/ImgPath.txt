@@ -1,3 +1,5 @@
+BACKGROUND|BackCloud|1|..\Texture\BACKGROUND\BackCloud\BackCloud0%d.png
+BACKGROUND|FrontCloud|1|..\Texture\BACKGROUND\FrontCloud\FrontCloud0%d.png
 BACKGROUND|Town|1|..\Texture\BACKGROUND\Town\Town0%d.png
 OBJECT|Chain|1|..\Texture\OBJECT\Chain\Chain0%d.png
 OBJECT|DFloor|1|..\Texture\OBJECT\DFloor\DFloor0%d.png
@@ -23,3 +25,9 @@ TILE|Pillar|4|..\Texture\TILE\Pillar\Pillar0%d.png
 TILE|Sand|9|..\Texture\TILE\Sand\Sand0%d.png
 TILE|Stone|23|..\Texture\TILE\Stone\Stone00%d.png
 TILE|Town|12|..\Texture\TILE\Town\Town0%d.png
+UI_BUTTON|Exit|2|..\Texture\UI\UI_BUTTON\Exit\Exit0%d.png
+UI_BUTTON|Option|2|..\Texture\UI\UI_BUTTON\Option\Option0%d.png
+UI_BUTTON|Play|2|..\Texture\UI\UI_BUTTON\Play\Play0%d.png
+UI_CURSOR|Cursor|2|..\Texture\UI\UI_CURSOR\Cursor\Cursor0%d.png
+UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png
+UI_LOGO|TeamLogo|3|..\Texture\UI\UI_LOGO\TeamLogo\TeamLogo0%d.png

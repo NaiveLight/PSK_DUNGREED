@@ -17,20 +17,28 @@ CTownScene::~CTownScene()
 HRESULT CTownScene::Initialize()
 {
 	Device->SetBuffColor(D3DCOLOR_ARGB(255, 0, 0, 0));
-	ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
 
 	return S_OK;
 }
 
+void CTownScene::LateInit()
+{
+	ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
+}
+
 int CTownScene::Update()
 {
+	CScene::LateInit();
+	ObjectManager->Update();
 	return 0;
 }
 
 void CTownScene::Render()
 {
+	ObjectManager->Render();
 }
 
 void CTownScene::Release()
 {
+
 }

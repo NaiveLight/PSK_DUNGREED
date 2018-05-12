@@ -236,7 +236,7 @@ void CToolScene::ObjViewRender()
 	float fX = WINCX;
 	float fY = WINCY;
 
-	float fScale = 4.0f;
+	float fScale = 2.0f;
 
 	if (m_bisTile)
 	{
@@ -276,7 +276,7 @@ void CToolScene::ObjViewRender()
 			return;
 
 		if (pTexInfo->tImgInfo.Width > 300.f)
-			fScale = 0.3f;
+			fScale = 0.5f;
 
 		D3DXMatrixScaling(&matScale, fScale, fScale, 0.f);
 		D3DXMatrixTranslation(&matTrans, (fX * 0.5f), (fY * 0.5f), 0.f);

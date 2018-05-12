@@ -36,15 +36,7 @@ HRESULT CBackGround::Initialize()
 
 int CBackGround::Update()
 {
-	//D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-
-	//D3DXMatrixTranslation(&m_tInfo.matWorld
-	//	, m_tInfo.vPos.x
-	//	, m_tInfo.vPos.y
-	//	, 0.f);
 	CObj::UpdateMatrix();
-
 	return 0;
 }
 

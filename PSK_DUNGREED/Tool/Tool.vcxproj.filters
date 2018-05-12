@@ -132,9 +132,6 @@
     <ClInclude Include="FileInfo.h">
       <Filter>소스 파일\04.Object\01.FileInfo</Filter>
     </ClInclude>
-    <ClInclude Include="..\Client\TextureManager.h">
-      <Filter>소스 파일\05.Manager</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -187,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="FileInfo.cpp">
       <Filter>소스 파일\04.Object\01.FileInfo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Client\TextureManager.cpp">
-      <Filter>소스 파일\05.Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

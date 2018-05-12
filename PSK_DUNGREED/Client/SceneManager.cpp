@@ -3,6 +3,7 @@
 
 #include "LogoScene.h"
 #include "TitleScene.h"
+#include "TownScene.h"
 
 CSceneManager::CSceneManager()
 {
@@ -26,7 +27,9 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 		break;
 	case SCENE_TITLE:
 		m_pScene = new CTitleScene;
-	case SCENE_STAGE:
+		break;
+	case SCENE_TOWN:
+		m_pScene = new CTownScene;
 		break;
 	}
 
@@ -35,9 +38,6 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 		MSG_BOX(L"Scene Init Failed in SceneManager");
 		return E_FAIL;
 	}
-
-	if (eSceneID != SCENE_LOGO)
-		m_pScene->Update();
 
 	return S_OK;
 }
