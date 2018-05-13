@@ -8,7 +8,7 @@ public:
 	virtual ~CLayer();
 
 public:
-	void SetSpeed(const float& fSpeed) { m_fSpeed = fSpeed; }
+	void SetScrollRatio(const float& fSpeed) { m_fScrollRatio = fSpeed; }
 
 public:
 	virtual HRESULT Initialize() override;
@@ -16,7 +16,10 @@ public:
 	virtual void Render() override;
 	virtual void Release() override;
 
+public:
+	virtual void UpdateMatrix() override;
+
 private:
-	float m_fSpeed = 0.f;
+	float m_fScrollRatio = 0.f;
 };
 

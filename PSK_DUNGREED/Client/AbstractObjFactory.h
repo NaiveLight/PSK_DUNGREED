@@ -7,6 +7,8 @@
 
 #include "BackGround.h"
 
+#include "Layer.h"
+
 #include "TileMap.h"
 #include "MapObj.h"
 
@@ -41,6 +43,30 @@ public:
 		return pObj;
 	}
 	// OBJ_LAYER
+	static CObj* CreateLayer(const std::wstring& wstrStateKey, const float& fScrollRatio, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
+	{
+		CObj* pObj = new CLayer;
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		if (pPos != nullptr)
+			pObj->SetPos(pPos);
+		else
+			pObj->SetPos(&D3DXVECTOR3(WINCX *0.5f, WINCY * 0.5f, 0));
+
+		if (pFrame != nullptr)
+			pObj->SetFrame(pFrame);
+		else
+			pObj->SetFrame(&FRAME(0.f, 0.f, 0.f));
+
+		pObj->SetObjKey(L"LAYER");
+		pObj->SetStateKey(wstrStateKey);
+
+		dynamic_cast<CLayer*>(pObj)->SetScrollRatio(fScrollRatio);
+
+		return pObj;
+	}
 
 	// OBJ_TILEMAP
 	static CObj* CreateTileMap(const std::wstring& wstrFileName)
