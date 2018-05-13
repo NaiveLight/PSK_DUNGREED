@@ -32,5 +32,6 @@ private:
 	std::wstring m_wstrDataPath;
 	int m_iTileX = 0;
 	int m_iTileY = 0;
+	bool m_bCollider = false;
 };
 

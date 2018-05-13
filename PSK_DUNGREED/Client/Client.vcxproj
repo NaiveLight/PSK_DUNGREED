@@ -154,6 +154,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LogoScene.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MapObj.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjectManager.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogoScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MapObj.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjectManager.cpp" />

@@ -8,6 +8,7 @@
 #include "BackGround.h"
 
 #include "TileMap.h"
+#include "MapObj.h"
 
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
@@ -55,6 +56,18 @@ public:
 	}
 
 	//	OBJ_MAPOBJ
+
+	static CObj* CreateMapObj(const std::wstring& wstrFileName)
+	{
+		CObj* pObj = new CMapObj;
+
+		dynamic_cast<CMapObj*>(pObj)->SetDataPath(wstrFileName);
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		return pObj;
+	}
 
 	// OBJ_ACTOR (monster, npc, etc.)
 

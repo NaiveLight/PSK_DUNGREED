@@ -4,6 +4,7 @@
 #include "Device.h"
 #include "TextureManager.h"
 #include "ScrollManager.h"
+#include "KeyManager.h"
 
 CTileMap::CTileMap()
 {
@@ -37,12 +38,16 @@ HRESULT CTileMap::Initialize()
 
 int CTileMap::Update()
 {
+	if (KeyManager->KeyDown(VK_F2))
+		m_bCollider = !m_bCollider;
 	return 0;
 }
 
 void CTileMap::Render()
 {
 	TileRender();
+	if (m_bCollider)
+		ColliderRender();
 }
 
 void CTileMap::Release()
