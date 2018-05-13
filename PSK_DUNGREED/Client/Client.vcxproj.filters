@@ -204,6 +204,9 @@
     <ClInclude Include="MapObj.h">
       <Filter>소스 파일\02.Object\03.MapObject</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\02.Object\05.Actor\00.Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -286,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="MapObj.cpp">
       <Filter>소스 파일\02.Object\03.MapObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\00.Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

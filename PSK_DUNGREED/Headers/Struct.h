@@ -24,20 +24,31 @@ typedef struct tagMapObject
 typedef struct tagData
 {
 	int		iLevel;
+	int		iCurExp;
+	int		iMaxExp;
 	int		iCurHp;
 	int		iMaxHp;
 	int		iDashCnt;
 	int		iMaxDashCnt;
 
-	int		iAtt;
-	int		iDashAtt;
-	int		iDefence;
 	int		iGold;
-	int		iFood;
-	int		iCritical;
 
-	int		iAttSpeed;
-	int		iMoveSpeed;
+	int		iCurFood;
+	int		iMaxFood;
+
+	// AP로 증가 시킬 수 있는 스탯
+	int		iStr; //분노
+	int		iDex; //신속
+	int		iDef; //인내
+	int		iInt; //신비
+	int		iDeg; //탐욕
+
+	// 기타 스탯
+	int		iMinAtt;
+	int		iMaxAtt;
+
+	float		fAttSpeed;
+	float		fMoveSpeed;
 }DATA;
 
 typedef struct tagFrame

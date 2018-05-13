@@ -12,6 +12,8 @@
 #include "TileMap.h"
 #include "MapObj.h"
 
+#include "Player.h"
+
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
 #include "UI_Button.h"
