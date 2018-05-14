@@ -38,12 +38,6 @@ HRESULT CMainGame::Initialize()
 	if (m_pSprite == nullptr)
 		return E_FAIL;
 
-	if (FAILED(TextureManager->ReadImagePath(L"../Data/ImgPath.txt")))
-	{
-		MSG_BOX(L"TextureManager ReadImage Failed in MainGame");
-		return E_FAIL;
-	}
-
 	D3DXFONT_DESC		tFontInfo;
 	tFontInfo.Width = 10;
 	tFontInfo.Height = 15;

@@ -19,6 +19,7 @@ OBJECT|Tree|2|..\Texture\OBJECT\Tree\Tree0%d.png
 OBJECT|TStone|3|..\Texture\OBJECT\TStone\TStone0%d.png
 OBJECT|TTemple|1|..\Texture\OBJECT\TTemple\TTemple0%d.png
 OBJECT|Well|1|..\Texture\OBJECT\Well\Well0%d.png
+PLAYER|PCollider|1|..\Texture\PLAYER\PCollider\PCollider0%d.png
 PLAYER|Die|1|..\Texture\PLAYER\Die\Die0%d.png
 PLAYER|Idle|5|..\Texture\PLAYER\Idle\Idle0%d.png
 PLAYER|Jump|1|..\Texture\PLAYER\Jump\Jump0%d.png
@@ -35,6 +36,5 @@ UI_BUTTON|Exit|2|..\Texture\UI\UI_BUTTON\Exit\Exit0%d.png
 UI_BUTTON|Option|2|..\Texture\UI\UI_BUTTON\Option\Option0%d.png
 UI_BUTTON|Play|2|..\Texture\UI\UI_BUTTON\Play\Play0%d.png
 UI_CURSOR|Cursor|2|..\Texture\UI\UI_CURSOR\Cursor\Cursor0%d.png
-UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png
-UI_LOGO|TeamLogo|3|..\Texture\UI\UI_LOGO\TeamLogo\TeamLogo0%d.png
 UI_LOGO|Copyright|1|..\Texture\UI\UI_LOGO\Copyright\Copyright0%d.png
+UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png

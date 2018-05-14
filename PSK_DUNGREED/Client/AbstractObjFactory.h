@@ -130,7 +130,7 @@ public:
 		return pObj;
 	}
 
-	static CObj* CreateCursor()
+	static CObj* CreateCursor(const FRAME* pFrame)
 	{
 		CObj* pObj = new CUI_Cursor;
 		if (FAILED(pObj->Initialize()))
@@ -138,7 +138,7 @@ public:
 
 		pObj->SetObjKey(L"UI_CURSOR");
 		pObj->SetStateKey(L"Cursor");
-		pObj->SetFrame(&FRAME(0, 0, 1));
+		pObj->SetFrame(pFrame);
 
 		return pObj;
 	}

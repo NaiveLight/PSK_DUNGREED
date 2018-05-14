@@ -13,6 +13,9 @@ public:
 
 public:
 	std::vector<TILE*>* GetVecTile() { return &m_vecTile; }
+	TILE* GetTile(int idx) { return m_vecTile[idx]; }
+	const int& GetTileX() { return m_iTileX; }
+	const int& GetTileY() { return m_iTileY; }
 
 public:
 	virtual HRESULT Initialize() override;

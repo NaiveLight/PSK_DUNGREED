@@ -207,6 +207,9 @@
     <ClInclude Include="Player.h">
       <Filter>소스 파일\02.Object\05.Actor\00.Player</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>소스 파일\03.Manager\06.CollisionManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -292,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\02.Object\05.Actor\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>소스 파일\03.Manager\06.CollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

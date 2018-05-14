@@ -27,7 +27,7 @@ HRESULT CTitleScene::Initialize()
 	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Button>::CreateButton(L"Play", &D3DXVECTOR3(WINCX * 0.5f, WINCY * 0.5f + 96.f, 0.f), BUTTONID::BT_TSTART));
 	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Button>::CreateButton(L"Option", &D3DXVECTOR3(WINCX * 0.5f, WINCY * 0.5f + 96 + 48.f, 0.f), BUTTONID::BT_TSTART));
 	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CUI_Button>::CreateButton(L"Exit", &D3DXVECTOR3(WINCX * 0.5f, WINCY * 0.5f + 96.f + 96.f, 0.f), BUTTONID::BT_TSTART));
-	ObjectManager->AddObject(OBJ_CURSOR, CAbstractFactory<CUI_Cursor>::CreateCursor());
+	ObjectManager->AddObject(OBJ_CURSOR, CAbstractFactory<CUI_Cursor>::CreateCursor(&FRAME(0.f, 0.f, 0.f)));
 
 	return S_OK;
 }

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
+#include "CollisionManager.h"
 
 #include "Obj.h"
 

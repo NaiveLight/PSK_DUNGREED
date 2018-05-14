@@ -11,16 +11,15 @@ public:
 		, DIE = 0x00000008
 		, END};
 
-	const DWORD dwIdle = 0x00000001;
-	const DWORD dwGround = 0x00000002;
-	const DWORD dwCrouch = 0x00000004;
-	const DWORD dwJump = 0x00000008;
-	const DWORD dwDash = 0x00000016;
-	const DWORD dwDead = 0x00000032;
-
 public:
 	CPlayer();
 	virtual ~CPlayer();
+
+public:
+	const RECT& GetHitRect() { return m_tHitRect; }
+
+public:
+	void SetVelocityY(const float& fVelY) { m_fVelocityY = fVelY; }
 
 public:
 	virtual HRESULT Initialize() override;
@@ -30,6 +29,7 @@ public:
 
 private:
 	virtual void UpdateMatrix() override;
+	void UpdateHitRect();
 
 private:
 	void InitPlayerAttributes();
@@ -55,6 +55,9 @@ private:
 
 	float m_fVelocityX = 0.f;
 	float m_fVelocityY = 0.f;
+	float m_fMaxY = 0.f;
+
+	float m_fAlpha = 0.f;
 
 	//CWeapon*
 };
