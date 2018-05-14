@@ -44,11 +44,7 @@ HRESULT CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	//std::cout << m_tInfo.vPos.x << " , " << m_tInfo.vPos.y << "\n";
-
 	CheckMousePos();
-
-	//std::cout << m_tInfo.vDir.x << " , " << m_tInfo.vDir.y << "\n";
 
 	m_tFrame.fFrame += m_tFrame.fCount * TimeManager->GetTime();
 	if (m_tFrame.fFrame > m_tFrame.fMax)
@@ -58,7 +54,7 @@ int CPlayer::Update()
 	UpdateMatrix();
 
 	m_tInfo.vPos.x += m_fVelocityX;
-	m_tInfo.vPos.y += m_fVelocityY + m_fAccelY;
+	m_tInfo.vPos.y += 98.1f * TimeManager->GetTime() + m_fVelocityY;
 
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f);
 
@@ -116,7 +112,7 @@ void CPlayer::InitPlayerAttributes()
 	m_tFrame = FRAME(0, 10, 5);
 
 	m_tData.fMoveSpeed = 500.f;
-	m_tData.fAttSpeed = 3.f;
+	m_tData.fAttSpeed = 2.f;
 
 	m_tData.iCurHp = 80;
 	m_tData.iMaxHp = 80;
@@ -153,7 +149,18 @@ void CPlayer::Move()
 
 void CPlayer::Jump()
 {
-
+	if (!m_bJump)
+	{
+		if (KeyManager->KeyPressing('W'))
+		{
+			m_bJump = true;
+			m_fVelocityY = -m_tData.fMoveSpeed * 2.f * TimeManager->GetTime();
+		}
+	}
+	else
+	{
+		m_fVelocityY += m_tData.fMoveSpeed * 0.05f * TimeManager->GetTime();
+	}
 }
 
 

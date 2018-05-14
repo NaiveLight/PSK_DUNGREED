@@ -49,6 +49,7 @@ typedef struct tagData
 
 	float		fAttSpeed;
 	float		fMoveSpeed;
+	float		fJumpSpeed;
 }DATA;
 
 typedef struct tagFrame

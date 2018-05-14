@@ -49,11 +49,12 @@ private:
 	std::wstring m_wstrStateKey = L"";
 
 	bool m_bIsLeft = false;
+	bool m_bGround = true;
+	bool m_bCrouch = false;
+	bool m_bJump = false;
 
 	float m_fVelocityX = 0.f;
 	float m_fVelocityY = 0.f;
-	float m_fAccelX = 0.f;
-	float m_fAccelY = 0.f;
 
 	//CWeapon*
 };
