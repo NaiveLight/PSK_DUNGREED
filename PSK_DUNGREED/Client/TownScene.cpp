@@ -38,14 +38,14 @@ int CTownScene::Update()
 {
 	CScene::LateInit();
 
-	if (KeyManager->KeyPressing('W'))
-		ScrollManager->SetScroll(D3DXVECTOR3(0.f, -10.f, 0.f));
-	if (KeyManager->KeyPressing('A'))
-		ScrollManager->SetScroll(D3DXVECTOR3(-10.f, 0.f, 0.f));
-	if (KeyManager->KeyPressing('S'))
-		ScrollManager->SetScroll(D3DXVECTOR3(0.f, 10.f, 0.f));
-	if (KeyManager->KeyPressing('D'))
-		ScrollManager->SetScroll(D3DXVECTOR3(10.f, 0.f, 0.f));
+	//if (KeyManager->KeyPressing('W'))
+	//	ScrollManager->SetScroll(D3DXVECTOR3(0.f, -10.f, 0.f));
+	//if (KeyManager->KeyPressing('A'))
+	//	ScrollManager->SetScroll(D3DXVECTOR3(-10.f, 0.f, 0.f));
+	//if (KeyManager->KeyPressing('S'))
+	//	ScrollManager->SetScroll(D3DXVECTOR3(0.f, 10.f, 0.f));
+	//if (KeyManager->KeyPressing('D'))
+		//ScrollManager->SetScroll(D3DXVECTOR3(10.f, 0.f, 0.f));
 
 	//std::cout << ScrollManager->GetScroll().x << " / "  << ScrollManager->GetScroll().y<< std::endl;
 

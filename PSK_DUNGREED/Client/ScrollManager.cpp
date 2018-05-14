@@ -14,6 +14,18 @@ void CScrollManager::SetCurScroll(float fX, float fY)
 {
 	m_vScroll.x = fX;
 	m_vScroll.y = fY;
+
+	if (m_vScroll.x > m_vMaxScroll.x)
+		m_vScroll.x = m_vMaxScroll.x;
+
+	if (m_vScroll.x < m_vMinScroll.x)
+		m_vScroll.x = m_vMinScroll.x;
+
+	if (m_vScroll.y > m_vMaxScroll.y)
+		m_vScroll.y = m_vMaxScroll.y;
+
+	if (m_vScroll.y  < m_vMinScroll.y)
+		m_vScroll.y = m_vMinScroll.y;
 }
 
 void CScrollManager::SetMinScroll(float fX, float fY)
@@ -28,10 +40,10 @@ void CScrollManager::SetMaxScroll(float fX, float fY)
 	m_vMaxScroll.y = fY;
 }
 
-void CScrollManager::SetScroll(const D3DXVECTOR3 & vScroll)
+void CScrollManager::AddScroll(float fX, float fY)
 {
-	m_vScroll.x += vScroll.x;
-	m_vScroll.y += vScroll.y;
+	m_vScroll.x += fX;
+	m_vScroll.y += fY;
 
 	if (m_vScroll.x > m_vMaxScroll.x)
 		m_vScroll.x = m_vMaxScroll.x;
@@ -49,4 +61,9 @@ void CScrollManager::SetScroll(const D3DXVECTOR3 & vScroll)
 const D3DXVECTOR3 & CScrollManager::GetScroll() const
 {
 	return m_vScroll;
+}
+
+const D3DXVECTOR3 & CScrollManager::GetMaxScroll() const
+{
+	return m_vMaxScroll;
 }

@@ -13,10 +13,11 @@ public:
 	void SetCurScroll(float fX, float fY);
 	void SetMinScroll(float fX, float fY);
 	void SetMaxScroll(float fX, float fY);
-	void SetScroll(const D3DXVECTOR3& vScroll);
+	void AddScroll(float fX, float fY);
 
 public:
 	const D3DXVECTOR3& GetScroll() const;
+	const D3DXVECTOR3& GetMaxScroll() const;
 
 private:
 	D3DXVECTOR3 m_vScroll = D3DXVECTOR3(0.f, 0.f, 0.f);

@@ -4,7 +4,19 @@ class CPlayer :
 	public CObj
 {
 public:
-	enum STANCE {IDLE, MOVE, JUMP, DIE, END};
+	enum STATE {
+		IDLE = 0x00000001
+		, MOVE = 0x00000002
+		, JUMP = 0x00000004
+		, DIE = 0x00000008
+		, END};
+
+	const DWORD dwIdle = 0x00000001;
+	const DWORD dwGround = 0x00000002;
+	const DWORD dwCrouch = 0x00000004;
+	const DWORD dwJump = 0x00000008;
+	const DWORD dwDash = 0x00000016;
+	const DWORD dwDead = 0x00000032;
 
 public:
 	CPlayer();
@@ -21,6 +33,7 @@ private:
 
 private:
 	void InitPlayerAttributes();
+	void CheckMousePos();
 	void CheckInput();
 
 	void Move();
@@ -31,8 +44,17 @@ private:
 private:
 	RECT m_tHitRect = {};
 	DATA	m_tData = {};
-	STANCE m_eStance = IDLE;
+	STATE m_eState = IDLE;
+	DWORD  m_dwStance = 0;
 	std::wstring m_wstrStateKey = L"";
+
+	bool m_bIsLeft = false;
+
+	float m_fVelocityX = 0.f;
+	float m_fVelocityY = 0.f;
+	float m_fAccelX = 0.f;
+	float m_fAccelY = 0.f;
+
 	//CWeapon*
 };
 
