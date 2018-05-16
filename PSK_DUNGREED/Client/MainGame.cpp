@@ -98,7 +98,8 @@ void CMainGame::Release()
 
 void CMainGame::CalcFPS()
 {
-	m_fTime += TimeManager->GetTime();
+	//std::cout << TimeManager->GetDeltaTime() << std::endl;
+	m_fTime += TimeManager->GetDeltaTime();
 	++m_dwCount;
 
 	if (m_fTime > 1.f)

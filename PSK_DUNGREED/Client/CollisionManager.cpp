@@ -72,7 +72,12 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 			{
 				//렉트 충돌
 			case COLL_RECT: case COLL_DUNGEON:
+				if (pPlayer->GetVelocityY() < 0.f)
+					continue;
+
 				pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
+				pPlayer->SetVelocityY(0.f);
+				pPlayer->SetJump(false);
 				return true;
 
 				//위쪽 라인 충돌
@@ -84,23 +89,29 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 				// 점프 중이 아닐 때
 				// 1. 라인보다 위에 있고 내려가는 상황일 때 충돌 체크 O
 				// 2. 라인보다 밑에 있을 때 충돌 체크 X
-				if (pPlayer->GetIsJump() && pPlayer->GetVelocityY() < 0.f)
+				if (pPlayer->GetIsJump() && pPlayer->GetVelocityY() > 0.f)
 				{
 					if (pPlayer->GetIsDown())
-						break;
+						continue;
 
-					if (pTile->vPos.y - 30.f < pPlayer->GetInfo()->vPos.y + 60.f)
+					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 60.f)
 						continue;
 
 					pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
 					pPlayer->SetVelocityY(0.f);
+					pPlayer->SetJump(false);
 					return true;
 				}
+				else if (pPlayer->GetIsJump() && pPlayer->GetVelocityY() < 0.f)
+					continue;
 				else
 				{
-					if (pTile->vPos.y - 30.f < pPlayer->GetInfo()->vPos.y + 32.f)
+					if (pTile->vPos.y - 32.f < pPlayer->GetInfo()->vPos.y + 64.f)
 						continue;
+
 					pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
+					pPlayer->SetVelocityY(0.f);
+					pPlayer->SetJump(false);
 					return true;
 				}
 				break;
@@ -139,18 +150,17 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					{
 						// 점프 중인 상태
 						// 내려오는 중이고 MoveY과 겹칠 때 충돌 o
-						if (pPlayer->GetVelocityY() < 0.f)
+						if (pPlayer->GetVelocityY() > 0.f)
 						{
-							if (fMoveY > pPlayer->GetInfo()->vPos.x + 32.f)
+							if (pPlayer->GetIsDown())
+								continue;
+
+							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 32.f)
 							{
 								pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, fMoveY - 64.f, 0.f));
 								return true;
 							}
 						}
-						else
-							continue;
-						// 내려오는 중이고 MoveY보다 낮을 때 충돌 x
-						// 올라가는 중이고 MoveY보다 낮을 때 충돌 x
 					}
 				}
 				break;
@@ -169,11 +179,8 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 
 					fMoveY = fGradient * (pPlayer->GetInfo()->vPos.x - x1) + y1;
 
-					// fMoveY 는 플레이어의 중앙 기준
 					if (!pPlayer->GetIsJump())
 					{
-						// 현재 플레이어가 점프 중인 상태가 아니라면
-						// fMoveY값보다 플레이어의 몸통 이 낮으면 따라가면 안됨
 						if (fMoveY < pPlayer->GetInfo()->vPos.y + 32.f)
 							continue;
 						else
@@ -184,7 +191,19 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					}
 					else
 					{
+						// 점프 중인 상태
+						// 내려오는 중이고 MoveY과 겹칠 때 충돌 o
+						if (pPlayer->GetVelocityY() > 0.f)
+						{
+							if (pPlayer->GetIsDown())
+								continue;
 
+							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 32.f)
+							{
+								pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, fMoveY - 64.f, 0.f));
+								return true;
+							}
+						}
 					}
 				}
 				break;

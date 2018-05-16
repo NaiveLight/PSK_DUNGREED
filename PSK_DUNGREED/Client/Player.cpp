@@ -44,7 +44,7 @@ HRESULT CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	m_fTime = TimeManager->GetTime();
+	m_fTime = TimeManager->GetDeltaTime();
 
 	UpdateMatrix();
 	UpdateHitRect();
@@ -55,15 +55,15 @@ int CPlayer::Update()
 	if (m_bJump || m_bDash)
 		m_eCurState = JUMP;
 
+	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
+
 	m_tInfo.vPos.x += m_fVelocityX;
-	m_tInfo.vPos.y += m_bGround ? 0.f : (m_fVelocityY += (m_bDash? 0.f :m_fGravity));
+	m_tInfo.vPos.y += m_fVelocityY + (m_bGround ? 0 : m_fGravity);
 
 	if (m_tInfo.vPos.x <= m_fMinPosX)
 		m_tInfo.vPos.x = m_fMinPosX;
 	if (m_tInfo.vPos.x >= m_fMaxPosX)
 		m_tInfo.vPos.x = m_fMaxPosX;
-
-	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
 	FrameChange();
 	FrameMove();
@@ -153,7 +153,7 @@ void CPlayer::UpdateHitRect()
 
 void CPlayer::InitPlayerAttributes()
 {
-	m_fTime = TimeManager->GetTime();
+	m_fTime = TimeManager->GetDeltaTime();
 
 	m_tInfo.vPos = D3DXVECTOR3(0.f, 0.f, 0.f);
 	m_tInfo.vLook = D3DXVECTOR3(1.f, 0.f, 0.f);
@@ -165,7 +165,7 @@ void CPlayer::InitPlayerAttributes()
 
 	m_tFrame = FRAME(0, 10, 5);
 
-	m_tData.fMoveSpeed = 500.f;
+	m_tData.fMoveSpeed = 450.f;
 	m_tData.fAttSpeed = 1.f;
 
 	m_tData.iCurHp = 80;
@@ -186,12 +186,12 @@ void CPlayer::InitPlayerAttributes()
 	m_tPData.iInt = 0;
 	m_tPData.iDeg = 0;
 
-	m_tPData.fDashSpeed = 800.f * m_fTime;
+	m_tPData.fDashSpeed = 500.f;
 	m_tPData.fDashTime = 0.5f;
 	m_tPData.fDashChargeTime = 2.f;
 
 	//m_tPData.fDashSpeed = m_tData.fMoveSpeed * 2.5f * m_fTime;
-	m_fGravity = 10.f * m_fTime;
+	m_fGravity = 16.f * m_fTime;
 	m_fAlpha = 255.f;
 }
 
@@ -289,14 +289,14 @@ void CPlayer::Jump()
 		{
 			m_bJump = true;
 			m_bGround = false;
-			m_fVelocityY = -m_tData.fMoveSpeed * 2.5f * m_fTime;
+			m_fVelocityY = -m_tData.fMoveSpeed * 2.f * m_fTime;
 		}
 
 		if (m_bDown && KeyManager->KeyPressing(VK_SPACE))
 		{
 			m_bJump = true;
 			m_bGround = false;
-			m_fVelocityY += m_tData.fMoveSpeed * m_fTime;
+			m_fVelocityY += m_tData.fMoveSpeed * 0.5f * m_fTime;
 		}
 	}
 	else
@@ -304,11 +304,11 @@ void CPlayer::Jump()
 		// 점프 중일 때
 		m_fVelocityY += m_tData.fMoveSpeed  * 0.05f * /*0.010f*/m_fTime;
 
-		if (m_bGround && !m_bDash)
+		if (m_bGround)
 		{
 			m_bJump = false;
 			m_bDash = false;
-			m_fVelocityY = 0.f;
+			m_bDown = false;
 		}
 
 		if (!(KeyManager->KeyPressing('W')) && m_fVelocityY < 0)
