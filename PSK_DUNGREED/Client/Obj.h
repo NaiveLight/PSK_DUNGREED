@@ -39,6 +39,7 @@ protected:
 	FRAME m_tFrame = {};
 	std::wstring m_wstrObjKey = L"";
 	std::wstring m_wstrStateKey = L"";
+	float m_fTime = 0.f;
 
 protected:
 	CBridge* m_pBridge = nullptr;

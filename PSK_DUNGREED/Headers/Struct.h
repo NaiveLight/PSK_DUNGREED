@@ -23,15 +23,26 @@ typedef struct tagMapObject
 
 typedef struct tagData
 {
+	int		iCurHp;
+	int		iMaxHp;
+
+	int		iGold;
+
+	int		iMinAtt;
+	int		iMaxAtt;
+
+	float		fAttSpeed;
+	float		fMoveSpeed;
+	float		fJumpSpeed;
+}DATA;
+
+typedef struct tagPlayerData
+{
 	int		iLevel;
 	int		iCurExp;
 	int		iMaxExp;
-	int		iCurHp;
-	int		iMaxHp;
 	int		iDashCnt;
 	int		iMaxDashCnt;
-
-	int		iGold;
 
 	int		iCurFood;
 	int		iMaxFood;
@@ -43,14 +54,11 @@ typedef struct tagData
 	int		iInt; //Ω≈∫Ò
 	int		iDeg; //≈ΩøÂ
 
-	// ±‚≈∏ Ω∫≈»
-	int		iMinAtt;
-	int		iMaxAtt;
-
-	float		fAttSpeed;
-	float		fMoveSpeed;
-	float		fJumpSpeed;
-}DATA;
+	
+	float	fDashSpeed;
+	float fDashTime;
+	float	fDashChargeTime; // ¥ÎΩ√ √Ê¿¸ Ω√∞£
+}PDATA;
 
 typedef struct tagFrame
 {

@@ -31,6 +31,17 @@ public:
 		return pObj;
 	}
 
+	static CObj* CreateObj(const D3DXVECTOR3* pPos)
+	{
+		CObj* pObj = new T;
+		if (FAILED(pObj->Initialize()))
+			Safe_Delete(pObj);
+
+		pObj->SetPos(pPos);
+
+		return pObj;
+	}
+
 	// OBJ_BACKGROUND
 	static CObj* CreateBackGround(const std::wstring& wstrStateKey)
 	{

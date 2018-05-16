@@ -23,10 +23,13 @@ public:
 	virtual void Render() override;
 	virtual void Release() override;
 
+public:
+	void ColliderRender();
+
 private:
 	void LoadTile();
 	void TileRender();
-	void ColliderRender();
+
 
 private:
 	std::vector<TILE*> m_vecTile;

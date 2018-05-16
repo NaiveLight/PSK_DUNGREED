@@ -14,7 +14,6 @@ CPlayer::CPlayer()
 {
 }
 
-
 CPlayer::~CPlayer()
 {
 	Release();
@@ -45,28 +44,31 @@ HRESULT CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	CheckMousePos();
-
-	m_tFrame.fFrame += m_tFrame.fCount * TimeManager->GetTime();
-	if (m_tFrame.fFrame > m_tFrame.fMax)
-		m_tFrame.fFrame = 0.f;
-
-	CheckInput();
-
-	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
-
-	//if (m_bGround)
-	//{
-	//	std::cout << "Ground\n";
-	//}
-
-	m_tInfo.vPos.x += m_fVelocityX;
-	m_tInfo.vPos.y += (m_bGround ? 0.f : 98.1f * TimeManager->GetTime()) + m_fVelocityY;
-
-	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f);
+	m_fTime = TimeManager->GetTime();
 
 	UpdateMatrix();
 	UpdateHitRect();
+
+	CheckMousePos();
+	CheckInput();
+
+	if (m_bJump || m_bDash)
+		m_eCurState = JUMP;
+
+	m_tInfo.vPos.x += m_fVelocityX;
+	m_tInfo.vPos.y += m_bGround ? 0.f : (m_fVelocityY += (m_bDash? 0.f :m_fGravity));
+
+	if (m_tInfo.vPos.x <= m_fMinPosX)
+		m_tInfo.vPos.x = m_fMinPosX;
+	if (m_tInfo.vPos.x >= m_fMaxPosX)
+		m_tInfo.vPos.x = m_fMaxPosX;
+
+	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
+
+	FrameChange();
+	FrameMove();
+
+	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f + m_fAddScrollY);
 
 	return 0;
 }
@@ -135,7 +137,7 @@ void CPlayer::UpdateMatrix()
 
 	D3DXMatrixTranslation(&m_tInfo.matWorld
 		, m_tInfo.vPos.x - ScrollManager->GetScroll().x
-		, m_tInfo.vPos.y /*- 32.f*/ - ScrollManager->GetScroll().y
+		, m_tInfo.vPos.y - ScrollManager->GetScroll().y
 		, 0.f);
 
 	m_tInfo.matWorld = matScale * m_tInfo.matWorld;
@@ -151,7 +153,9 @@ void CPlayer::UpdateHitRect()
 
 void CPlayer::InitPlayerAttributes()
 {
-	m_tInfo.vPos = D3DXVECTOR3(WINCX * 0.5f + 500.f, WINCY  + 360.f, 0.f);
+	m_fTime = TimeManager->GetTime();
+
+	m_tInfo.vPos = D3DXVECTOR3(0.f, 0.f, 0.f);
 	m_tInfo.vLook = D3DXVECTOR3(1.f, 0.f, 0.f);
 	m_tInfo.fCX = 32.f;
 	m_tInfo.fCY = 64.f;
@@ -166,9 +170,29 @@ void CPlayer::InitPlayerAttributes()
 
 	m_tData.iCurHp = 80;
 	m_tData.iMaxHp = 80;
+	
+	m_tPData.iLevel = 1;
+	m_tPData.iCurExp = 0;
+	m_tPData.iMaxExp= 100;
+	m_tPData.iDashCnt = 2;
+	m_tPData.iMaxDashCnt = 2;
 
-	m_fMaxY = m_tData.fMoveSpeed * 2.f * TimeManager->GetTime();
-	m_fAlpha = 155.f;
+	m_tPData.iCurFood = 0;
+	m_tPData.iMaxFood = 100;
+
+	m_tPData.iStr = 0;
+	m_tPData.iDex = 0;
+	m_tPData.iDef = 0;
+	m_tPData.iInt = 0;
+	m_tPData.iDeg = 0;
+
+	m_tPData.fDashSpeed = 800.f * m_fTime;
+	m_tPData.fDashTime = 0.5f;
+	m_tPData.fDashChargeTime = 2.f;
+
+	//m_tPData.fDashSpeed = m_tData.fMoveSpeed * 2.5f * m_fTime;
+	m_fGravity = 10.f * m_fTime;
+	m_fAlpha = 255.f;
 }
 
 void CPlayer::CheckMousePos()
@@ -182,21 +206,78 @@ void CPlayer::CheckMousePos()
 
 void CPlayer::CheckInput()
 {
+	if (KeyManager->KeyPressing('S'))
+		m_bDown = true;
+		
+	if (!KeyManager->KeyPressing('S'))
+		m_bDown = false;
+
 	Move();
 	Jump();
+	Dash();
+
+	if (m_bDown)
+		m_fAddScrollY += 5.f;
+	else
+		m_fAddScrollY -= 5.f;
+
+	if (m_fAddScrollY > 300.f)
+		m_fAddScrollY = 300.f;
+	if (m_fAddScrollY < 0.f)
+		m_fAddScrollY = 0.f;
+}
+
+void CPlayer::FrameChange()
+{
+	if (m_ePrevState != m_eCurState)
+	{
+		switch (m_eCurState)
+		{
+		case IDLE:
+			m_wstrStateKey = L"Idle";
+			m_tFrame = FRAME(0.f, 10.f, 5.f);
+			break;
+		case MOVE:
+			m_wstrStateKey = L"Run";
+			m_tFrame = FRAME(0.f, 14.f, 7.f);
+			break;
+		case JUMP:
+			m_wstrStateKey = L"Jump";
+			m_tFrame = FRAME(0.f, 0.f, 0.f);
+			break;
+		case DIE:
+			m_wstrStateKey = L"Die";
+			m_tFrame = FRAME(0.f, 0.f, 0.f);
+			break;
+		}
+
+		m_ePrevState = m_eCurState;
+	}
+}
+
+void CPlayer::FrameMove()
+{
+	m_tFrame.fFrame += m_tFrame.fCount * m_fTime;
+	if (m_tFrame.fFrame > m_tFrame.fMax)
+		m_tFrame.fFrame = 0.f;
 }
 
 void CPlayer::Move()
 {
-	m_fVelocityX = 0.f;
-
-	if (KeyManager->KeyPressing('A'))
+	if (!m_bDash)
 	{
-		m_fVelocityX = -m_tData.fMoveSpeed * TimeManager->GetTime();
-	}
-	if (KeyManager->KeyPressing('D'))
-	{
-		m_fVelocityX = m_tData.fMoveSpeed * TimeManager->GetTime();
+		m_eCurState = IDLE;
+		m_fVelocityX = 0.f;
+		if (KeyManager->KeyPressing('A'))
+		{
+			m_fVelocityX = -m_tData.fMoveSpeed * m_fTime;
+			m_eCurState = MOVE;
+		}
+		if (KeyManager->KeyPressing('D'))
+		{
+			m_fVelocityX = m_tData.fMoveSpeed * m_fTime;
+			m_eCurState = MOVE;
+		}
 	}
 }
 
@@ -208,24 +289,82 @@ void CPlayer::Jump()
 		{
 			m_bJump = true;
 			m_bGround = false;
-			m_fVelocityY = -m_tData.fMoveSpeed * TimeManager->GetTime();
+			m_fVelocityY = -m_tData.fMoveSpeed * 2.5f * m_fTime;
+		}
+
+		if (m_bDown && KeyManager->KeyPressing(VK_SPACE))
+		{
+			m_bJump = true;
+			m_bGround = false;
+			m_fVelocityY += m_tData.fMoveSpeed * m_fTime;
 		}
 	}
 	else
-	{	
+	{
 		// 점프 중일 때
-		if (m_bGround)
+		m_fVelocityY += m_tData.fMoveSpeed  * 0.05f * /*0.010f*/m_fTime;
+
+		if (m_bGround && !m_bDash)
 		{
 			m_bJump = false;
+			m_bDash = false;
 			m_fVelocityY = 0.f;
 		}
-		else
-			m_fVelocityY += m_tData.fMoveSpeed  * 0.05f * TimeManager->GetTime();
 
-		if (KeyManager->KeyUp('W') && m_fVelocityY < 0)
+		if (!(KeyManager->KeyPressing('W')) && m_fVelocityY < 0)
 			m_fVelocityY = 0.f;
-
 	}
 }
+
+void CPlayer::Dash()
+{
+	//대시 카운트가 0 이상일 때 대시 가능
+	if (m_tPData.iDashCnt > 0)
+	{
+		//마우스 우측 클릭 시 대시
+		if (KeyManager->KeyDown(VK_RBUTTON))
+		{
+			std::cout << "DASH START\n";
+			m_bDash = true;
+			m_tPData.fDashTime = 0.5f;
+			m_tPData.iDashCnt--;
+			// 현재 마우스 방향 가져옴
+			// 이전에 CheckMousePos에서 m_tInfo.vDir에 이미 계산되어 있음
+			D3DXVec3Normalize(&m_vDashDir, &m_tInfo.vDir);
+			std::cout << m_vDashDir.x << std::endl;
+			std::cout << m_vDashDir.y << std::endl;
+			// X속도와 Y속도 초기화 후 대시 속도 만큼 증가시킨다.
+			m_vDashDir.x = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;
+			m_vDashDir.y = m_vDashDir.y * m_tPData.fDashSpeed * m_fTime;
+			m_fVelocityX = m_vDashDir.x;
+			m_fVelocityY = m_vDashDir.y;
+
+		}
+	}
+
+	if (m_bDash)
+	{
+		m_tPData.fDashTime -= m_fTime;
+
+		if (m_tPData.fDashTime < 0.f)
+		{
+			m_bDash = false;
+		}
+		m_fVelocityX += m_vDashDir.x;
+		m_fVelocityY += m_vDashDir.y;
+	}
+
+	//대시 카운트는 일정 시간 마다 충전되어야 한다.
+	if (m_tPData.iMaxDashCnt > m_tPData.iDashCnt)
+	{
+		m_tPData.fDashChargeTime -= m_fTime;
+		if (m_tPData.fDashChargeTime < 0.f)
+		{
+			m_tPData.iDashCnt++;
+			m_tPData.fDashChargeTime = 2.f;
+		}
+	}
+}
+
 
 

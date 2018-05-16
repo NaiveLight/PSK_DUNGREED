@@ -17,6 +17,7 @@ public:
 	static void BulletToTile();
 	static void BulletToActor();
 	static void AttackToMonster();
+	static void ObjectToPlayer();
 
 private:
 	static bool CheckSphere(CObj* pDst, CObj* pSrc);
