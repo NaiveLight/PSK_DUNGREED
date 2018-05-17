@@ -183,6 +183,7 @@
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="UI_Cursor.h" />
     <ClInclude Include="UI_Logo.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
@@ -222,6 +223,7 @@
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="UI_Cursor.cpp" />
     <ClCompile Include="UI_Logo.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
