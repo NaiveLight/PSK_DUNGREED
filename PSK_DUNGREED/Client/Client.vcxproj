@@ -184,6 +184,8 @@
     <ClInclude Include="UI_Cursor.h" />
     <ClInclude Include="UI_Logo.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponBridge.h" />
+    <ClInclude Include="Weapon_Hand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
@@ -224,6 +226,8 @@
     <ClCompile Include="UI_Cursor.cpp" />
     <ClCompile Include="UI_Logo.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponBridge.cpp" />
+    <ClCompile Include="Weapon_Hand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

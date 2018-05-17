@@ -193,7 +193,7 @@ void CPlayer::InitPlayerAttributes()
 	m_fGravity = 16.f * m_fTime;
 	m_fAlpha = 255.f;
 
-	m_fDustTime = 0.5f;
+	m_fDustTime = 0.2f;
 }
 
 void CPlayer::CheckMousePos()
@@ -242,7 +242,7 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 		m_fDustTime -= m_fTime;
 		if (m_fDustTime < 0.f)
 		{
-			m_fDustTime = 1.f;
+			m_fDustTime = 0.2f;
 			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
 			ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		}
@@ -296,7 +296,8 @@ void CPlayer::Move()
 		if (KeyManager->KeyDown('A') || KeyManager->KeyDown('D'))
 		{
 			m_fDustTime = 0.f;
-			AddEffect(EFFECT_DUST);
+			if(!m_bJump)
+				AddEffect(EFFECT_DUST);
 		}
 
 		if (KeyManager->KeyPressing('A'))
@@ -304,14 +305,16 @@ void CPlayer::Move()
 			m_fVelocityX = -m_tData.fMoveSpeed * m_fTime;
 			m_eCurState = MOVE;
 
-			AddEffect(EFFECT_DUST);
+			if (!m_bJump)
+				AddEffect(EFFECT_DUST);
 		}
 		if (KeyManager->KeyPressing('D'))
 		{
 			m_fVelocityX = m_tData.fMoveSpeed * m_fTime;
 			m_eCurState = MOVE;
 
-			AddEffect(EFFECT_DUST);
+			if (!m_bJump)
+				AddEffect(EFFECT_DUST);
 		}
 	}
 }
@@ -371,14 +374,12 @@ void CPlayer::Dash()
 			// 현재 마우스 방향 가져옴
 			// 이전에 CheckMousePos에서 m_tInfo.vDir에 이미 계산되어 있음
 			D3DXVec3Normalize(&m_vDashDir, &m_tInfo.vDir);
-			std::cout << m_vDashDir.x << std::endl;
-			std::cout << m_vDashDir.y << std::endl;
+
 			// X속도와 Y속도 초기화 후 대시 속도 만큼 증가시킨다.
 			m_vDashDir.x = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;
 			m_vDashDir.y = m_vDashDir.y * m_tPData.fDashSpeed * m_fTime;
 			m_fVelocityX = m_vDashDir.x;
 			m_fVelocityY = m_vDashDir.y;
-
 		}
 	}
 
@@ -405,6 +406,3 @@ void CPlayer::Dash()
 		}
 	}
 }
-
-
-

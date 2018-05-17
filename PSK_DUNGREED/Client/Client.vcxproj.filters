@@ -121,6 +121,18 @@
     <Filter Include="소스 파일\02.Object\04.Weapon\WeaponBridge">
       <UniqueIdentifier>{172c1f39-bb4b-40c5-8749-ed3428808fd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\04.Weapon\WeaponBridge\Weapon_Hand">
+      <UniqueIdentifier>{dbb90cd3-764c-4303-bdfe-381725e50a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage\Room">
+      <UniqueIdentifier>{caf6efe3-af38-4577-bd61-959537aa92eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\01.Monster">
+      <UniqueIdentifier>{4f152cbb-6e17-487a-860f-ecbb7ff7115a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\02.Boss">
+      <UniqueIdentifier>{6c783d2b-1552-426a-be5f-f8eac97cb619}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -231,6 +243,12 @@
     <ClInclude Include="Weapon.h">
       <Filter>소스 파일\02.Object\04.Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponBridge.h">
+      <Filter>소스 파일\02.Object\04.Weapon\WeaponBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon_Hand.h">
+      <Filter>소스 파일\02.Object\04.Weapon\WeaponBridge\Weapon_Hand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -331,6 +349,12 @@
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>소스 파일\02.Object\04.Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponBridge.cpp">
+      <Filter>소스 파일\02.Object\04.Weapon\WeaponBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon_Hand.cpp">
+      <Filter>소스 파일\02.Object\04.Weapon\WeaponBridge\Weapon_Hand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

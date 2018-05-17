@@ -64,8 +64,10 @@ private:
 	STATE m_eCurState = IDLE;
 	STATE m_ePrevState = IDLE;
 	DWORD  m_dwStance = 0;
-	std::wstring m_wstrStateKey = L"";
+	//std::wstring m_wstrStateKey = L"";
 
+
+private:
 	D3DXVECTOR3 m_vDashDir = D3DXVECTOR3(0.f, 0.f, 0.f);
 
 	bool m_bIsLeft = false;
@@ -90,6 +92,5 @@ private:
 	float m_fAddScrollY = 0.f;
 
 	float m_fDustTime = 0.f;
-	//CWeapon*
 };
 
