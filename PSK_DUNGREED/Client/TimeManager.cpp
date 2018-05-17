@@ -28,7 +28,7 @@ void CTimeManager::InitTime()
 
 	QueryPerformanceFrequency(&m_CpuTick);
 
-	m_iFrame = 70;
+	m_iFrame = 90;
 
 	m_fTime = float(m_FrameTime.QuadPart - m_FixTime.QuadPart) / m_CpuTick.QuadPart;
 	m_fPerFrame = float(m_CpuTick.QuadPart / m_iFrame);

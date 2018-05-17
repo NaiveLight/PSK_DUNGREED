@@ -181,7 +181,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 
 					if (!pPlayer->GetIsJump())
 					{
-						if (fMoveY < pPlayer->GetInfo()->vPos.y + 34.f)
+						if (fMoveY < pPlayer->GetInfo()->vPos.y + 32.f)
 							continue;
 						else
 						{

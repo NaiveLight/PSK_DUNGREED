@@ -112,6 +112,9 @@
     <Filter Include="소스 파일\02.Object\05.Actor\00.Player">
       <UniqueIdentifier>{fcf1fd24-ec1d-4930-9346-f005f7b32fba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\07.Effect\EffectBridge">
+      <UniqueIdentifier>{ff0b20f2-5e9f-42e2-9102-ea4bdbf7d0fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -210,6 +213,9 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>소스 파일\03.Manager\06.CollisionManager</Filter>
     </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>소스 파일\02.Object\07.Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -298,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>소스 파일\03.Manager\06.CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>소스 파일\02.Object\07.Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
