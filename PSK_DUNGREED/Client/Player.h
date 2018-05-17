@@ -4,12 +4,18 @@ class CPlayer :
 	public CObj
 {
 public:
+	enum PLAYEREFFECT {
+		EFFECT_JUMP
+		, EFFECT_DUST
+	};
+
 	enum STATE {
 		IDLE = 0x00000001
 		, MOVE = 0x00000002
 		, JUMP = 0x00000004
 		, DIE = 0x00000008
-		, END};
+		, END
+	};
 
 public:
 	CPlayer();
@@ -41,6 +47,7 @@ private:
 	void InitPlayerAttributes();
 	void CheckMousePos();
 	void CheckInput();
+	void AddEffect(PLAYEREFFECT pEffect);
 
 private:
 	void FrameChange();
@@ -81,6 +88,8 @@ private:
 	float m_fMaxPosX = 0.f;
 
 	float m_fAddScrollY = 0.f;
+
+	float m_fDustTime = 0.f;
 	//CWeapon*
 };
 

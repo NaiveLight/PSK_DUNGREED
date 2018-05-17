@@ -5,7 +5,6 @@ CObj::CObj()
 {
 }
 
-
 CObj::~CObj()
 {
 }
@@ -23,6 +22,11 @@ const std::wstring & CObj::GetStateKey()
 const INFO * CObj::GetInfo()
 {
 	return &m_tInfo;
+}
+
+const FRAME * CObj::GetFrame()
+{
+	return &m_tFrame;
 }
 
 void CObj::SetBridge(CBridge * pBridge)

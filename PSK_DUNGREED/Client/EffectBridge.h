@@ -9,7 +9,7 @@ public:
 
 public:
 	virtual HRESULT Initialize() PURE;
-	virtual int Update(INFO & tInfo) PURE;
+	virtual int Update(INFO & rInfo) PURE;
 	virtual void Render() PURE;
 	virtual void Release() PURE;
 

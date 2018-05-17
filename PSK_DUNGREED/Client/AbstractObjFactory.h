@@ -14,6 +14,9 @@
 
 #include "Player.h"
 
+#include "Effect.h"
+#include "Effect_Extinction.h"
+
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
 #include "UI_Button.h"
@@ -95,7 +98,6 @@ public:
 	}
 
 	//	OBJ_MAPOBJ
-
 	static CObj* CreateMapObj(const std::wstring& wstrFileName)
 	{
 		CObj* pObj = new CMapObj;
@@ -119,6 +121,30 @@ public:
 	// OBJ_ITEM
 
 	// OBJ_EFFECT
+	static CObj* CreateEffect(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
+	{
+		CObj* pObj = new CEffect;
+		CBridge* pBridge = new T;
+
+		pObj->SetObjKey(L"EFFECT");
+		pObj->SetStateKey(wstrStateKey);
+		pObj->SetFrame(pFrame);
+
+		pObj->SetBridge(pBridge);
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		if (FAILED(pBridge->Initialize()))
+			return nullptr;
+
+		if (pPos != nullptr)
+			pObj->SetPos(pPos);
+		else
+			pObj->SetPos(&D3DXVECTOR3(0.f, 0.f, 0.f));
+
+		return pObj;
+	}		
 
 	// OBJ_UI
 	static CObj* CreateLogo(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr, const bool bAlpha = false)

@@ -1,7 +1,7 @@
 #pragma once
 #include "Obj.h"
 
-class CEffect :
+class CEffect final:
 	public CObj
 {
 public:

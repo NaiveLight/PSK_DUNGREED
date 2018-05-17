@@ -45,6 +45,8 @@ int CUI_Logo::Update()
 {
 	if (m_bAlpha)
 	{
+		m_fAlpha += m_fAlphaVal * TimeManager->GetDeltaTime();
+
 		if (m_fAlpha < 0.f)
 			return 1;
 
@@ -53,9 +55,6 @@ int CUI_Logo::Update()
 			m_fAlphaVal *= -1;
 			m_fAlpha = 255.f;
 		}
-			
-
-		m_fAlpha += m_fAlphaVal * TimeManager->GetDeltaTime();
 	}
 
 	CObj::UpdateMatrix();

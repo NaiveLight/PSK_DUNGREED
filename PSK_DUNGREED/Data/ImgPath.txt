@@ -1,7 +1,7 @@
 BACKGROUND|BackCloud|1|..\Texture\BACKGROUND\BackCloud\BackCloud0%d.png
 BACKGROUND|FrontCloud|1|..\Texture\BACKGROUND\FrontCloud\FrontCloud0%d.png
 BACKGROUND|Town|1|..\Texture\BACKGROUND\Town\Town0%d.png
-EFFECT|Dust|6|..\Texture\EFFECT\Dust\Dust0%d.png
+EFFECT|Dust|5|..\Texture\EFFECT\Dust\Dust0%d.png
 EFFECT|GreatSwing|3|..\Texture\EFFECT\GreatSwing\GreatSwing0%d.png
 EFFECT|Hit|6|..\Texture\EFFECT\Hit\Hit0%d.png
 EFFECT|Jump|5|..\Texture\EFFECT\Jump\Jump0%d.png

@@ -156,6 +156,7 @@
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectBridge.h" />
+    <ClInclude Include="Effect_Extinction.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LogoScene.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectBridge.cpp" />
+    <ClCompile Include="Effect_Extinction.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogoScene.cpp" />

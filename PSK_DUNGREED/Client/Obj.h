@@ -13,6 +13,7 @@ public:
 	const std::wstring& GetObjKey();
 	const std::wstring& GetStateKey();
 	const INFO* GetInfo();
+	const FRAME* GetFrame();
 
 public:
 	void SetBridge(CBridge* pBridge);

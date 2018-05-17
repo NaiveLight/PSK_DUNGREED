@@ -49,7 +49,6 @@ int CObjectManager::Update()
 
 			if (iResult == 1)
 			{
-				Safe_Delete(*iter);
 				iter = m_ObjList[i].erase(iter);
 			}
 			else if (iResult == 2)

@@ -6,7 +6,6 @@ CEffect::CEffect()
 {
 }
 
-
 CEffect::~CEffect()
 {
 	Release();
@@ -16,8 +15,6 @@ HRESULT CEffect::Initialize()
 {
 	if (m_pBridge)
 		m_pBridge->SetObj(this);
-
-	m_wstrObjKey = L"EFFECT";
 
 	return S_OK;
 }

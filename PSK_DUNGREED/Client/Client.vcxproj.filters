@@ -222,6 +222,9 @@
     <ClInclude Include="EffectBridge.h">
       <Filter>소스 파일\02.Object\07.Effect\EffectBridge</Filter>
     </ClInclude>
+    <ClInclude Include="Effect_Extinction.h">
+      <Filter>소스 파일\02.Object\07.Effect\EffectBridge\Effect_Extinction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -316,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="EffectBridge.cpp">
       <Filter>소스 파일\02.Object\07.Effect\EffectBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect_Extinction.cpp">
+      <Filter>소스 파일\02.Object\07.Effect\EffectBridge\Effect_Extinction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

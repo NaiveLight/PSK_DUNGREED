@@ -86,35 +86,35 @@ void CPlayer::Render()
 		, nullptr
 		, D3DCOLOR_ARGB(BYTE(m_fAlpha), 255, 255, 255));
 
-	const TEXINFO*		pColInfo = TextureManager->GetTexture(m_wstrObjKey, L"PCollider", 0);
-	if (pColInfo == nullptr)
-		return;
+	//const TEXINFO*		pColInfo = TextureManager->GetTexture(m_wstrObjKey, L"PCollider", 0);
+	//if (pColInfo == nullptr)
+	//	return;
 
-	D3DXMATRIX matScale, matTrans;
+	//D3DXMATRIX matScale, matTrans;
 
-	D3DXMatrixIdentity(&matScale);
+	//D3DXMatrixIdentity(&matScale);
 
-	if (m_bIsLeft)
-	{
-		D3DXMatrixScaling(&matScale, -1.f, 1.f, 0.f);
-	}
+	//if (m_bIsLeft)
+	//{
+	//	D3DXMatrixScaling(&matScale, -1.f, 1.f, 0.f);
+	//}
 
-	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+	//D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
-	D3DXMatrixTranslation(&m_tInfo.matWorld
-		, m_tInfo.vPos.x - ScrollManager->GetScroll().x
-		, m_tInfo.vPos.y + 32.f - ScrollManager->GetScroll().y
-		, 0.f);
+	//D3DXMatrixTranslation(&m_tInfo.matWorld
+	//	, m_tInfo.vPos.x - ScrollManager->GetScroll().x
+	//	, m_tInfo.vPos.y + 32.f - ScrollManager->GetScroll().y
+	//	, 0.f);
 
-	m_tInfo.matWorld = matScale * m_tInfo.matWorld;
+	//m_tInfo.matWorld = matScale * m_tInfo.matWorld;
 
-	m_pSprite->SetTransform(&m_tInfo.matWorld);
-	m_pSprite->Draw(pColInfo->pTexture
-		, nullptr
-		, &D3DXVECTOR3(pColInfo->tImgInfo.Width * 0.5f, pColInfo->tImgInfo.Height * 0.5f, 0.f)
-		, nullptr
-		, D3DCOLOR_ARGB(255, 255, 255, 255));
+	//m_pSprite->SetTransform(&m_tInfo.matWorld);
+	//m_pSprite->Draw(pColInfo->pTexture
+	//	, nullptr
+	//	, &D3DXVECTOR3(pColInfo->tImgInfo.Width * 0.5f, pColInfo->tImgInfo.Height * 0.5f, 0.f)
+	//	, nullptr
+	//	, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 void CPlayer::Release()
@@ -190,9 +190,10 @@ void CPlayer::InitPlayerAttributes()
 	m_tPData.fDashTime = 0.5f;
 	m_tPData.fDashChargeTime = 2.f;
 
-	//m_tPData.fDashSpeed = m_tData.fMoveSpeed * 2.5f * m_fTime;
 	m_fGravity = 16.f * m_fTime;
 	m_fAlpha = 255.f;
+
+	m_fDustTime = 0.5f;
 }
 
 void CPlayer::CheckMousePos()
@@ -227,6 +228,28 @@ void CPlayer::CheckInput()
 		m_fAddScrollY = 0.f;
 }
 
+void CPlayer::AddEffect(PLAYEREFFECT pEffect)
+{
+	CObj* pObj = nullptr;
+
+	switch (pEffect)
+	{
+	case EFFECT_JUMP:
+		pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Jump", &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 60.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+		ObjectManager->AddObject(OBJ_EFFECT, pObj);
+		break;
+	case EFFECT_DUST:
+		m_fDustTime -= m_fTime;
+		if (m_fDustTime < 0.f)
+		{
+			m_fDustTime = 1.f;
+			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+			ObjectManager->AddObject(OBJ_EFFECT, pObj);
+		}
+		break;
+	}
+}
+
 void CPlayer::FrameChange()
 {
 	if (m_ePrevState != m_eCurState)
@@ -258,6 +281,7 @@ void CPlayer::FrameChange()
 void CPlayer::FrameMove()
 {
 	m_tFrame.fFrame += m_tFrame.fCount * m_fTime;
+
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 		m_tFrame.fFrame = 0.f;
 }
@@ -268,15 +292,26 @@ void CPlayer::Move()
 	{
 		m_eCurState = IDLE;
 		m_fVelocityX = 0.f;
+
+		if (KeyManager->KeyDown('A') || KeyManager->KeyDown('D'))
+		{
+			m_fDustTime = 0.f;
+			AddEffect(EFFECT_DUST);
+		}
+
 		if (KeyManager->KeyPressing('A'))
 		{
 			m_fVelocityX = -m_tData.fMoveSpeed * m_fTime;
 			m_eCurState = MOVE;
+
+			AddEffect(EFFECT_DUST);
 		}
 		if (KeyManager->KeyPressing('D'))
 		{
 			m_fVelocityX = m_tData.fMoveSpeed * m_fTime;
 			m_eCurState = MOVE;
+
+			AddEffect(EFFECT_DUST);
 		}
 	}
 }
@@ -285,6 +320,11 @@ void CPlayer::Jump()
 {
 	if (!m_bJump)
 	{
+		if (KeyManager->KeyDown('W'))
+		{
+			AddEffect(EFFECT_JUMP);
+		}
+
 		if (KeyManager->KeyPressing('W'))
 		{
 			m_bJump = true;
