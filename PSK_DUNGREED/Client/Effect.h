@@ -8,7 +8,7 @@ public:
 	CEffect();
 	virtual ~CEffect();
 
-	// CObj을(를) 통해 상속됨
+public:
 	virtual HRESULT Initialize() override;
 	virtual int Update() override;
 	virtual void Render() override;

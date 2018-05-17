@@ -115,6 +115,9 @@
     <Filter Include="소스 파일\02.Object\07.Effect\EffectBridge">
       <UniqueIdentifier>{ff0b20f2-5e9f-42e2-9102-ea4bdbf7d0fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\07.Effect\EffectBridge\Effect_Extinction">
+      <UniqueIdentifier>{f5c6d13f-6f33-484c-8401-2332b0e3674e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="Effect.h">
       <Filter>소스 파일\02.Object\07.Effect</Filter>
     </ClInclude>
+    <ClInclude Include="EffectBridge.h">
+      <Filter>소스 파일\02.Object\07.Effect\EffectBridge</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -307,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>소스 파일\02.Object\07.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectBridge.cpp">
+      <Filter>소스 파일\02.Object\07.Effect\EffectBridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

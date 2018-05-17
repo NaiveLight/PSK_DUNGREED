@@ -155,6 +155,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectBridge.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LogoScene.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectBridge.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogoScene.cpp" />
