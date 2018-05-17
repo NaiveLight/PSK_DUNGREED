@@ -9,6 +9,8 @@
 #include "ScrollManager.h"
 #include "TimeManager.h"
 #include "CollisionManager.h"
+#include "Weapon.h"
+#include "Weapon_Hand.h"
 
 CPlayer::CPlayer()
 {
@@ -47,7 +49,7 @@ int CPlayer::Update()
 	m_fTime = TimeManager->GetDeltaTime();
 
 	UpdateMatrix();
-	UpdateHitRect();
+	UpdateHitBox();
 
 	CheckMousePos();
 	CheckInput();
@@ -58,7 +60,7 @@ int CPlayer::Update()
 	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
 	m_tInfo.vPos.x += m_fVelocityX;
-	m_tInfo.vPos.y += m_fVelocityY + (m_bGround ? 0 : m_fGravity);
+	m_tInfo.vPos.y += m_fVelocityY + ((m_bGround || m_bDash)? 0 : m_fGravity);
 
 	if (m_tInfo.vPos.x <= m_fMinPosX)
 		m_tInfo.vPos.x = m_fMinPosX;
@@ -86,39 +88,39 @@ void CPlayer::Render()
 		, nullptr
 		, D3DCOLOR_ARGB(BYTE(m_fAlpha), 255, 255, 255));
 
-	//const TEXINFO*		pColInfo = TextureManager->GetTexture(m_wstrObjKey, L"PCollider", 0);
-	//if (pColInfo == nullptr)
-	//	return;
-
-	//D3DXMATRIX matScale, matTrans;
-
-	//D3DXMatrixIdentity(&matScale);
-
-	//if (m_bIsLeft)
-	//{
-	//	D3DXMatrixScaling(&matScale, -1.f, 1.f, 0.f);
-	//}
-
-	//D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-
-	//D3DXMatrixTranslation(&m_tInfo.matWorld
-	//	, m_tInfo.vPos.x - ScrollManager->GetScroll().x
-	//	, m_tInfo.vPos.y + 32.f - ScrollManager->GetScroll().y
-	//	, 0.f);
-
-	//m_tInfo.matWorld = matScale * m_tInfo.matWorld;
-
-	//m_pSprite->SetTransform(&m_tInfo.matWorld);
-	//m_pSprite->Draw(pColInfo->pTexture
-	//	, nullptr
-	//	, &D3DXVECTOR3(pColInfo->tImgInfo.Width * 0.5f, pColInfo->tImgInfo.Height * 0.5f, 0.f)
-	//	, nullptr
-	//	, D3DCOLOR_ARGB(255, 255, 255, 255));
+	RenderCollider();
 }
 
 void CPlayer::Release()
 {
+}
+
+void CPlayer::RenderCollider()
+{
+	const TEXINFO*		pColInfo = TextureManager->GetTexture(m_wstrObjKey, L"PCollider", 0);
+	if (pColInfo == nullptr)
+		return;
+
+	D3DXMATRIX matScale, matTrans;
+
+	D3DXMatrixIdentity(&matScale);
+
+	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
+	D3DXMatrixTranslation(&m_tInfo.matWorld
+		, m_tInfo.vPos.x - ScrollManager->GetScroll().x
+		, m_tInfo.vPos.y + 32.f - ScrollManager->GetScroll().y
+		, 0.f);
+
+	//m_tInfo.matWorld = matScale * m_tInfo.matWorld;
+
+	m_pSprite->SetTransform(&m_tInfo.matWorld);
+	m_pSprite->Draw(pColInfo->pTexture
+		, nullptr
+		, &D3DXVECTOR3(pColInfo->tImgInfo.Width * 0.5f, pColInfo->tImgInfo.Height * 0.5f, 0.f)
+		, nullptr
+		, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 void CPlayer::UpdateMatrix()
@@ -143,12 +145,10 @@ void CPlayer::UpdateMatrix()
 	m_tInfo.matWorld = matScale * m_tInfo.matWorld;
 }
 
-void CPlayer::UpdateHitRect()
+void CPlayer::UpdateHitBox()
 {
-	m_tHitRect.left = LONG(m_tInfo.vPos.x - 16.f);
-	m_tHitRect.top = LONG(m_tInfo.vPos.y);
-	m_tHitRect.right = LONG(m_tInfo.vPos.x + 16.f);
-	m_tHitRect.bottom = LONG(m_tInfo.vPos.y + 64.f);
+	m_tHitBox.fX = m_tInfo.vPos.x;
+	m_tHitBox.fY = m_tInfo.vPos.y + 32.f;
 }
 
 void CPlayer::InitPlayerAttributes()
@@ -160,13 +160,16 @@ void CPlayer::InitPlayerAttributes()
 	m_tInfo.fCX = 32.f;
 	m_tInfo.fCY = 64.f;
 
+	m_tHitBox.fCX = 32.f;
+	m_tHitBox.fCY = 64.f;
+
 	m_wstrObjKey = L"PLAYER";
 	m_wstrStateKey = L"Idle";
 
 	m_tFrame = FRAME(0, 10, 5);
 
 	m_tData.fMoveSpeed = 450.f;
-	m_tData.fAttSpeed = 1.f;
+	m_tData.fAttSpeed = m_fAttTime = 1.f;
 
 	m_tData.iCurHp = 80;
 	m_tData.iMaxHp = 80;
@@ -186,8 +189,8 @@ void CPlayer::InitPlayerAttributes()
 	m_tPData.iInt = 0;
 	m_tPData.iDeg = 0;
 
-	m_tPData.fDashSpeed = 500.f;
-	m_tPData.fDashTime = 0.5f;
+	m_tPData.fDashSpeed = 2000.f;
+	m_tPData.fDashTime = 2.f;
 	m_tPData.fDashChargeTime = 2.f;
 
 	m_fGravity = 16.f * m_fTime;
@@ -216,6 +219,7 @@ void CPlayer::CheckInput()
 	Move();
 	Jump();
 	Dash();
+	Attack();
 
 	if (m_bDown)
 		m_fAddScrollY += 5.f;
@@ -321,7 +325,7 @@ void CPlayer::Move()
 
 void CPlayer::Jump()
 {
-	if (!m_bJump)
+	if (!m_bJump && !m_bDash)
 	{
 		if (KeyManager->KeyDown('W'))
 		{
@@ -345,7 +349,10 @@ void CPlayer::Jump()
 	else
 	{
 		// 점프 중일 때
-		m_fVelocityY += m_tData.fMoveSpeed  * 0.05f * /*0.010f*/m_fTime;
+		if (m_bDash)
+			return;
+
+		m_fVelocityY += m_tData.fMoveSpeed  * 0.05f * m_fTime;
 
 		if (m_bGround)
 		{
@@ -367,19 +374,17 @@ void CPlayer::Dash()
 		//마우스 우측 클릭 시 대시
 		if (KeyManager->KeyDown(VK_RBUTTON))
 		{
-			std::cout << "DASH START\n";
 			m_bDash = true;
-			m_tPData.fDashTime = 0.5f;
+			m_tPData.fDashTime = 0.1f;
 			m_tPData.iDashCnt--;
 			// 현재 마우스 방향 가져옴
 			// 이전에 CheckMousePos에서 m_tInfo.vDir에 이미 계산되어 있음
 			D3DXVec3Normalize(&m_vDashDir, &m_tInfo.vDir);
 
 			// X속도와 Y속도 초기화 후 대시 속도 만큼 증가시킨다.
-			m_vDashDir.x = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;
-			m_vDashDir.y = m_vDashDir.y * m_tPData.fDashSpeed * m_fTime;
-			m_fVelocityX = m_vDashDir.x;
-			m_fVelocityY = m_vDashDir.y;
+
+			m_fVelocityX = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;
+			m_fVelocityY = m_vDashDir.y * m_tPData.fDashSpeed * m_fTime;
 		}
 	}
 
@@ -387,12 +392,13 @@ void CPlayer::Dash()
 	{
 		m_tPData.fDashTime -= m_fTime;
 
+		m_fVelocityX = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;;
+		m_fVelocityY = m_vDashDir.y * m_tPData.fDashSpeed * m_fTime;
+
 		if (m_tPData.fDashTime < 0.f)
 		{
 			m_bDash = false;
 		}
-		m_fVelocityX += m_vDashDir.x;
-		m_fVelocityY += m_vDashDir.y;
 	}
 
 	//대시 카운트는 일정 시간 마다 충전되어야 한다.
@@ -403,6 +409,26 @@ void CPlayer::Dash()
 		{
 			m_tPData.iDashCnt++;
 			m_tPData.fDashChargeTime = 2.f;
+		}
+	}
+}
+
+void CPlayer::Attack()
+{
+	if (!m_bAttack)
+	{
+		if (KeyManager->KeyDown(VK_LBUTTON))
+		{
+			m_bAttack = true;
+		}
+	}
+	else
+	{
+		m_fAttTime -= m_fTime;
+		if (m_fAttTime <= 0.f)
+		{
+			m_bAttack = false;
+			m_fAttTime = m_tData.fAttSpeed;
 		}
 	}
 }

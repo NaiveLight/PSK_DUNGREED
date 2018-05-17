@@ -13,5 +13,8 @@ public:
 	virtual int Update(INFO & rInfo) override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+public:
+	void UpdateMatrix(INFO& rInfo);
 };
 

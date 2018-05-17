@@ -91,7 +91,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 				// 2. 라인보다 밑에 있을 때 충돌 체크 X
 				if (pPlayer->GetIsJump() && pPlayer->GetVelocityY() > 0.f)
 				{
-					if (pPlayer->GetIsDown())
+					if (pPlayer->GetIsDown() || pPlayer->GetIsDash())
 						continue;
 
 					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 60.f)
@@ -106,11 +106,11 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					continue;
 				else
 				{
-					if (pTile->vPos.y - 32.f < pPlayer->GetInfo()->vPos.y + 64.f)
+					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 60.f)
 						continue;
 
 					pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
-					pPlayer->SetVelocityY(0.f);
+					//pPlayer->SetVelocityY(0.f);
 					pPlayer->SetJump(false);
 					return true;
 				}
@@ -152,7 +152,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 						// 내려오는 중이고 MoveY과 겹칠 때 충돌 o
 						if (pPlayer->GetVelocityY() > 0.f)
 						{
-							if (pPlayer->GetIsDown())
+							if (pPlayer->GetIsDown() || pPlayer->GetIsDash())
 								continue;
 
 							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 32.f)
@@ -195,7 +195,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 						// 내려오는 중이고 MoveY과 겹칠 때 충돌 o
 						if (pPlayer->GetVelocityY() > 0.f)
 						{
-							if (pPlayer->GetIsDown())
+							if (pPlayer->GetIsDown() || pPlayer->GetIsDash())
 								continue;
 
 							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 34.f)

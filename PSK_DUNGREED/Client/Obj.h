@@ -14,6 +14,7 @@ public:
 	const std::wstring& GetStateKey();
 	const INFO* GetInfo();
 	const FRAME* GetFrame();
+	const HITBOX* GetHitBox();
 
 public:
 	void SetBridge(CBridge* pBridge);
@@ -36,6 +37,7 @@ protected:
 	LPD3DXSPRITE					m_pSprite = nullptr;
 
 protected:
+	HITBOX m_tHitBox = {};
 	INFO m_tInfo = {};	
 	FRAME m_tFrame = {};
 	std::wstring m_wstrObjKey = L"";

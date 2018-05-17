@@ -1,5 +1,8 @@
 #pragma once
 #include "Obj.h"
+
+class CWeapon;
+class CWeaponBridge;
 class CPlayer :
 	public CObj
 {
@@ -22,7 +25,6 @@ public:
 	virtual ~CPlayer();
 
 public:
-	const RECT& GetHitRect() { return m_tHitRect; }
 	const bool& GetIsJump() { return m_bJump; }
 	const bool& GetIsDown() { return m_bDown; }
 	const bool& GetIsDash() { return m_bDash; }
@@ -40,8 +42,11 @@ public:
 	virtual void Release() override;
 
 private:
+	void RenderCollider();
+
+private:
 	virtual void UpdateMatrix() override;
-	void UpdateHitRect();
+	void UpdateHitBox();
 
 private:
 	void InitPlayerAttributes();
@@ -57,40 +62,53 @@ private:
 	void Move();
 	void Jump();
 	void Dash();
+	void Attack();
+
 private:
-	RECT m_tHitRect = {};
+	HITBOX m_tHitBox= {};
 	DATA	m_tData = {};
 	PDATA m_tPData = {};
 	STATE m_eCurState = IDLE;
 	STATE m_ePrevState = IDLE;
 	DWORD  m_dwStance = 0;
-	//std::wstring m_wstrStateKey = L"";
-
 
 private:
 	D3DXVECTOR3 m_vDashDir = D3DXVECTOR3(0.f, 0.f, 0.f);
 
+private:
+	CWeapon*			   m_pWeapon;
+	CWeaponBridge* m_pWeaponBridge;
+
+private:
 	bool m_bIsLeft = false;
 	bool m_bGround = false;
 	bool m_bDown = false;
 	bool m_bJump = true;
 	bool m_bDash = false;
+	bool m_bAttack = false;
 
+private:
 	float m_fVelocityX = 0.f;
 	float m_fVelocityY = 0.f;
 	float m_fMaxVelY = 0.f;
 	float m_fGravity = 0.f;
 
+private:
 	float m_fDashAccX = 0.f;
 	float m_fDashAccY = 0.f;
 
+private:
 	float m_fAlpha = 0.f;
 
+private:
 	float m_fMinPosX = 0.f;
 	float m_fMaxPosX = 0.f;
 
+private:
 	float m_fAddScrollY = 0.f;
 
+private:
+	float m_fAttTime = 0.f;
 	float m_fDustTime = 0.f;
 };
 

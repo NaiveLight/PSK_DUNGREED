@@ -81,6 +81,14 @@ typedef struct tagInfo
 	float					fCY;
 }INFO;
 
+typedef struct tagHitBox
+{
+	float fX;
+	float fY;
+	float fCX;
+	float fCY;
+}HITBOX;
+
 typedef struct tagUnitData
 {
 	int iHp = 0;
@@ -97,10 +105,3 @@ typedef struct tagTexturePath
 	std::wstring wstrPath = L"";
 	int iCount = 0;
 }IMGPATH;
-
-typedef struct tagAStarNode
-{
-	tagAStarNode*	pParent;
-	int				iIndex;
-	float			fCost;
-}NODE;

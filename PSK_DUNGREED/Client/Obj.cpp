@@ -29,6 +29,11 @@ const FRAME * CObj::GetFrame()
 	return &m_tFrame;
 }
 
+const HITBOX * CObj::GetHitBox()
+{
+	return &m_tHitBox;
+}
+
 void CObj::SetBridge(CBridge * pBridge)
 {
 	m_pBridge = pBridge;
