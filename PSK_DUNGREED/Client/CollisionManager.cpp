@@ -181,7 +181,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 
 					if (!pPlayer->GetIsJump())
 					{
-						if (fMoveY < pPlayer->GetInfo()->vPos.y + 32.f)
+						if (fMoveY < pPlayer->GetInfo()->vPos.y + 34.f)
 							continue;
 						else
 						{
@@ -198,7 +198,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 							if (pPlayer->GetIsDown())
 								continue;
 
-							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 32.f)
+							if (fMoveY >= pPlayer->GetInfo()->vPos.y + 34.f)
 							{
 								pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, fMoveY - 64.f, 0.f));
 								return true;

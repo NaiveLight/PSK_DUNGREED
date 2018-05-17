@@ -18,6 +18,6 @@ public:
 
 private:
 	bool m_bAlpha = false;
-	float m_fAlphaVal = 100.f;
+	float m_fAlphaVal = 150.f;
 };
 
