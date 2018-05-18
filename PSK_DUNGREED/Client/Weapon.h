@@ -10,6 +10,8 @@ public:
 
 public:
 	const bool& GetIsRectHit() { return m_bRectHit; }
+	const float& GetAttackTime() { return m_fAttTime; }
+	const bool& GetRenderFirst() { return m_bRender; }
 
 public:
 	virtual HRESULT Initialize() PURE;
@@ -25,9 +27,12 @@ protected:
 
 protected:
 	D3DXVECTOR3 m_vOrigin = D3DXVECTOR3(0.f, 0.f, 0.f);
+	float m_fAttTime = 0.f;
 	float m_fRotateAngle = 0.f;
 	float m_fRevolveAngle = 0.f;
+	float m_bTempLeft = false;
 	bool m_bRectHit = false;
 	bool m_bAttack = false;
+	bool m_bRender = false;
 };
 

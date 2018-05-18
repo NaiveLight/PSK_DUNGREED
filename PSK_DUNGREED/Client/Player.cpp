@@ -40,7 +40,7 @@ HRESULT CPlayer::Initialize()
 
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y + WINCY * 0.5f);
 
-	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon(WP_HAND);
+	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
 	
 	return S_OK;
 }
@@ -70,18 +70,18 @@ int CPlayer::Update()
 
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f + m_fAddScrollY);
 
-	m_pWeapon->Update();
-
 	UpdateMatrix();
 	UpdateHitBox();
 
+	m_pWeapon->Update();
 
 	return 0;
 }
 
 void CPlayer::Render()
 {
-	m_pWeapon->Render();
+	if (m_pWeapon->GetRenderFirst())
+		m_pWeapon->Render();
 
 	const TEXINFO*		pTexInfo = TextureManager->GetTexture(m_wstrObjKey, m_wstrStateKey, (int)m_tFrame.fFrame);
 	if (pTexInfo == nullptr)
@@ -95,6 +95,9 @@ void CPlayer::Render()
 		, D3DCOLOR_ARGB(BYTE(m_fAlpha), 255, 255, 255));
 
 	RenderCollider();
+
+	if (!m_pWeapon->GetRenderFirst())
+		m_pWeapon->Render();
 }
 
 void CPlayer::Release()
@@ -175,7 +178,7 @@ void CPlayer::InitPlayerAttributes()
 	m_tFrame = FRAME(0, 10, 5);
 
 	m_tData.fMoveSpeed = 450.f;
-	m_tData.fAttSpeed = m_fAttTime = 1.f;
+	m_tData.fAttSpeed = m_fAttTime = 0.5f;
 
 	m_tData.iCurHp = 80;
 	m_tData.iMaxHp = 80;
@@ -216,6 +219,8 @@ void CPlayer::CheckMousePos()
 
 void CPlayer::CheckInput()
 {
+	SwapWeapon();
+
 	if (KeyManager->KeyPressing('S'))
 		m_bDown = true;
 		
@@ -444,4 +449,29 @@ void CPlayer::Attack()
 			m_fAttTime = m_tData.fAttSpeed;
 		}
 	}
+}
+
+void CPlayer::SwapWeapon()
+{
+	if (KeyManager->KeyDown('1'))
+	{
+		Safe_Delete(m_pWeapon);
+		m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
+		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+	}
+
+	if (KeyManager->KeyDown('2'))
+	{
+		Safe_Delete(m_pWeapon);
+		m_pWeapon = CAbstractFactory<CWeapon_Sword>::CreateWeapon();
+		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+	}
+
+	if (KeyManager->KeyDown('3'))
+	{
+		Safe_Delete(m_pWeapon);
+		m_pWeapon = CAbstractFactory<CWeapon_Halberd>::CreateWeapon();
+		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+	}
+
 }

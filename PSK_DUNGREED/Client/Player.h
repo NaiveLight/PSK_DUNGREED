@@ -66,6 +66,9 @@ private:
 	void Attack();
 
 private:
+	void SwapWeapon();
+
+private:
 	HITBOX m_tHitBox= {};
 	DATA	m_tData = {};
 	PDATA m_tPData = {};
@@ -110,6 +113,9 @@ private:
 private:
 	float m_fAttTime = 0.f;
 	float m_fDustTime = 0.f;
+
+private:
+	bool m_bWeaponRender = false;
 
 private:
 	bool m_bDungeonEnter = false;

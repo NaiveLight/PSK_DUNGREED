@@ -136,6 +136,15 @@
     <Filter Include="소스 파일\02.Object\04.Weapon\00.Weapon_Hand">
       <UniqueIdentifier>{dbb90cd3-764c-4303-bdfe-381725e50a26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\01.Monster\00.Skell">
+      <UniqueIdentifier>{997d8f07-235d-4966-a899-553634715035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\04.Weapon\01.Weapon_Sword">
+      <UniqueIdentifier>{5b9dfa49-f956-4c35-bdb7-1be279c76478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\04.Weapon\02.Weapon_Halberd">
+      <UniqueIdentifier>{251182f0-1bc6-4a23-a07e-f72501bbd2ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -256,7 +265,16 @@
       <Filter>소스 파일\02.Object\04.Weapon\00.Weapon_Hand</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\02.Object\05.Actor\01.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Skell.h">
+      <Filter>소스 파일\02.Object\05.Actor\01.Monster\00.Skell</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon_Sword.h">
+      <Filter>소스 파일\02.Object\04.Weapon\01.Weapon_Sword</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon_Halberd.h">
+      <Filter>소스 파일\02.Object\04.Weapon\02.Weapon_Halberd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +387,16 @@
       <Filter>소스 파일\02.Object\04.Weapon\00.Weapon_Hand</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02.Object\05.Actor\01.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Skell.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\01.Monster\00.Skell</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon_Sword.cpp">
+      <Filter>소스 파일\02.Object\04.Weapon\01.Weapon_Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon_Halberd.cpp">
+      <Filter>소스 파일\02.Object\04.Weapon\02.Weapon_Halberd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -164,6 +164,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MapObj.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Monster_Skell.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjectManager.h" />
@@ -187,7 +188,9 @@
     <ClInclude Include="UI_Logo.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponBridge.h" />
+    <ClInclude Include="Weapon_Halberd.h" />
     <ClInclude Include="Weapon_Hand.h" />
+    <ClInclude Include="Weapon_Sword.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
@@ -205,6 +208,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MapObj.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster_Skell.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -231,7 +235,9 @@
     <ClCompile Include="UI_Logo.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponBridge.cpp" />
+    <ClCompile Include="Weapon_Halberd.cpp" />
     <ClCompile Include="Weapon_Hand.cpp" />
+    <ClCompile Include="Weapon_Sword.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

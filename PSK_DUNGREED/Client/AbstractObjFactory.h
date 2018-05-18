@@ -20,6 +20,8 @@
 
 #include "Weapon.h"
 #include "Weapon_Hand.h"
+#include "Weapon_Sword.h"
+#include "Weapon_Halberd.h"
 
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
@@ -117,16 +119,19 @@ public:
 	// OBJ_ACTOR (monster, npc, etc.)
 
 	// OBJ_WEAPON
-	static CWeapon* CreateWeapon(WEAPONID eWeaponID)
+	static CWeapon* CreateWeapon()
 	{
-		CWeapon* pWeapon = nullptr;
+		CWeapon* pWeapon = new T;
 
-		switch (eWeaponID)
-		{
-		case WP_HAND:
-			pWeapon = new CWeapon_Hand;
-			break;
-		}
+		//switch (eWeaponID)
+		//{
+		//case WP_HAND:
+		//	pWeapon = new CWeapon_Hand;
+		//	break;
+		//case WP_SWORD:
+		//	pWeapon = new CWeapon_Sword;
+		//	break;
+		//}
 
 		if (FAILED(pWeapon->Initialize()))
 			return nullptr;
