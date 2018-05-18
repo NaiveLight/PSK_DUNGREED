@@ -34,6 +34,11 @@ const HITBOX * CObj::GetHitBox()
 	return &m_tHitBox;
 }
 
+const bool & CObj::GetIsLeft()
+{
+	return m_bIsLeft;
+}
+
 void CObj::SetBridge(CBridge * pBridge)
 {
 	m_pBridge = pBridge;
@@ -57,6 +62,11 @@ void CObj::SetObjKey(const std::wstring & wstrObjKey)
 void CObj::SetStateKey(const std::wstring & wstrStateKey)
 {
 	m_wstrStateKey = wstrStateKey;
+}
+
+void CObj::SetIsLeft(const bool & bIsLeft)
+{
+	m_bIsLeft = bIsLeft;
 }
 
 void CObj::UpdateMatrix()

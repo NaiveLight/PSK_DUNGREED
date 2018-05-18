@@ -10,7 +10,6 @@
 #include "TimeManager.h"
 #include "CollisionManager.h"
 #include "Weapon.h"
-#include "Weapon_Hand.h"
 
 CPlayer::CPlayer()
 {
@@ -40,6 +39,8 @@ HRESULT CPlayer::Initialize()
 	InitPlayerAttributes();
 
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y + WINCY * 0.5f);
+
+	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon(WP_HAND);
 	
 	return S_OK;
 }
@@ -47,9 +48,6 @@ HRESULT CPlayer::Initialize()
 int CPlayer::Update()
 {
 	m_fTime = TimeManager->GetDeltaTime();
-
-	UpdateMatrix();
-	UpdateHitBox();
 
 	CheckMousePos();
 	CheckInput();
@@ -72,11 +70,19 @@ int CPlayer::Update()
 
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f + m_fAddScrollY);
 
+	m_pWeapon->Update();
+
+	UpdateMatrix();
+	UpdateHitBox();
+
+
 	return 0;
 }
 
 void CPlayer::Render()
 {
+	m_pWeapon->Render();
+
 	const TEXINFO*		pTexInfo = TextureManager->GetTexture(m_wstrObjKey, m_wstrStateKey, (int)m_tFrame.fFrame);
 	if (pTexInfo == nullptr)
 		return;
@@ -190,7 +196,7 @@ void CPlayer::InitPlayerAttributes()
 	m_tPData.iDeg = 0;
 
 	m_tPData.fDashSpeed = 2000.f;
-	m_tPData.fDashTime = 2.f;
+	m_tPData.fDashTime = 1.5f;
 	m_tPData.fDashChargeTime = 2.f;
 
 	m_fGravity = 16.f * m_fTime;
@@ -239,7 +245,7 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 	switch (pEffect)
 	{
 	case EFFECT_JUMP:
-		pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Jump", &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 60.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+		pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Jump", m_bIsLeft ,&D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 60.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
 		ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		break;
 	case EFFECT_DUST:
@@ -247,9 +253,13 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 		if (m_fDustTime < 0.f)
 		{
 			m_fDustTime = 0.2f;
-			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
 			ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		}
+		break;
+	case EFFECT_DASH:
+		pObj = CAbstractFactory<CEffect_Alpha>::CreateEffect(L"Dash", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f), &FRAME{ 0.f, 0.f, 0.f });
+		ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		break;
 	}
 }
@@ -390,6 +400,8 @@ void CPlayer::Dash()
 
 	if (m_bDash)
 	{
+		AddEffect(EFFECT_DASH);
+
 		m_tPData.fDashTime -= m_fTime;
 
 		m_fVelocityX = m_vDashDir.x * m_tPData.fDashSpeed * m_fTime;;
@@ -420,6 +432,7 @@ void CPlayer::Attack()
 		if (KeyManager->KeyDown(VK_LBUTTON))
 		{
 			m_bAttack = true;
+			m_pWeapon->Attack();
 		}
 	}
 	else

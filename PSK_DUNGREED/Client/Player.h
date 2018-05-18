@@ -10,6 +10,7 @@ public:
 	enum PLAYEREFFECT {
 		EFFECT_JUMP
 		, EFFECT_DUST
+		, EFFECT_DASH
 	};
 
 	enum STATE {
@@ -80,7 +81,6 @@ private:
 	CWeaponBridge* m_pWeaponBridge;
 
 private:
-	bool m_bIsLeft = false;
 	bool m_bGround = false;
 	bool m_bDown = false;
 	bool m_bJump = true;
@@ -110,5 +110,10 @@ private:
 private:
 	float m_fAttTime = 0.f;
 	float m_fDustTime = 0.f;
+
+private:
+	bool m_bDungeonEnter = false;
+	bool m_bStageEnter = false;
+	bool m_bRoomEnter = false;
 };
 

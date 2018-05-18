@@ -23,5 +23,6 @@ protected:
 	std::wstring m_wstrObjKey = L"";
 	std::wstring m_wstrStateKey = L"";
 	FRAME	m_tFrame = {};
+	bool m_bIsLeft = false;
 };
 

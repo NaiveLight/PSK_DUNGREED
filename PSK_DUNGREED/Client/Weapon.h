@@ -9,9 +9,25 @@ public:
 	virtual ~CWeapon();
 
 public:
-	virtual HRESULT Initialize() override;
-	virtual int Update() override;
-	virtual void Render() override;
-	virtual void Release() override;
+	const bool& GetIsRectHit() { return m_bRectHit; }
+
+public:
+	virtual HRESULT Initialize() PURE;
+	virtual int Update() PURE;
+	virtual void Render() PURE;
+	virtual void Release() PURE;
+
+public:
+	virtual void Attack() PURE;
+
+protected:
+	virtual void CreateHitBox();
+
+protected:
+	D3DXVECTOR3 m_vOrigin = D3DXVECTOR3(0.f, 0.f, 0.f);
+	float m_fRotateAngle = 0.f;
+	float m_fRevolveAngle = 0.f;
+	bool m_bRectHit = false;
+	bool m_bAttack = false;
 };
 

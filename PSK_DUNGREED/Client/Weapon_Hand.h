@@ -1,8 +1,7 @@
 #pragma once
-#include "WeaponBridge.h"
-
+#include "Weapon.h"
 class CWeapon_Hand :
-	public CWeaponBridge
+	public CWeapon
 {
 public:
 	CWeapon_Hand();
@@ -10,11 +9,15 @@ public:
 
 public:
 	virtual HRESULT Initialize() override;
-	virtual int Update(INFO & rInfo) override;
+	virtual int Update() override;
 	virtual void Render() override;
 	virtual void Release() override;
-
+	
 public:
-	void UpdateMatrix(INFO& rInfo);
+	virtual void UpdateMatrix() override;
+	virtual void Attack() override;
+
+private:
+	void UpdateHitBox();
 };
 

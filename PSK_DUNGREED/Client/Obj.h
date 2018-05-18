@@ -15,6 +15,7 @@ public:
 	const INFO* GetInfo();
 	const FRAME* GetFrame();
 	const HITBOX* GetHitBox();
+	const bool& GetIsLeft();
 
 public:
 	void SetBridge(CBridge* pBridge);
@@ -22,6 +23,7 @@ public:
 	void SetFrame(const FRAME* pFrame);
 	void SetObjKey(const std::wstring& wstrObjKey);
 	void SetStateKey(const std::wstring& wstrStateKey);
+	void SetIsLeft(const bool& bIsLeft);
 
 public:
 	virtual HRESULT Initialize() PURE;
@@ -43,6 +45,7 @@ protected:
 	std::wstring m_wstrObjKey = L"";
 	std::wstring m_wstrStateKey = L"";
 	float m_fTime = 0.f;
+	bool m_bIsLeft = false;
 
 protected:
 	CBridge* m_pBridge = nullptr;

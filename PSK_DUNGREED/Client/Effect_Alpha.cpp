@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Effect_Extinction.h"
+#include "Effect_Alpha.h"
 
 #include "Device.h"
 #include "TextureManager.h"
@@ -7,16 +7,17 @@
 #include "ScrollManager.h"
 #include "Obj.h"
 
-CEffect_Extinction::CEffect_Extinction()
+CEffect_Alpha::CEffect_Alpha()
 {
 }
 
-CEffect_Extinction::~CEffect_Extinction()
+
+CEffect_Alpha::~CEffect_Alpha()
 {
 	Release();
 }
 
-HRESULT CEffect_Extinction::Initialize()
+HRESULT CEffect_Alpha::Initialize()
 {
 	m_pDevice = Device->GetDevice();
 	if (m_pDevice == nullptr)
@@ -37,10 +38,12 @@ HRESULT CEffect_Extinction::Initialize()
 	m_tFrame = *m_pObj->GetFrame();
 	m_bIsLeft = m_pObj->GetIsLeft();
 
+	m_fAlpha = 255.f;
+
 	return S_OK;
 }
 
-int CEffect_Extinction::Update(INFO & rInfo)
+int CEffect_Alpha::Update(INFO & rInfo)
 {
 	D3DXMATRIX matScale, matTrans;
 
@@ -54,13 +57,16 @@ int CEffect_Extinction::Update(INFO & rInfo)
 	rInfo.matWorld = matScale * matTrans;
 
 	m_tFrame.fFrame += m_tFrame.fCount * TimeManager->GetDeltaTime();
-	if (m_tFrame.fFrame > m_tFrame.fMax)
+	
+	m_fAlpha -= 10.f;
+
+	if (m_fAlpha < 0.f)
 		return 1;
 
 	return 0;
 }
 
-void CEffect_Extinction::Render()
+void CEffect_Alpha::Render()
 {
 	const TEXINFO*		pTexInfo = TextureManager->GetTexture(m_wstrObjKey.c_str(), m_wstrStateKey.c_str(), (int)m_tFrame.fFrame);
 	if (pTexInfo == nullptr)
@@ -71,9 +77,9 @@ void CEffect_Extinction::Render()
 		, nullptr
 		, &D3DXVECTOR3(pTexInfo->tImgInfo.Width * 0.5f, pTexInfo->tImgInfo.Height * 0.5f, 0.f)
 		, nullptr
-		, D3DCOLOR_ARGB(255, 255, 255, 255));
+		, D3DCOLOR_ARGB(BYTE(m_fAlpha), 255, 255, 255));
 }
 
-void CEffect_Extinction::Release()
+void CEffect_Alpha::Release()
 {
 }

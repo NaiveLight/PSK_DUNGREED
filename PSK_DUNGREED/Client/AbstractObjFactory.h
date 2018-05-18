@@ -16,6 +16,10 @@
 
 #include "Effect.h"
 #include "Effect_Extinction.h"
+#include "Effect_Alpha.h"
+
+#include "Weapon.h"
+#include "Weapon_Hand.h"
 
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
@@ -113,6 +117,22 @@ public:
 	// OBJ_ACTOR (monster, npc, etc.)
 
 	// OBJ_WEAPON
+	static CWeapon* CreateWeapon(WEAPONID eWeaponID)
+	{
+		CWeapon* pWeapon = nullptr;
+
+		switch (eWeaponID)
+		{
+		case WP_HAND:
+			pWeapon = new CWeapon_Hand;
+			break;
+		}
+
+		if (FAILED(pWeapon->Initialize()))
+			return nullptr;
+
+		return pWeapon;
+	}
 
 	// OBJ_PLAYER
 
@@ -121,7 +141,7 @@ public:
 	// OBJ_ITEM
 
 	// OBJ_EFFECT
-	static CObj* CreateEffect(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
+	static CObj* CreateEffect(const std::wstring& wstrStateKey, const bool& bIsLeft, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
 	{
 		CObj* pObj = new CEffect;
 		CBridge* pBridge = new T;
@@ -129,7 +149,7 @@ public:
 		pObj->SetObjKey(L"EFFECT");
 		pObj->SetStateKey(wstrStateKey);
 		pObj->SetFrame(pFrame);
-
+		pObj->SetIsLeft(bIsLeft);
 		pObj->SetBridge(pBridge);
 
 		if (FAILED(pObj->Initialize()))
