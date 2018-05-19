@@ -45,6 +45,8 @@ protected:
 	std::wstring m_wstrObjKey = L"";
 	std::wstring m_wstrStateKey = L"";
 	float m_fTime = 0.f;
+	float m_fAlpha = 0.f;
+	float m_fGravity = 0.f;
 	bool m_bIsLeft = false;
 
 protected:

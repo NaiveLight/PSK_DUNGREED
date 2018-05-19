@@ -19,5 +19,7 @@ public:
 
 private:
 	float m_fAngleOffset = 0.f;
+	float m_fOffsetX = 0.f;
+	float m_fOffsetY = 0.f;
 };
 

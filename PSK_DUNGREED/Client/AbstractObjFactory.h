@@ -123,16 +123,6 @@ public:
 	{
 		CWeapon* pWeapon = new T;
 
-		//switch (eWeaponID)
-		//{
-		//case WP_HAND:
-		//	pWeapon = new CWeapon_Hand;
-		//	break;
-		//case WP_SWORD:
-		//	pWeapon = new CWeapon_Sword;
-		//	break;
-		//}
-
 		if (FAILED(pWeapon->Initialize()))
 			return nullptr;
 

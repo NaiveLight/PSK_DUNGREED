@@ -69,12 +69,10 @@ private:
 	void SwapWeapon();
 
 private:
-	HITBOX m_tHitBox= {};
 	DATA	m_tData = {};
 	PDATA m_tPData = {};
 	STATE m_eCurState = IDLE;
 	STATE m_ePrevState = IDLE;
-	DWORD  m_dwStance = 0;
 
 private:
 	D3DXVECTOR3 m_vDashDir = D3DXVECTOR3(0.f, 0.f, 0.f);
@@ -89,19 +87,16 @@ private:
 	bool m_bJump = true;
 	bool m_bDash = false;
 	bool m_bAttack = false;
+	bool m_bIsDead = false;
 
 private:
 	float m_fVelocityX = 0.f;
 	float m_fVelocityY = 0.f;
 	float m_fMaxVelY = 0.f;
-	float m_fGravity = 0.f;
 
 private:
 	float m_fDashAccX = 0.f;
 	float m_fDashAccY = 0.f;
-
-private:
-	float m_fAlpha = 0.f;
 
 private:
 	float m_fMinPosX = 0.f;

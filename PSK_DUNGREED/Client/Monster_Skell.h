@@ -7,10 +7,21 @@ public:
 	CMonster_Skell();
 	virtual ~CMonster_Skell();
 
-	// CMonster을(를) 통해 상속됨
+private:
+	void InitAttributes();
+
+public:
 	virtual HRESULT Initialize() override;
 	virtual int Update() override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+private:
+	void UpdateMatrix();
+	void UpdateHitBox();
+
+private:
+	void FrameChange();
+	void FrameMove();
 };
 

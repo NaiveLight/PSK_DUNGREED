@@ -3,6 +3,7 @@
 #include "CollisionManager.h"
 
 #include "Obj.h"
+#include "ScrollManager.h"
 
 CObjectManager::CObjectManager()
 {
@@ -60,6 +61,8 @@ int CObjectManager::Update()
 				++iter;
 		}
 	}
+
+	ScrollManager->Update();
 
 	return iResult;
 }

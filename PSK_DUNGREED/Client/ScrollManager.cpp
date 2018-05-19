@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ScrollManager.h"
 
+#include "TimeManager.h"
 
 CScrollManager::CScrollManager()
 {
@@ -8,6 +9,19 @@ CScrollManager::CScrollManager()
 
 CScrollManager::~CScrollManager()
 {
+}
+
+void CScrollManager::Update()
+{
+	if (m_bIsShaking)
+	{
+		m_fShakeTime -= TimeManager->GetDeltaTime();
+		m_fShakePower *= -1.f;
+		m_vScroll.y += m_fShakePower;
+
+		if (m_fShakeTime <= 0.f)
+			ShakingEnd();
+	}
 }
 
 void CScrollManager::SetCurScroll(float fX, float fY)
@@ -56,6 +70,22 @@ void CScrollManager::AddScroll(float fX, float fY)
 
 	if (m_vScroll.y  < m_vMinScroll.y)
 		m_vScroll.y = m_vMinScroll.y;
+}
+
+void CScrollManager::ShakingStart(float fPower, float fTime)
+{
+	if (!m_bIsShaking)
+	{
+		m_bIsShaking = true;
+		m_fShakePower = fPower;
+		m_fShakeTime = fTime;
+	}
+}
+
+void CScrollManager::ShakingEnd()
+{
+	m_bIsShaking = false;
+	m_fShakePower = 0.f;
 }
 
 const D3DXVECTOR3 & CScrollManager::GetScroll() const

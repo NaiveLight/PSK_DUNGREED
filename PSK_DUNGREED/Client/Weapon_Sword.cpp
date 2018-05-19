@@ -98,17 +98,25 @@ void CWeapon_Sword::UpdateMatrix()
 	D3DXMatrixScaling(&matScale, (m_bIsLeft ? -1.f : 1.f), 1.f, 0.f);
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 	D3DXMatrixRotationZ(&matRevolve, D3DXToRadian(m_fRevolveAngle));
-	D3DXMatrixTranslation(&matParent, pPlayer->GetInfo()->vPos.x + (m_bIsLeft ? -20.f : 20.f) - ScrollManager->GetScroll().x, pPlayer->GetInfo()->vPos.y + 32.f - ScrollManager->GetScroll().y, 0.f);
+	D3DXMatrixTranslation(&matParent, pPlayer->GetInfo()->vPos.x + (m_bIsLeft ? -20.f - m_fOffsetX: 20.f + m_fOffsetX) - ScrollManager->GetScroll().x, pPlayer->GetInfo()->vPos.y + m_fOffsetY + 32.f - ScrollManager->GetScroll().y, 0.f);
 
 	m_tInfo.matWorld = matScale *  matTrans * matRevolve * matParent;
 }
 
 void CWeapon_Sword::Attack()
 {
+	ScrollManager->ShakingStart(4.f, 0.1f);
+
 	if (!m_bAttack)
+	{
 		m_fAngleOffset = 200.f;
+		m_fOffsetX = -5.f;
+		m_fOffsetY = 10.f;
+	}
 	else
-		m_fAngleOffset = 0.f;
+	{
+		m_fAngleOffset = m_fOffsetX = m_fOffsetY = 0.f;
+	}
 
 	m_bAttack = !m_bAttack;
 	m_bRender = !m_bRender;

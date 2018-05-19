@@ -4,7 +4,7 @@ class CMonster :
 	public CObj
 {
 public:
-	enum STATE{SPAWN, IDLE, MOVE, ATTACK, DEAD, END};
+	enum STATE{SPAWN, IDLE, MOVE, ATTACK, END};
 
 public:
 	CMonster();
@@ -15,5 +15,11 @@ public:
 	virtual int Update() PURE;
 	virtual void Render() PURE;
 	virtual void Release() PURE;
+
+protected:
+	DATA m_tData;
+	STATE m_eCurState;
+	STATE m_ePrevState;
+	bool m_bIsDead;
 };
 
