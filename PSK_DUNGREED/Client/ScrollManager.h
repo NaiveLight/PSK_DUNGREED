@@ -10,6 +10,9 @@ public:
 	virtual ~CScrollManager();
 
 public:
+	const bool& GetShaking() { return m_bIsShaking; }
+
+public:
 	void Update();
 
 public:
@@ -29,7 +32,6 @@ private:
 	D3DXVECTOR3 m_vScroll = D3DXVECTOR3(0.f, 0.f, 0.f);
 	D3DXVECTOR3 m_vMinScroll = D3DXVECTOR3(0.f, 0.f, 0.f);
 	D3DXVECTOR3 m_vMaxScroll = D3DXVECTOR3(0.f, 0.f, 0.f);
-	/*d3dxvector3*/
 
 private:
 	float m_fShakePower = 0.f;

@@ -17,6 +17,7 @@ void CScrollManager::Update()
 	{
 		m_fShakeTime -= TimeManager->GetDeltaTime();
 		m_fShakePower *= -1.f;
+		m_vScroll.x += m_fShakePower;
 		m_vScroll.y += m_fShakePower;
 
 		if (m_fShakeTime <= 0.f)

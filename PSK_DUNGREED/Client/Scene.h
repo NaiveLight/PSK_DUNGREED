@@ -15,6 +15,7 @@ public:
 
 private:
 	bool m_bIsInit = false;
+	bool m_bClear = false;
 	int m_bIsChange = 0;
 };
 

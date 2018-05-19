@@ -38,6 +38,7 @@ HRESULT CPlayer::Initialize()
 
 	InitPlayerAttributes();
 
+
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y + WINCY * 0.5f);
 
 	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
@@ -55,7 +56,6 @@ int CPlayer::Update()
 	if (m_bJump || m_bDash)
 		m_eCurState = JUMP;
 
-	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
 	m_tInfo.vPos.x += m_fVelocityX;
 	m_tInfo.vPos.y += m_fVelocityY + ((m_bGround || m_bDash)? 0 : m_fGravity);
@@ -72,6 +72,8 @@ int CPlayer::Update()
 
 	UpdateMatrix();
 	UpdateHitBox();
+	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
+
 
 	m_pWeapon->Update();
 

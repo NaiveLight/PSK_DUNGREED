@@ -1,6 +1,7 @@
 BACKGROUND|BackCloud|1|..\Texture\BACKGROUND\BackCloud\BackCloud0%d.png
 BACKGROUND|FrontCloud|1|..\Texture\BACKGROUND\FrontCloud\FrontCloud0%d.png
 BACKGROUND|Town|1|..\Texture\BACKGROUND\Town\Town0%d.png
+BACKGROUND|Back|2|..\Texture\BACKGROUND\Back\Back0%d.png
 EFFECT|Dash|1|..\Texture\EFFECT\Dash\Dash0%d.png
 EFFECT|Dust|5|..\Texture\EFFECT\Dust\Dust0%d.png
 EFFECT|GreatSwing|3|..\Texture\EFFECT\GreatSwing\GreatSwing0%d.png
