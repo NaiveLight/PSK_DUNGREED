@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Weapon.h"
+#include "HitBox.h"
 #include "TileMap.h"
 #include "ScrollManager.h"
 
@@ -285,13 +286,17 @@ bool CCollisionManager::MonsterToTile(CMonster * pMonster, CTileMap * pTileMap)
 	return bResult;
 }
 
-void CCollisionManager::AttackToMonster(CWeapon * pWeapon, std::list<CObj*>* pMonsterList)
+void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CPlayer * pPlayer)
 {
-	if (pWeapon->GetIsRectHit())
+}
+
+void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMonsterList)
+{
+	if (pHitBox->GetIsRectHit())
 	{
 		for (auto& pMonster : *pMonsterList)
 		{
-			if (CheckRect(pWeapon, pMonster))
+			if (CheckRect(pHitBox, pMonster))
 			{
 				//pMonster -> ApplyDamage (Player's Attack)
 			}
@@ -301,7 +306,7 @@ void CCollisionManager::AttackToMonster(CWeapon * pWeapon, std::list<CObj*>* pMo
 	{
 		for (auto& pMonster : *pMonsterList)
 		{
-			if (CheckSphere(pWeapon, pMonster))
+			if (CheckSphere(pHitBox, pMonster))
 			{
 				//pMonster -> ApplyDamage (Player's Attack)
 			}

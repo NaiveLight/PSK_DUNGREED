@@ -67,8 +67,8 @@ void CMainGame::Update()
 		SceneManager->ChangeScene(SCENE_TOWN);
 	if (KeyManager->KeyDown(VK_F6))
 		SceneManager->ChangeScene(SCENE_ROOM1);
-	//if (KeyManager->KeyDown(VK_F5))
-	//	SceneManager->ChangeScene(SCENE_TOWN);
+	if (KeyManager->KeyDown(VK_F7))
+		SceneManager->ChangeScene(SCENE_ROOM2);
 	//if (KeyManager->KeyDown(VK_F5))
 	//	SceneManager->ChangeScene(SCENE_TOWN);
 

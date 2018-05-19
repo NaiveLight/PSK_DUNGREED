@@ -42,16 +42,22 @@ HRESULT CEffect_Extinction::Initialize()
 
 int CEffect_Extinction::Update(INFO & rInfo)
 {
-	D3DXMATRIX matScale, matTrans;
+	D3DXMATRIX matScale, matRotate, matTrans;
 
 	D3DXMatrixIdentity(&matScale);
+
+	float 	m_fRotateAngle = D3DXToDegree(acosf(D3DXVec3Dot(&rInfo.vDir, &rInfo.vLook)));
+
+	if (m_bIsLeft)
+		m_fRotateAngle *= -1.f;
 
 	if (m_bIsLeft)
 		D3DXMatrixScaling(&matScale, -1.f, 1.f, 0.f);
 
+	D3DXMatrixRotationZ(&matRotate, D3DXToRadian(m_fRotateAngle));
 	D3DXMatrixTranslation(&matTrans, rInfo.vPos.x - ScrollManager->GetScroll().x, rInfo.vPos.y - ScrollManager->GetScroll().y, 0.f);
 
-	rInfo.matWorld = matScale * matTrans;
+	rInfo.matWorld = matScale * matRotate * matTrans;
 
 	m_tFrame.fFrame += m_tFrame.fCount * TimeManager->GetDeltaTime();
 	if (m_tFrame.fFrame > m_tFrame.fMax)

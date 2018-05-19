@@ -20,7 +20,7 @@ CRoom_1::~CRoom_1()
 
 HRESULT CRoom_1::Initialize()
 {
-	Device->SetBuffColor(D3DCOLOR_ARGB(255, 0, 0, 0));
+	Device->SetBuffColor(D3DCOLOR_ARGB(255, 44, 46, 59));
 
 	if (ObjectManager->GetPlayer() == nullptr)
 	{
@@ -29,9 +29,6 @@ HRESULT CRoom_1::Initialize()
 		ObjectManager->SetPlayer(pPlayer);
 	}
 
-	//ObjectManager->AddObject(OBJ_BACKGROUND, CAbstractFactory<CBackGround>::CreateBackGround(L"Town"));
-	//ObjectManager->AddObject(OBJ_LAYER, CAbstractFactory<CLayer>::CreateLayer(L"Town", 0.05f, &D3DXVECTOR3(WINCX * 0.5f, WINCY * 0.5f + 50.f, 0.f), &FRAME(0.f, 0.f, 0.f)));
-	//ObjectManager->AddObject(OBJ_LAYER, CAbstractFactory<CLayer>::CreateLayer(L"Town", 0.2f, &D3DXVECTOR3(WINCX * 0.5f + 100.f, WINCY * 0.5f + 400.f, 0.f), &FRAME(1.f, 1.f, 1.f)));
 	ObjectManager->AddObject(OBJ_TILEMAP, CAbstractFactory<CTileMap>::CreateTileMap(L"Room1_TILE.dat"));
 	ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CMapObj>::CreateMapObj(L"Room1_OBJ.dat"));
 	ObjectManager->GetObjectList(OBJ_CURSOR)->front()->SetFrame(&FRAME(1.f, 0.f, 0.f));
@@ -44,15 +41,37 @@ HRESULT CRoom_1::Initialize()
 	return S_OK;
 }
 
+void CRoom_1::LateInit()
+{
+	ObjectManager->SetSceneChange(false);
+
+	dynamic_cast<CPlayer*>(ObjectManager->GetObjectList(OBJ_PLAYER)->front())->SetMinMaxPos(
+		16.f, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() * TILECX - 16.f
+	);
+
+	ScrollManager->SetMaxScroll(
+		TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20)
+		, TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13)
+	);
+}
+
 int CRoom_1::Update()
 {
+	CScene::LateInit();
+
+	ObjectManager->Update();
 	return 0;
 }
 
 void CRoom_1::Render()
 {
+	ObjectManager->Render();
 }
 
 void CRoom_1::Release()
 {
+	ObjectManager->ReleaseObject(OBJ_MAPOBJ);
+	ObjectManager->ReleaseObject(OBJ_TILEMAP);
+	ObjectManager->ReleaseObject(OBJ_LAYER);
+	ObjectManager->ReleaseObject(OBJ_BACKGROUND);
 }

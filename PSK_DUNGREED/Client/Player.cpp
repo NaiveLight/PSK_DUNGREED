@@ -38,7 +38,6 @@ HRESULT CPlayer::Initialize()
 
 	InitPlayerAttributes();
 
-
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y + WINCY * 0.5f);
 
 	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
@@ -104,6 +103,7 @@ void CPlayer::Render()
 
 void CPlayer::Release()
 {
+	Safe_Delete(m_pWeapon);
 }
 
 void CPlayer::RenderCollider()
@@ -252,7 +252,7 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 	switch (pEffect)
 	{
 	case EFFECT_JUMP:
-		pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Jump", m_bIsLeft ,&D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 60.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+		pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Jump", m_bIsLeft ,&D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 60.f, 0.f), &FRAME{ 0.f, 10.f, 5.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 		ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		break;
 	case EFFECT_DUST:
@@ -260,12 +260,12 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 		if (m_fDustTime < 0.f)
 		{
 			m_fDustTime = 0.2f;
-			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f });
+			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 			ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		}
 		break;
 	case EFFECT_DASH:
-		pObj = CAbstractFactory<CEffect_Alpha>::CreateEffect(L"Dash", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f), &FRAME{ 0.f, 0.f, 0.f });
+		pObj = CAbstractFactory<CEffect_Alpha>::CreateEffect(L"Dash", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f), &FRAME{ 0.f, 0.f, 0.f }, nullptr);
 		ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		break;
 	}
@@ -457,23 +457,29 @@ void CPlayer::SwapWeapon()
 {
 	if (KeyManager->KeyDown('1'))
 	{
+		m_tData.iMinAtt -= m_pWeapon->GetAtt();
 		Safe_Delete(m_pWeapon);
 		m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
 		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+		m_tData.iMinAtt += m_pWeapon->GetAtt();
 	}
 
 	if (KeyManager->KeyDown('2'))
 	{
+		m_tData.iMinAtt -= m_pWeapon->GetAtt();
 		Safe_Delete(m_pWeapon);
 		m_pWeapon = CAbstractFactory<CWeapon_Sword>::CreateWeapon();
 		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+		m_tData.iMinAtt += m_pWeapon->GetAtt();
 	}
 
 	if (KeyManager->KeyDown('3'))
 	{
+		m_tData.iMinAtt -= m_pWeapon->GetAtt();
 		Safe_Delete(m_pWeapon);
 		m_pWeapon = CAbstractFactory<CWeapon_Halberd>::CreateWeapon();
 		m_tData.fAttSpeed = m_pWeapon->GetAttackTime();
+		m_tData.iMinAtt += m_pWeapon->GetAtt();
 	}
 
 }

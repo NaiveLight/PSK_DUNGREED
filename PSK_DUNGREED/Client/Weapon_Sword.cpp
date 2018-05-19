@@ -41,12 +41,14 @@ HRESULT CWeapon_Sword::Initialize()
 
 	m_tInfo.vLook = D3DXVECTOR3(0.f, -1.f, 0.f);
 	m_tInfo.vPos = D3DXVECTOR3(0.f, 0.f, 0.f);
-	
+
 	m_fAttTime = 0.3f;
 	m_bRectHit = false;
 	m_tHitBox.fCX = 28.f;
 	m_tHitBox.fCY = 72.f;
 	m_bRender = true;
+
+	m_iAtt = 20;
 
 	return S_OK;
 }
@@ -106,6 +108,17 @@ void CWeapon_Sword::UpdateMatrix()
 void CWeapon_Sword::Attack()
 {
 	ScrollManager->ShakingStart(4.f, 0.1f);
+	
+	CObj* pPlayer = ObjectManager->GetObjectList(OBJ_PLAYER)->front();
+	D3DXVECTOR3 vPos = D3DXVECTOR3(
+		pPlayer->GetInfo()->vPos.x + (m_bIsLeft ? -25.f - m_fOffsetX : 25.f + m_fOffsetX) + (m_tInfo.vDir.x * 10.f)
+		,pPlayer->GetInfo()->vPos.y + m_fOffsetY + 32.f + (m_tInfo.vDir.y * 10.f)
+		, 0.f
+	);
+
+	CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Swing", m_bIsLeft, &vPos, &FRAME(0.f, 12.f, 3.f), &m_tInfo.vDir);
+	ObjectManager->AddObject(OBJ_EFFECT, pObj);
+	//ObjectManager->AddObject(OBJ_PATTACK, CAbstractFactory<CHitBox>::CreateObj(&vPos));
 
 	if (!m_bAttack)
 	{

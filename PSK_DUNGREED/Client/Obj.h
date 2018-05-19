@@ -20,6 +20,8 @@ public:
 public:
 	void SetBridge(CBridge* pBridge);
 	void SetPos(const D3DXVECTOR3* pPos);
+	void SetHitBox(const HITBOX* pHitBox);
+	void SetDir(const D3DXVECTOR3* pDir);
 	void SetFrame(const FRAME* pFrame);
 	void SetObjKey(const std::wstring& wstrObjKey);
 	void SetStateKey(const std::wstring& wstrStateKey);

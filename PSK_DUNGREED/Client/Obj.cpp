@@ -49,6 +49,16 @@ void CObj::SetPos(const D3DXVECTOR3 * pPos)
 	m_tInfo.vPos = *pPos;
 }
 
+void CObj::SetHitBox(const HITBOX * pHitBox)
+{
+	m_tHitBox = *pHitBox;
+}
+
+void CObj::SetDir(const D3DXVECTOR3 * pDir)
+{
+	m_tInfo.vDir = *pDir;
+}
+
 void CObj::SetFrame(const FRAME * pFrame)
 {
 	m_tFrame = *pFrame;

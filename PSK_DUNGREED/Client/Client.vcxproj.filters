@@ -288,6 +288,9 @@
     <ClInclude Include="Room_2.h">
       <Filter>소스 파일\01.Scene\03.Stage\Room2</Filter>
     </ClInclude>
+    <ClInclude Include="HitBox.h">
+      <Filter>소스 파일\02.Object\04.Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -415,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="Room_2.cpp">
       <Filter>소스 파일\01.Scene\03.Stage\Room2</Filter>
+    </ClCompile>
+    <ClCompile Include="HitBox.cpp">
+      <Filter>소스 파일\02.Object\04.Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

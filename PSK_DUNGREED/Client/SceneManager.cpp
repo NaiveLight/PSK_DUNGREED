@@ -7,6 +7,9 @@
 #include "LogoScene.h"
 #include "TitleScene.h"
 #include "TownScene.h"
+#include "Room_1.h"
+#include "Room_2.h"
+//#include "Room_3.h"
 
 CSceneManager::CSceneManager()
 {
@@ -112,7 +115,7 @@ void CSceneManager::FadeOut()
 			, D3DCOLOR_ARGB((int)m_fAlpha, 255, 255, 255));
 	}
 
-	if(m_eCurScene != SCENE_LOGO)
+	if(m_eCurScene != SCENE_LOGO || m_eCurScene != SCENE_TITLE)
 		SwapScene(m_eCurScene);
 }
 
@@ -125,6 +128,12 @@ void CSceneManager::SwapScene(SCENEID eSceneID)
 	{
 	case SCENE_TOWN:
 		m_pScene = new CTownScene;
+		break;
+	case SCENE_ROOM1:
+		m_pScene = new CRoom_1;
+		break;
+	case SCENE_ROOM2:
+		m_pScene = new CRoom_2;
 		break;
 	}
 

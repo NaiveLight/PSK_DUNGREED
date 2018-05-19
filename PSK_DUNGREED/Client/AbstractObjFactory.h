@@ -26,6 +26,8 @@
 #include "Weapon_Sword.h"
 #include "Weapon_Halberd.h"
 
+#include "HitBox.h"
+
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
 #include "UI_Button.h"
@@ -134,12 +136,19 @@ public:
 
 	// OBJ_PLAYER
 
-	// OBJ_BULLET
+	// OBJ_PAttack,OBJ_MAttack
+	static CObj* CreateHitBox(const bool& bRect, const bool& bPlayer, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr)
+	{
+		CObj* pObj = new CHitBox;
+
+		pObj->SetHitBox(pHitBox);
+		dynamic_cast<CHitBox*>(pObj)->
+	}
 
 	// OBJ_ITEM
 
 	// OBJ_EFFECT
-	static CObj* CreateEffect(const std::wstring& wstrStateKey, const bool& bIsLeft, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
+	static CObj* CreateEffect(const std::wstring& wstrStateKey, const bool& bIsLeft, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr, const D3DXVECTOR3* pDir = nullptr)
 	{
 		CObj* pObj = new CEffect;
 		CBridge* pBridge = new T;
@@ -148,6 +157,12 @@ public:
 		pObj->SetStateKey(wstrStateKey);
 		pObj->SetFrame(pFrame);
 		pObj->SetIsLeft(bIsLeft);
+
+		if (pDir != nullptr)
+			pObj->SetDir(pDir);
+		else
+			pObj->SetDir(&D3DXVECTOR3(0.f, 0.f, 0.f));
+
 		pObj->SetBridge(pBridge);
 
 		if (FAILED(pObj->Initialize()))
@@ -161,8 +176,9 @@ public:
 		else
 			pObj->SetPos(&D3DXVECTOR3(0.f, 0.f, 0.f));
 
+
 		return pObj;
-	}		
+	}
 
 	// OBJ_UI
 	static CObj* CreateLogo(const std::wstring& wstrStateKey, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr, const bool bAlpha = false)

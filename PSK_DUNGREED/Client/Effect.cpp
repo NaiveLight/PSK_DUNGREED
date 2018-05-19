@@ -16,6 +16,8 @@ HRESULT CEffect::Initialize()
 	if (m_pBridge)
 		m_pBridge->SetObj(this);
 
+	m_tInfo.vLook = D3DXVECTOR3(0.f, -1.f, 0.f);
+
 	return S_OK;
 }
 

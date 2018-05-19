@@ -6,6 +6,7 @@ class CObj;
 class CPlayer;
 class CMonster;
 class CWeapon;
+class CHitBox;
 class CTileMap;
 class CCollisionManager :
 	public CSingleton<CCollisionManager>
@@ -17,7 +18,8 @@ public:
 public:
 	static bool PlayerToTile(CPlayer* pPlayer, CTileMap* pTIleMap);
 	static bool MonsterToTile(CMonster* pMonster, CTileMap* pTileMap);
-	static void AttackToMonster(CWeapon* pWeapon, std::list<CObj*>* pMonsterList);
+	static void HitBoxToPlayer(CHitBox* pHitBox, CPlayer* pPlayer);
+	static void HitBoxToMonster(CHitBox* pHitBox, std::list<CObj*>* pMonsterList);
 	static void BulletToTile();
 	static void BulletToActor();
 	static void ObjectToPlayer();

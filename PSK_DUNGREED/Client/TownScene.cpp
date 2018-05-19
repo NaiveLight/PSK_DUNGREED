@@ -51,7 +51,10 @@ void CTownScene::LateInit()
 		16.f, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() * TILECX - 16.f
 	);
 
-	ScrollManager->SetMaxScroll(TILECX * 95, TILECY * 17);
+	ScrollManager->SetMaxScroll(
+		float(TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20))
+		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13))
+	);
 }
 
 int CTownScene::Update()

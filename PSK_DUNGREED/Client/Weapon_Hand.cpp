@@ -47,6 +47,8 @@ HRESULT CWeapon_Hand::Initialize()
 	m_tHitBox.fCY = 16.f;
 	m_bRender = true;
 
+	m_iAtt = 4;
+
 	return S_OK;
 }
 
