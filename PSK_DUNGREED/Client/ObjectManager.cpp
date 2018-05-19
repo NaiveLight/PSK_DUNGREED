@@ -39,7 +39,7 @@ int CObjectManager::Update()
 {
 	int iResult = 0;
 
-	for (int i = 0; iResult != 2 && i < OBJ_END; ++i)
+	for (int i = 0; i < OBJ_END; ++i)
 	{
 		auto iter = m_ObjList[i].begin();
 		auto iter_end = m_ObjList[i].end();
@@ -51,11 +51,6 @@ int CObjectManager::Update()
 			if (iResult == 1)
 			{
 				iter = m_ObjList[i].erase(iter);
-			}
-			else if (iResult == 2)
-			{
-				m_bIsSceneChange = true;
-				break;
 			}
 			else
 				++iter;
@@ -69,8 +64,8 @@ int CObjectManager::Update()
 
 void CObjectManager::Render()
 {
-	if (m_bIsSceneChange)
-		return;
+	//if (m_bIsSceneChange)
+	//	return;
 
 	for (int i = 0; i < OBJ_END; ++i)
 	{

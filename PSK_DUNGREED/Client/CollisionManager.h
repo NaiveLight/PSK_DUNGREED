@@ -4,6 +4,7 @@
 
 class CObj;
 class CPlayer;
+class CMonster;
 class CWeapon;
 class CTileMap;
 class CCollisionManager :
@@ -15,6 +16,7 @@ public:
 
 public:
 	static bool PlayerToTile(CPlayer* pPlayer, CTileMap* pTIleMap);
+	static bool MonsterToTile(CMonster* pMonster, CTileMap* pTileMap);
 	static void AttackToMonster(CWeapon* pWeapon, std::list<CObj*>* pMonsterList);
 	static void BulletToTile();
 	static void BulletToActor();
@@ -24,5 +26,6 @@ private:
 	static bool CheckSphere(CObj* pDst, CObj* pSrc);
 	static bool CheckRect(CObj* pDst, CObj* pSrc);
 	static bool CheckRect(CPlayer * pPlayer, TILE * pTile, float * pMoveX, float * pMoveY);
+	static bool CheckRect(CMonster * pMonster, TILE * pTile, float * pMoveX, float * pMoveY);
 };
 

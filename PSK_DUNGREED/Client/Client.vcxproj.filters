@@ -121,9 +121,6 @@
     <Filter Include="소스 파일\02.Object\04.Weapon\WeaponBridge">
       <UniqueIdentifier>{172c1f39-bb4b-40c5-8749-ed3428808fd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.Scene\03.Stage\Room">
-      <UniqueIdentifier>{caf6efe3-af38-4577-bd61-959537aa92eb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\05.Actor\01.Monster">
       <UniqueIdentifier>{4f152cbb-6e17-487a-860f-ecbb7ff7115a}</UniqueIdentifier>
     </Filter>
@@ -144,6 +141,15 @@
     </Filter>
     <Filter Include="소스 파일\02.Object\04.Weapon\02.Weapon_Halberd">
       <UniqueIdentifier>{251182f0-1bc6-4a23-a07e-f72501bbd2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage\Room1">
+      <UniqueIdentifier>{60602d1a-4460-4407-b75b-b49ef781a8d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage\Room2">
+      <UniqueIdentifier>{c4e6968d-d7ac-467a-a16d-169544011197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage\Room3">
+      <UniqueIdentifier>{672ceace-0f08-4e52-a12f-f68c60fadce6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +282,12 @@
     <ClInclude Include="Weapon_Halberd.h">
       <Filter>소스 파일\02.Object\04.Weapon\02.Weapon_Halberd</Filter>
     </ClInclude>
+    <ClInclude Include="Room_1.h">
+      <Filter>소스 파일\01.Scene\03.Stage\Room1</Filter>
+    </ClInclude>
+    <ClInclude Include="Room_2.h">
+      <Filter>소스 파일\01.Scene\03.Stage\Room2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -397,6 +409,12 @@
     </ClCompile>
     <ClCompile Include="Weapon_Halberd.cpp">
       <Filter>소스 파일\02.Object\04.Weapon\02.Weapon_Halberd</Filter>
+    </ClCompile>
+    <ClCompile Include="Room_1.cpp">
+      <Filter>소스 파일\01.Scene\03.Stage\Room1</Filter>
+    </ClCompile>
+    <ClCompile Include="Room_2.cpp">
+      <Filter>소스 파일\01.Scene\03.Stage\Room2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,6 +21,7 @@ CMainGame::~CMainGame()
 HRESULT CMainGame::Initialize()
 {
 	//ShowCursor(FALSE);
+	//TextureManager->InsertTexture(L"BACKGROUND", L"")
 
 	D3DXMatrixIdentity(&m_matIdentity);
 
@@ -62,6 +63,14 @@ void CMainGame::Update()
 {
 	if (KeyManager->KeyDown(VK_F1))
 		m_bIsDebug = !m_bIsDebug;
+	if (KeyManager->KeyDown(VK_F5))
+		SceneManager->ChangeScene(SCENE_TOWN);
+	if (KeyManager->KeyDown(VK_F6))
+		SceneManager->ChangeScene(SCENE_ROOM1);
+	//if (KeyManager->KeyDown(VK_F5))
+	//	SceneManager->ChangeScene(SCENE_TOWN);
+	//if (KeyManager->KeyDown(VK_F5))
+	//	SceneManager->ChangeScene(SCENE_TOWN);
 
 	TimeManager->SetTime();
 	SceneManager->Update();

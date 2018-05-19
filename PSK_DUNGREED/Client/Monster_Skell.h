@@ -29,6 +29,7 @@ private:
 	float m_fVelocityY = 0.f;
 	float m_fMinPosX = 0.f;
 	float m_fMaxPosX = 0.f;
+	float m_fAttackTime = 0.f;
 	bool m_bAttack = false;
 	bool m_bHitCreated = false;
 	bool m_bGround = false;

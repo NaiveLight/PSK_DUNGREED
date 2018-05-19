@@ -72,8 +72,8 @@ int CPlayer::Update()
 
 	UpdateMatrix();
 	UpdateHitBox();
-	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
+	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
 	m_pWeapon->Update();
 

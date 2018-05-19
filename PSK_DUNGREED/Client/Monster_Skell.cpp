@@ -23,20 +23,29 @@ void CMonster_Skell::InitAttributes()
 {
 	m_fTime = TimeManager->GetDeltaTime();
 	m_wstrObjKey = L"SKELL";
-	m_wstrStateKey = L"SPAWN";
-	m_ePrevState = m_eCurState = SPAWN;
+	m_wstrStateKey = L"Idle";
+	m_tFrame = FRAME(0.f, 0.f, 0.f);
+	m_ePrevState = m_eCurState = IDLE;
 
 	m_tInfo.vPos = D3DXVECTOR3(0.f, 0.f, 0.f);
 	m_tInfo.vLook = D3DXVECTOR3(1.f, 0.f, 0.f);
 
-	m_tData.fMoveSpeed = 450.f;
+	m_tData.fMoveSpeed = 250.f;
 	m_tData.fAttSpeed = 3.f;
 
 	m_tData.iCurHp = 100;
 	m_tData.iMaxHp = 100;
 
-	m_fGravity = 16.f * m_fTime;
+	m_fGravity = 300.f * m_fTime;
 	m_fAlpha = 255.f;
+	m_bIsLeft = false;
+	m_bIsDead = false;
+	m_bAttack = false;
+
+	m_bGround = true;
+
+	m_fMinPosX = 0.f;
+	m_fMaxPosX = 5000.f;
 }
 
 HRESULT CMonster_Skell::Initialize()
@@ -71,7 +80,25 @@ int CMonster_Skell::Update()
 
 	if (m_bAttack)
 	{
-		if(m_tFrame.fFrame == 7.f)
+		if (m_tFrame.fFrame == 7.f)
+		{
+
+		}
+	
+		m_fAttackTime -= m_fTime;
+
+		if (m_fAttackTime < 0.f)
+		{
+			m_fAttackTime = 0.f;
+			m_bAttack = false;
+		}
+
+		FrameChange();
+		FrameMove();
+
+		UpdateMatrix();
+		UpdateHitBox();
+
 		return 0;
 	}
 		
@@ -79,14 +106,32 @@ int CMonster_Skell::Update()
 	CObj* pPlayer = ObjectManager->GetObjectList(OBJ_PLAYER)->front();
 
 	m_tInfo.vDir = pPlayer->GetInfo()->vPos - m_tInfo.vPos;
+	m_bIsLeft = m_tInfo.vDir.x < 0 ? true : false;
 	float fDist = D3DXVec3Length(&m_tInfo.vDir);
 
-	if (fDist < 500.f);
+	std::cout << fDist << std::endl;
+
+	if (fDist <= 30.f && m_fAttackTime <= 0.f)
+	{
+		m_bAttack = true;
+		m_eCurState = ATTACK;
+		m_fVelocityX = 0.f;
+		m_fAttackTime = m_tData.fAttSpeed;
+	}
+	else if (fDist <= 500.f)
 	{
 		m_eCurState = MOVE;
+		m_fVelocityX = m_bIsLeft ? -m_tData.fMoveSpeed * m_fTime : m_tData.fMoveSpeed * m_fTime;
+	}
+	else if (fDist > 600.f)
+	{
+		m_eCurState = IDLE;
+		m_fVelocityX = 0.f;
 	}
 
-	m_tInfo.vPos.x += m_fVelocityX;
+	m_bGround = CCollisionManager::MonsterToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
+
+	m_tInfo.vPos.x += m_bGround ? m_fVelocityX : 0.f;
 	m_tInfo.vPos.y += m_fVelocityY + (m_bGround ? 0 : m_fGravity);
 
 	if (m_tInfo.vPos.x <= m_fMinPosX)
@@ -94,8 +139,12 @@ int CMonster_Skell::Update()
 	if (m_tInfo.vPos.x >= m_fMaxPosX)
 		m_tInfo.vPos.x = m_fMaxPosX;
 
+	FrameChange();
+	FrameMove();
+
 	UpdateMatrix();
 	UpdateHitBox();
+
 	return 0;
 }
 
@@ -123,9 +172,6 @@ void CMonster_Skell::UpdateMatrix()
 
 	D3DXMatrixIdentity(&matScale);
 
-	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
-	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-
 	D3DXMatrixScaling(&matScale, (m_bIsLeft ? -1.f : 1.f), 1.f, 0.f);
 	D3DXMatrixTranslation(&m_tInfo.matWorld
 		, m_tInfo.vPos.x - ScrollManager->GetScroll().x
@@ -139,7 +185,8 @@ void CMonster_Skell::UpdateHitBox()
 {
 	m_tHitBox.fX = m_tInfo.vPos.x + (m_bIsLeft? 4.f : - 4.f);
 	m_tHitBox.fY = m_tInfo.vPos.y + 32.f;
-	m_tHitBox.fCX = 0.f;
+	m_tHitBox.fCX = 32.f;
+	m_tHitBox.fCY = 64.f;
 }
 
 void CMonster_Skell::FrameChange()
@@ -153,7 +200,7 @@ void CMonster_Skell::FrameChange()
 			break;
 		case IDLE:
 			m_wstrStateKey = L"Idle";
-			m_tFrame = FRAME(0.f, 0.f, 1.f);
+			m_tFrame = FRAME(0.f, 2.f, 1.f);
 			break;
 		case MOVE:
 			m_wstrStateKey = L"Walk";
@@ -175,7 +222,7 @@ void CMonster_Skell::FrameMove()
 
 	if (m_eCurState == ATTACK)
 	{
-		if ((int)m_tFrame.fFrame == 7)
+		if ((int)m_tFrame.fFrame == 7 && !m_bHitCreated)
 		{
 			m_bHitCreated = true;
 			// CreateHitBox
@@ -189,13 +236,12 @@ void CMonster_Skell::FrameMove()
 		{
 		case SPAWN: case ATTACK:
 			m_eCurState = IDLE;
-			m_bAttack = false;
 			m_bHitCreated = false;
+			m_tFrame.fFrame = 0.f;
 			break;
 		case IDLE: case MOVE:
 			m_tFrame.fFrame = 0.f;
 			break;
 		}
 	}
-		m_tFrame.fFrame = 0.f;
 }

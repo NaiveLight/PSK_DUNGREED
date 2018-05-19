@@ -3,6 +3,7 @@
 
 #include "Obj.h"
 #include "Player.h"
+#include "Monster.h"
 #include "Weapon.h"
 #include "TileMap.h"
 #include "ScrollManager.h"
@@ -216,6 +217,74 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 	return bResult;
 }
 
+bool CCollisionManager::MonsterToTile(CMonster * pMonster, CTileMap * pTileMap)
+{
+	bool bResult = false;
+
+	float fX = pMonster->GetHitBox()->fX;
+	float fY = pMonster->GetHitBox()->fY;
+	
+	int iTempTileX = pTileMap->GetTileX();
+	int iTempTileY = pTileMap->GetTileY();
+
+	std::vector<TILE*>* pVecTile = pTileMap->GetVecTile();
+
+	int iIndex = int(fX) / TILECX + int(fY) / TILECY * iTempTileX;
+
+	if (iIndex < 0 || iIndex >= (int)pTileMap->GetVecTile()->size() - iTempTileX)
+		return bResult;
+
+	int iTileX = WINCX / TILECX + 1;
+	int iTileY = WINCY / TILECY + 1;
+
+	int iCullX = int(ScrollManager->GetScroll().x / TILECX);
+	int iCullY = int(ScrollManager->GetScroll().y / TILECY);
+
+	int checkTileArray[9] =
+	{
+		iIndex - iTempTileX - 1
+		, iIndex - iTempTileX
+		, iIndex - iTempTileX + 1
+		, iIndex - 1
+		, iIndex
+		, iIndex + 1
+		, iIndex + iTempTileX - 1
+		, iIndex + iTempTileX
+		, iIndex + iTempTileX + 1
+	};
+
+	float fMoveX = 0.f;
+	float fMoveY = 0.f;
+	float x1, x2, y1, y2, fGradient;
+	x1 = x2 = y1 = y2 = fGradient = 0.f;
+
+	for (int i = 0; i < 8; ++i)
+	{
+		if (checkTileArray[i] < 0 || checkTileArray[i] >= iTempTileX * iTempTileY)
+			continue;
+
+		TILE* pTile = pTileMap->GetTile(checkTileArray[i]);
+
+		if (pTile->byOption == COLL_DEFAULT)
+		{
+			continue;
+		}
+
+		// 타일과 범위가 겹쳤을 경우
+		if (CheckRect(pMonster, pTile, &fMoveX, &fMoveY))
+		{
+			switch (pTile->byOption)
+			{
+				//렉트 충돌
+			case COLL_RECT: case COLL_DUNGEON:case COLL_ROOM: case COLL_LINE:
+				pMonster->SetPos(&D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y - fMoveY, 0.f));
+				return true;
+			}
+		}
+	}
+	return bResult;
+}
+
 void CCollisionManager::AttackToMonster(CWeapon * pWeapon, std::list<CObj*>* pMonsterList)
 {
 	if (pWeapon->GetIsRectHit())
@@ -256,6 +325,23 @@ bool CCollisionManager::CheckRect(CPlayer * pPlayer, TILE * pTile, float * pMove
 	float fDistX = abs(pPlayer->GetInfo()->vPos.x -pTile->vPos.x);
 	float fRadSumY = pPlayer->GetInfo()->fCY * 0.5f + 32.f;
 	float fDistY = abs(pPlayer->GetInfo()->vPos.y + 32.f - pTile->vPos.y);
+
+	if (fRadSumX >= fDistX && fRadSumY >= fDistY)
+	{
+		*pMoveX = fRadSumX - fDistX;
+		*pMoveY = fRadSumY - fDistY;
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollisionManager::CheckRect(CMonster * pMonster, TILE * pTile, float * pMoveX, float * pMoveY)
+{
+	float fRadSumX = pMonster->GetHitBox()->fCX * 0.5f + 32.f;
+	float fDistX = abs(pMonster->GetHitBox()->fX - pTile->vPos.x);
+	float fRadSumY = pMonster->GetHitBox()->fCY * 0.5f + 32.f;
+	float fDistY = abs(pMonster->GetHitBox()->fY - pTile->vPos.y);
 
 	if (fRadSumX >= fDistX && fRadSumY >= fDistY)
 	{

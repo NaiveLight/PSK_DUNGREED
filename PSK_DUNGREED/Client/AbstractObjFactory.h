@@ -12,6 +12,9 @@
 #include "TileMap.h"
 #include "MapObj.h"
 
+#include "Monster.h"
+#include "Monster_Skell.h"
+
 #include "Player.h"
 
 #include "Effect.h"

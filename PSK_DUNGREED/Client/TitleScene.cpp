@@ -46,9 +46,7 @@ int CTitleScene::Update()
 
 void CTitleScene::Render()
 {
-
 	ObjectManager->Render();
-
 }
 
 void CTitleScene::Release()

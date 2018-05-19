@@ -11,6 +11,12 @@ public:
 	virtual ~CObjectManager();
 
 public:
+	void SetPlayer(CObj* pPlayer) { m_pPlayer = pPlayer; }
+
+public:
+	CObj* GetPlayer() { return m_pPlayer; }
+
+public:
 	void SetSceneChange(const bool bChange) { m_bIsSceneChange = bChange; }
 
 public:
@@ -27,6 +33,7 @@ public:
 
 private:
 	std::list<CObj*> m_ObjList[OBJ_END];
+	CObj* m_pPlayer = nullptr;
 	bool m_bIsSceneChange = false;
 };
 

@@ -23,6 +23,7 @@ public:
 
 private:
 	CScene* m_pScene = nullptr;
+	SCENEID m_eCurScene = SCENE_LOGO;
 	float m_fAlpha = 0.f;
 	bool m_bIsSceneChange = false;
 	bool m_bFade = false;
