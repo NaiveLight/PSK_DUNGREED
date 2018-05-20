@@ -11,6 +11,7 @@
 #include "CollisionManager.h"
 #include "Weapon.h"
 #include "SoundManager.h"
+#include "DataSubject.h"
 
 CPlayer::CPlayer()
 {
@@ -27,11 +28,10 @@ void CPlayer::ApplyDamage(const int & iAtt)
 	{
 		SoundManager->PlaySound(L"Hit_Player.wav", CSoundManager::COLLISION);
 		m_tData.iCurHp -= iAtt;
-		//SoundManager->StopSound(CSoundManager::PLAYER);
-		//SoundManager->PlaySound(TEXT("Damage.wav"), CSoundManager::PLAYER);
 
 		if (m_tData.iCurHp<= 0)
 		{
+			m_tData.iCurHp = 0;
 			m_bIsDead = true;
 			m_eCurState = DIE;
 		}
@@ -64,6 +64,9 @@ HRESULT CPlayer::Initialize()
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y + WINCY * 0.5f);
 
 	m_pWeapon = CAbstractFactory<CWeapon_Hand>::CreateWeapon();
+	CDataSubject::GetInstance()->AddData(PLAYER_DATA, &m_tData);
+	CDataSubject::GetInstance()->AddData(PLAYER_PDATA, &m_tPData);
+	CDataSubject::GetInstance()->AddData(PLAYER_MATRIX, &m_tInfo.matWorld);
 	
 	return S_OK;
 }
@@ -111,6 +114,9 @@ int CPlayer::Update()
 
 	m_pWeapon->Update();
 
+	CDataSubject::GetInstance()->Notify(PLAYER_DATA);
+	CDataSubject::GetInstance()->Notify(PLAYER_PDATA);
+	CDataSubject::GetInstance()->Notify(PLAYER_MATRIX);
 	return 0;
 }
 
@@ -303,6 +309,7 @@ void CPlayer::AddEffect(PLAYEREFFECT pEffect)
 			m_fDustTime = 0.2f;
 			pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Dust", m_bIsLeft, &D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 32.f, 0.f), &FRAME{ 0.f, 10.f, 5.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 			ObjectManager->AddObject(OBJ_EFFECT, pObj);
+			SoundManager->PlaySound(L"Walk.wav", CSoundManager::PLAYER);
 		}
 		break;
 	case EFFECT_DASH:
@@ -343,12 +350,6 @@ void CPlayer::FrameChange()
 void CPlayer::FrameMove()
 {
 	m_tFrame.fFrame += m_tFrame.fCount * m_fTime;
-
-	if (m_eCurState == MOVE)
-	{
-		if((int)m_tFrame.fFrame % 2)
-			SoundManager->PlaySound(L"Walk.wav", CSoundManager::PLAYER);
-	}
 
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 		m_tFrame.fFrame = 0.f;

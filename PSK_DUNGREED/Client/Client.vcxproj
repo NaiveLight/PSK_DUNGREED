@@ -161,6 +161,8 @@
     <ClInclude Include="Effect_Alpha.h" />
     <ClInclude Include="Effect_Extinction.h" />
     <ClInclude Include="HitBox.h" />
+    <ClInclude Include="HpBar_Player.h" />
+    <ClInclude Include="HpEffect.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LogoScene.h" />
@@ -177,6 +179,7 @@
     <ClInclude Include="Obj_Torch.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerObserver.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Room_1.h" />
     <ClInclude Include="Room_2.h" />
@@ -218,6 +221,8 @@
     <ClCompile Include="Effect_Alpha.cpp" />
     <ClCompile Include="Effect_Extinction.cpp" />
     <ClCompile Include="HitBox.cpp" />
+    <ClCompile Include="HpBar_Player.cpp" />
+    <ClCompile Include="HpEffect.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogoScene.cpp" />
@@ -234,6 +239,7 @@
     <ClCompile Include="Obj_Torch.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerObserver.cpp" />
     <ClCompile Include="Room_1.cpp" />
     <ClCompile Include="Room_2.cpp" />
     <ClCompile Include="Room_3.cpp" />

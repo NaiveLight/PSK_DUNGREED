@@ -36,6 +36,7 @@
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
 #include "UI_Button.h"
+#include "HpBar_Player.h"
 
 template <typename T>
 class CAbstractFactory

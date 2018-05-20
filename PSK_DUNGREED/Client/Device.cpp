@@ -72,7 +72,7 @@ HRESULT CDevice::Initialize()
 	tFontInfo.Width = 25;
 	tFontInfo.Height = 30;
 	tFontInfo.Italic = FALSE;
-	tFontInfo.Weight = FW_NORMAL;
+	tFontInfo.Weight = FW_BOLD;
 	tFontInfo.CharSet = HANGUL_CHARSET;
 	lstrcpy(tFontInfo.FaceName, L"메이플스토리");
 

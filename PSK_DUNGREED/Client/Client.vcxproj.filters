@@ -169,6 +169,12 @@
     <Filter Include="소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject">
       <UniqueIdentifier>{45fe500e-d771-4049-a347-1893aca7d169}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\03.HpBar_Player">
+      <UniqueIdentifier>{e4131df8-0042-4a04-8240-29e7a42bf25f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\00.Player\PlayerObserver">
+      <UniqueIdentifier>{18cb3c2c-8e4f-4cf7-a5af-2811cdcc0422}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -339,6 +345,15 @@
     <ClInclude Include="DataSubject.h">
       <Filter>소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject</Filter>
     </ClInclude>
+    <ClInclude Include="HpBar_Player.h">
+      <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObserver.h">
+      <Filter>소스 파일\02.Object\05.Actor\00.Player\PlayerObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="HpEffect.h">
+      <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -499,6 +514,15 @@
     </ClCompile>
     <ClCompile Include="DataSubject.cpp">
       <Filter>소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar_Player.cpp">
+      <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObserver.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\00.Player\PlayerObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="HpEffect.cpp">
+      <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
