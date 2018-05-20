@@ -166,6 +166,9 @@
     <Filter Include="소스 파일\04.DesignPattern\01.Observer\Subject">
       <UniqueIdentifier>{f2038bc2-801d-4665-9051-548630d06ca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject">
+      <UniqueIdentifier>{45fe500e-d771-4049-a347-1893aca7d169}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -324,14 +327,17 @@
     <ClInclude Include="SoundManager.h">
       <Filter>소스 파일\03.Manager\07.SoundManager</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet_Banshee.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>소스 파일\02.Object\06.Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>소스 파일\04.DesignPattern\01.Observer\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>소스 파일\04.DesignPattern\01.Observer\Subject</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSubject.h">
+      <Filter>소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -485,11 +491,14 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>소스 파일\02.Object\06.Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet_Banshee.cpp">
-      <Filter>헤더 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Observer.cpp">
       <Filter>소스 파일\04.DesignPattern\01.Observer\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>소스 파일\04.DesignPattern\01.Observer\Subject</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSubject.cpp">
+      <Filter>소스 파일\04.DesignPattern\01.Observer\Subject\DataSubject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
