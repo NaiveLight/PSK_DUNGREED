@@ -150,10 +150,12 @@
   <ItemGroup>
     <ClInclude Include="AbstractObjFactory.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="BossRoom.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="DashBar.h" />
     <ClInclude Include="DataSubject.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
@@ -210,10 +212,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="BossRoom.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="DashBar.cpp" />
     <ClCompile Include="DataSubject.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />

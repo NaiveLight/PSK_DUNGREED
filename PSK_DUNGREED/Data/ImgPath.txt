@@ -67,6 +67,8 @@ UI_CURSOR|Cursor|2|..\Texture\UI\UI_CURSOR\Cursor\Cursor0%d.png
 UI_HPBAR|PlayerBack|1|..\Texture\UI\UI_HPBAR\PlayerBack\PlyaerBack0%d.png
 UI_HPBAR|PlayerBase|1|..\Texture\UI\UI_HPBAR\PlayerBase\PlayerBase0%d.png
 UI_HPBAR|PlayerHp|1|..\Texture\UI\UI_HPBAR\PlayerHp\PlayerHp0%d.png
+UI_DASH|DashCount|1|..\Texture\UI\UI_DASH\DashCount\DashCount0%d.png
+UI_DASH|DashCountBase|1|..\Texture\UI\UI_DASH\DashCountBase\DashCountBase0%d.png
 UI_ICON|Food|1|..\Texture\UI\UI_ICON\Food\Food0%d.png
 UI_LOGO|Copyright|1|..\Texture\UI\UI_LOGO\Copyright\Copyright0%d.png
 UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png

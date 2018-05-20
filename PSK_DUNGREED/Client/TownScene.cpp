@@ -40,6 +40,7 @@ HRESULT CTownScene::Initialize()
 		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(2004)->vPos);
 	
 	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CHpBar_Player>::CreateObj());
+	ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CDashBar>::CreateObj());
 	return S_OK;
 }
 

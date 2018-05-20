@@ -175,6 +175,9 @@
     <Filter Include="소스 파일\02.Object\05.Actor\00.Player\PlayerObserver">
       <UniqueIdentifier>{18cb3c2c-8e4f-4cf7-a5af-2811cdcc0422}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\04.DashBar">
+      <UniqueIdentifier>{74a91840-d92b-4bcf-8c3c-30c6d11fd8dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -354,6 +357,12 @@
     <ClInclude Include="HpEffect.h">
       <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
     </ClInclude>
+    <ClInclude Include="DashBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BossRoom.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -523,6 +532,12 @@
     </ClCompile>
     <ClCompile Include="HpEffect.cpp">
       <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DashBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BossRoom.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

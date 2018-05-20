@@ -45,6 +45,7 @@ HRESULT CHpBar_Player::Initialize()
 	m_pObserver = new CPlayerObserver;
 	CDataSubject::GetInstance()->Subscribe(m_pObserver);
 	CDataSubject::GetInstance()->Notify(PLAYER_DATA);
+	CDataSubject::GetInstance()->Notify(PLAYER_PDATA);
 	return S_OK;
 }
 

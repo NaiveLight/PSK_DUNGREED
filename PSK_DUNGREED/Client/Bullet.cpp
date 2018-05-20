@@ -48,7 +48,12 @@ HRESULT CBullet::Initialize()
 int CBullet::Update()
 {
 	if (m_bCollision)
+	{
+		CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"BulletBanshee", false, &m_tInfo.vPos, &FRAME(0.f, 12.f, 6.f), &D3DXVECTOR3(0.f, -1.f, 0.f));
+		ObjectManager->AddObject(OBJ_EFFECT, pObj);
 		return 1;
+	}
+		
 
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * m_fTime;
 
