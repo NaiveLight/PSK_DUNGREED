@@ -16,6 +16,7 @@ public:
 	const FRAME* GetFrame();
 	const HITBOX* GetHitBox();
 	const bool& GetIsLeft();
+	const float& GetAlpha() { return m_fAlpha; }
 
 public:
 	void SetBridge(CBridge* pBridge);

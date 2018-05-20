@@ -33,8 +33,11 @@ void CMonster_Skell::InitAttributes()
 	m_tData.fMoveSpeed = 250.f;
 	m_tData.fAttSpeed = 3.f;
 
+	m_tData.iMinAtt = 5;
 	m_tData.iCurHp = 100;
 	m_tData.iMaxHp = 100;
+
+	m_tData.iGold = (rand() % 100);
 
 	m_fGravity = 300.f * m_fTime;
 	m_fAlpha = 255.f;
@@ -75,16 +78,12 @@ int CMonster_Skell::Update()
 	{
 		//SoundManager 죽는 소리 출력
 		//EFFECT 추가
+		//Coin 추가
 		return 1;
 	}
 
 	if (m_bAttack)
 	{
-		if (m_tFrame.fFrame == 7.f)
-		{
-
-		}
-	
 		m_fAttackTime -= m_fTime;
 
 		if (m_fAttackTime < 0.f)
@@ -227,10 +226,13 @@ void CMonster_Skell::FrameMove()
 		{
 			m_bHitCreated = true;
 			// CreateHitBox
-			CAbstractFactory<CHitBox>::CreateObj(&D3DXVECTOR3(
-			m_tHitBox.fX
-			,m_tHitBox.fY
-			, 0.f));
+			ObjectManager->AddObject(OBJ_MATTACK, CAbstractFactory<CHitBox>::CreateHitBox(
+				m_tData.iMinAtt
+				, true
+				, false
+				, &HITBOX(m_tHitBox.fX + (m_bIsLeft ? -32.f : 32.f), m_tHitBox.fY, m_tHitBox.fCX + 10.f, m_tHitBox.fCY + 10.f)
+				, &D3DXVECTOR3(m_tHitBox.fX + (m_bIsLeft ? -32.f : 32.f), m_tHitBox.fY, 0.f)
+			));
 		}
 	}
 

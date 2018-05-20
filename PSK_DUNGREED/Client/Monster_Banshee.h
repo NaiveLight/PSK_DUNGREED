@@ -14,6 +14,17 @@ public:
 	virtual void Release() override;
 
 private:
+	void InitAttributes();
+
+private:
+	void UpdateMatrix();
+	void UpdateHitBox();
+
+private:
+	void FrameChange();
+	void FrameMove();
+
+private:
 	float m_fAttackTime = 0.f;
 	bool m_bAttack = false;
 	bool m_bHitCreated = false;

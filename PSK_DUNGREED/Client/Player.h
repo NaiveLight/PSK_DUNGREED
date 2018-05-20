@@ -40,6 +40,9 @@ public:
 	void SetDungeonEnter(const bool& bDE) { m_bDungeonEnter = bDE; }
 
 public:
+	void ApplyDamage(const int& iAtt);
+
+public:
 	virtual HRESULT Initialize() override;
 	virtual int Update() override;
 	virtual void Render() override;
@@ -111,11 +114,13 @@ private:
 private:
 	float m_fAttTime = 0.f;
 	float m_fDustTime = 0.f;
+	float m_fInvincibleTime = 1.f;
 
 private:
 	bool m_bWeaponRender = false;
 
 private:
+	bool m_bInvincible = false;
 	bool m_bInputActive = true;
 	bool m_bDungeonEnter = false;
 	bool m_bStageEnter = false;

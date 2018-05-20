@@ -20,6 +20,27 @@ CPlayer::~CPlayer()
 	Release();
 }
 
+void CPlayer::ApplyDamage(const int & iAtt)
+{
+	if (!m_bInvincible)
+	{
+		m_tData.iCurHp -= iAtt;
+		//SoundManager->StopSound(CSoundManager::PLAYER);
+		//SoundManager->PlaySound(TEXT("Damage.wav"), CSoundManager::PLAYER);
+
+		if (m_tData.iCurHp<= 0)
+		{
+			m_bIsDead = true;
+			m_eCurState = DIE;
+		}
+		else
+		{
+			m_fAlpha = 155.f;
+			m_bInvincible = true;
+		}
+	}
+}
+
 HRESULT CPlayer::Initialize()
 {
 	m_pDevice = Device->GetDevice();
@@ -64,9 +85,6 @@ int CPlayer::Update()
 	if (m_tInfo.vPos.x >= m_fMaxPosX)
 		m_tInfo.vPos.x = m_fMaxPosX;
 
-	FrameChange();
-	FrameMove();
-
 	ScrollManager->SetCurScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f + m_fAddScrollY);
 
 	UpdateMatrix();
@@ -74,7 +92,24 @@ int CPlayer::Update()
 
 	m_bGround = CCollisionManager::PlayerToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
+	if (m_bInvincible)
+	{
+		m_fInvincibleTime -= m_fTime;
+		
+		if (m_fInvincibleTime <= 0.f)
+		{
+			m_fAlpha = 255.f;
+			m_fInvincibleTime = 1.f;
+			m_bInvincible = false;
+		}
+	}
+
+	FrameChange();
+	FrameMove();
+
 	m_pWeapon->Update();
+
+	std::cout << m_tData.iCurHp << std::endl;
 
 	return 0;
 }

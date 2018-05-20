@@ -78,7 +78,7 @@ void CWeapon_Sword::Render()
 		, nullptr
 		, &D3DXVECTOR3(pTexInfo->tImgInfo.Width * 0.5f, pTexInfo->tImgInfo.Height * 0.5f, 0.f)
 		, nullptr
-		, D3DCOLOR_ARGB(255, 255, 255, 255));
+		, D3DCOLOR_ARGB(BYTE((ObjectManager->GetPlayer()->GetAlpha())), 255, 255, 255));
 }
 
 void CWeapon_Sword::Release()

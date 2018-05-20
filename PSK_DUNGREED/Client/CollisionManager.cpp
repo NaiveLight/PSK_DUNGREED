@@ -438,6 +438,8 @@ bool CCollisionManager::MonsterToTile(CMonster * pMonster, CTileMap * pTileMap)
 
 void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CObj * pPlayer)
 {
+	if (CheckSphere(pHitBox, pPlayer))
+		dynamic_cast<CPlayer*>(pPlayer)->ApplyDamage(pHitBox->GetAtt());
 }
 
 void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMonsterList)
@@ -452,8 +454,8 @@ void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMo
 			if (CheckRect(pHitBox, pMonster))
 			{
 				dynamic_cast<CMonster*>(pMonster)->ApplyDamage(pHitBox->GetAtt());
-				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Hit",
-					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y, 0.f), &FRAME{ 0.f, 12.f, 6.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
+				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Slash",
+					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y + 32.f, 0.f), &FRAME{ 0.f, 12.f, 4.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 				ObjectManager->AddObject(OBJ_EFFECT, pObj);
 			}
 		}
@@ -465,6 +467,9 @@ void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMo
 			if (CheckSphere(pHitBox, pMonster))
 			{
 				dynamic_cast<CMonster*>(pMonster)->ApplyDamage(pHitBox->GetAtt());
+				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Slash",
+					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y + 32.f, 0.f), &FRAME{ 0.f, 12.f, 4.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
+				ObjectManager->AddObject(OBJ_EFFECT, pObj);
 			}
 		}
 	}

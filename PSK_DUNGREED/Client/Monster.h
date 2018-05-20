@@ -23,6 +23,7 @@ protected:
 	DATA m_tData;
 	STATE m_eCurState;
 	STATE m_ePrevState;
+	int m_iAtt;
 	bool m_bIsDead;
 };
 

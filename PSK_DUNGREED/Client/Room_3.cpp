@@ -37,11 +37,9 @@ HRESULT CRoom_3::Initialize()
 		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(287)->vPos);
 
 	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(230)->vPos));
-	ObjectManager->AddObject(OBJ_MONSTER,
 		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(293)->vPos));
 	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(298)->vPos));
+		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(300)->vPos));
 
 
 	return S_OK;
@@ -57,7 +55,7 @@ void CRoom_3::LateInit()
 
 	ScrollManager->SetMaxScroll(
 		float(TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20))
-		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13))
+		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 10))
 	);
 }
 

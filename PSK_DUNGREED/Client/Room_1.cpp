@@ -38,8 +38,6 @@ HRESULT CRoom_1::Initialize()
 	ObjectManager->GetPlayer()->SetPos(
 		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(338)->vPos);
 
-	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&D3DXVECTOR3(ObjectManager->GetPlayer()->GetInfo()->vPos.x + 500.f, ObjectManager->GetPlayer()->GetInfo()->vPos.y - 300.f, 0.f)));
 	return S_OK;
 }
 
@@ -62,9 +60,6 @@ int CRoom_1::Update()
 	CScene::LateInit();
 
 	ObjectManager->Update();
-
-	if (ObjectManager->GetObjectList(OBJ_MONSTER)->empty())
-		std::cout << "몬스터없음\n";
 
 	return 0;
 }

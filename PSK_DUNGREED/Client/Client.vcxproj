@@ -151,6 +151,7 @@
     <ClInclude Include="AbstractObjFactory.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bridge.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Device.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScrollManager.h" />
     <ClInclude Include="SingleTexture.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
@@ -203,6 +205,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Device.cpp" />
@@ -233,6 +236,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScrollManager.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
