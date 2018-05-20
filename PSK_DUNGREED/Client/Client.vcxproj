@@ -175,6 +175,7 @@
     <ClInclude Include="Obj_Door.h" />
     <ClInclude Include="Obj_Dungeon.h" />
     <ClInclude Include="Obj_Torch.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Room_1.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="Obj_Door.cpp" />
     <ClCompile Include="Obj_Dungeon.cpp" />
     <ClCompile Include="Obj_Torch.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room_1.cpp" />
     <ClCompile Include="Room_2.cpp" />
