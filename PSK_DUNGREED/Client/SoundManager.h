@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Include.h"
+
 class CSoundManager
 	:public CSingleton<CSoundManager>
 {
 public:
-	enum CHANNEL_ID { BGM, PLAYER, MONSTER, EFFECT, UI, END };
+	enum CHANNEL_ID { BGM, MAPOBJ, PLAYER, MONSTER, PATTACK, MATTACK, COLLISION, EFFECT, UI, END };
 
 public:
 	CSoundManager();
@@ -26,7 +28,7 @@ private:
 
 
 private:
-	map<const TCHAR*, FMOD_SOUND*>	m_MapSound;	// 사운드 리소스 관리를 위한 map
+	std::map<const TCHAR*, FMOD_SOUND*>	m_MapSound;	// 사운드 리소스 관리를 위한 map
 	FMOD_SYSTEM*	m_pSystem;			// 사운드 재생 및 관리를 주도하는 시스템
 	FMOD_CHANNEL*	m_pChannel[END];	// 사운드 재생을 위한 채널
 };

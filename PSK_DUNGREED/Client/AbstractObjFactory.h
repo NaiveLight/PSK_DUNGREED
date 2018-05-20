@@ -17,6 +17,7 @@
 
 #include "Monster.h"
 #include "Monster_Skell.h"
+#include "Monster_Banshee.h"
 
 #include "Player.h"
 
@@ -30,6 +31,7 @@
 #include "Weapon_Halberd.h"
 
 #include "HitBox.h"
+#include "Bullet.h"
 
 #include "UI_Logo.h"
 #include "UI_Cursor.h"
@@ -72,6 +74,7 @@ public:
 
 		return pObj;
 	}
+
 	// OBJ_LAYER
 	static CObj* CreateLayer(const std::wstring& wstrStateKey, const float& fScrollRatio, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr)
 	{
@@ -137,8 +140,6 @@ public:
 		return pWeapon;
 	}
 
-	// OBJ_PLAYER
-
 	// OBJ_PAttack,OBJ_MAttack
 	static CObj* CreateHitBox(const int& iAtt, const bool& bRect, const bool& bPlayer, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr)
 	{
@@ -157,6 +158,23 @@ public:
 	}
 
 	// OBJ_ITEM
+
+	static CObj* CreateBullet(const std::wstring& wstrStateKey, const int& iAtt, const FRAME* pFrame, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr, const D3DXVECTOR3* pDir = nullptr)
+	{
+		CObj* pObj = new CBullet;
+
+		pObj->SetFrame(pFrame);
+		pObj->SetStateKey(wstrStateKey);
+		pObj->SetHitBox(pHitBox);
+		pObj->SetPos(pPos);
+		pObj->SetDir(pDir);
+		dynamic_cast<CBullet*>(pObj)->SetAtt(iAtt);
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		return pObj;
+	}
 
 	// OBJ_EFFECT
 	static CObj* CreateEffect(const std::wstring& wstrStateKey, const bool& bIsLeft, const D3DXVECTOR3* pPos = nullptr, const FRAME* pFrame = nullptr, const D3DXVECTOR3* pDir = nullptr)

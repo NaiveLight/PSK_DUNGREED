@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "ScrollManager.h"
 #include "KeyManager.h"
+#include "SoundManager.h"
 
 CRoom_1::CRoom_1()
 {
@@ -53,6 +54,8 @@ void CRoom_1::LateInit()
 		float(TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20))
 		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13))
 	);
+
+	SoundManager->PlayBGM(L"BG_FIELD.wav");
 }
 
 int CRoom_1::Update()

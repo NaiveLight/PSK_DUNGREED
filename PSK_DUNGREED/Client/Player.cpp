@@ -10,6 +10,7 @@
 #include "TimeManager.h"
 #include "CollisionManager.h"
 #include "Weapon.h"
+#include "SoundManager.h"
 
 CPlayer::CPlayer()
 {
@@ -24,6 +25,7 @@ void CPlayer::ApplyDamage(const int & iAtt)
 {
 	if (!m_bInvincible)
 	{
+		SoundManager->PlaySound(L"Hit_Player.wav", CSoundManager::COLLISION);
 		m_tData.iCurHp -= iAtt;
 		//SoundManager->StopSound(CSoundManager::PLAYER);
 		//SoundManager->PlaySound(TEXT("Damage.wav"), CSoundManager::PLAYER);
@@ -108,8 +110,6 @@ int CPlayer::Update()
 	FrameMove();
 
 	m_pWeapon->Update();
-
-	std::cout << m_tData.iCurHp << std::endl;
 
 	return 0;
 }
@@ -344,6 +344,12 @@ void CPlayer::FrameMove()
 {
 	m_tFrame.fFrame += m_tFrame.fCount * m_fTime;
 
+	if (m_eCurState == MOVE)
+	{
+		if((int)m_tFrame.fFrame % 2)
+			SoundManager->PlaySound(L"Walk.wav", CSoundManager::PLAYER);
+	}
+
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 		m_tFrame.fFrame = 0.f;
 }
@@ -388,6 +394,7 @@ void CPlayer::Jump()
 		if (KeyManager->KeyDown('W'))
 		{
 			AddEffect(EFFECT_JUMP);
+			SoundManager->PlaySound(L"Jump.wav", CSoundManager::PLAYER);
 		}
 
 		if (KeyManager->KeyPressing('W'))

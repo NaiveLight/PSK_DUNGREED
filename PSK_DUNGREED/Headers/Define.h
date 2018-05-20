@@ -9,3 +9,4 @@
 #define		KeyManager CKeyManager::GetInstance()
 #define		ScrollManager CScrollManager::GetInstance()
 #define		ObjectManager CObjectManager::GetInstance()
+#define	    SoundManager CSoundManager::GetInstance()

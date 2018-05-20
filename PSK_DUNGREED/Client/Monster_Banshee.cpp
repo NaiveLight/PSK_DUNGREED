@@ -8,6 +8,7 @@
 #include "KeyManager.h"
 #include "ScrollManager.h"
 #include "TimeManager.h"
+#include "SoundManager.h"
 
 CMonster_Banshee::CMonster_Banshee()
 {
@@ -51,7 +52,7 @@ void CMonster_Banshee::InitAttributes()
 	m_tData.fMoveSpeed = 0.f;
 	m_tData.fAttSpeed = 5.f;
 
-	m_tData.iMinAtt = 5;
+	m_tData.iMinAtt = 8;
 	m_tData.iCurHp = 100;
 	m_tData.iMaxHp = 100;
 
@@ -114,32 +115,15 @@ void CMonster_Banshee::FrameMove()
 {
 	m_tFrame.fFrame += m_tFrame.fCount * m_fTime;
 
-	if (m_eCurState == ATTACK)
-	{
-		if ((int)m_tFrame.fFrame == 7 && !m_bHitCreated)
-		{
-			m_bHitCreated = true;
-			// CreateHitBox
-			ObjectManager->AddObject(OBJ_MATTACK, CAbstractFactory<CHitBox>::CreateHitBox(
-				m_tData.iMinAtt
-				, true
-				, false
-				, &HITBOX(m_tHitBox.fX + (m_bIsLeft ? -32.f : 32.f), m_tHitBox.fY, m_tHitBox.fCX + 10.f, m_tHitBox.fCY + 10.f)
-				, &D3DXVECTOR3(m_tHitBox.fX + (m_bIsLeft ? -32.f : 32.f), m_tHitBox.fY, 0.f)
-			));
-		}
-	}
-
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 	{
 		switch (m_eCurState)
 		{
 		case ATTACK:
 			m_eCurState = IDLE;
-			m_bHitCreated = false;
 			m_tFrame.fFrame = 0.f;
 			break;
-		case IDLE: case MOVE:
+		case IDLE:
 			m_tFrame.fFrame = 0.f;
 			break;
 		}
@@ -153,6 +137,10 @@ int CMonster_Banshee::Update()
 	{
 		//SoundManager 죽는 소리 출력
 		//EFFECT 추가
+		CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Die",
+			false, &D3DXVECTOR3(m_tHitBox.fX, m_tHitBox.fY, 0.f), &FRAME{ 0.f, 22.f, 11.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
+		ObjectManager->AddObject(OBJ_EFFECT, pObj);
+		SoundManager->PlaySound(L"Die.wav", CSoundManager::MONSTER);
 		return 1;
 	}
 
@@ -162,7 +150,7 @@ int CMonster_Banshee::Update()
 
 		if (m_fAttackTime < 0.f)
 		{
-			m_fAttackTime = 0.f;
+			m_fAttackTime = 3.f;
 			m_bAttack = false;
 		}
 
@@ -184,16 +172,28 @@ int CMonster_Banshee::Update()
 	m_bIsLeft = m_tInfo.vDir.x < 0 ? true : false;
 	float fDist = D3DXVec3Length(&m_tInfo.vDir);
 
+	m_fAttackTime -= m_fTime;
+
 	if (m_fAttackTime <= 0.f)
 	{
 		m_bAttack = true;
 		m_eCurState = ATTACK;
+		m_fAttackTime = 3.f;
 
 		for (int i = 0; i < 6; i++)
 		{
 			//Create Bullet
+			SoundManager->PlaySound(L"BansheeAttack.wav", CSoundManager::MONSTER);
+			float fAngle = m_fAngle + 60.f * i;
+			D3DXVECTOR3 vDir = D3DXVECTOR3(sinf(D3DXToRadian(fAngle)), cosf(D3DXToRadian(fAngle)), 0.f);
+			CObj* pBullet = CAbstractFactory<CBullet>::CreateBullet(L"Banshee", m_iAtt, &FRAME(0.f, 4.f, 4.f), &HITBOX(0.f, 0.f, 52.f, 64.f), &m_tInfo.vPos, &vDir);
+			ObjectManager->AddObject(OBJ_BULLET, pBullet);
 		}
 	}
+
+	m_fAngle += 5.f * m_fTime;
+	if (m_fAngle >= 360.f)
+		m_fAngle -= 360.f;
 
 	FrameChange();
 	FrameMove();

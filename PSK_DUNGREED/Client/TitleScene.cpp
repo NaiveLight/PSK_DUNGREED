@@ -5,6 +5,7 @@
 #include "Device.h"
 #include "ObjectManager.h"
 #include "AbstractObjFactory.h"
+#include "SoundManager.h"
 
 CTitleScene::CTitleScene()
 {
@@ -34,6 +35,7 @@ HRESULT CTitleScene::Initialize()
 
 void CTitleScene::LateInit()
 {
+	SoundManager->PlayBGM(L"BG_TITLE.wav");
 }
 
 int CTitleScene::Update()
@@ -51,6 +53,7 @@ void CTitleScene::Render()
 
 void CTitleScene::Release()
 {
+	SoundManager->StopAll();
 	ObjectManager->ReleaseObject(OBJ_BACKGROUND);
 	ObjectManager->ReleaseObject(OBJ_UI);
 }

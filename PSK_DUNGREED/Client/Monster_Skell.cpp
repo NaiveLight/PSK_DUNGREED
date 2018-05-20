@@ -9,6 +9,7 @@
 #include "ScrollManager.h"
 #include "TimeManager.h"
 #include "CollisionManager.h"
+#include "SoundManager.h"
 
 CMonster_Skell::CMonster_Skell()
 {
@@ -79,6 +80,10 @@ int CMonster_Skell::Update()
 		//SoundManager 죽는 소리 출력
 		//EFFECT 추가
 		//Coin 추가
+		CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Die",
+			false, &D3DXVECTOR3(m_tHitBox.fX, m_tHitBox.fY, 0.f), &FRAME{ 0.f, 22.f, 11.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
+		ObjectManager->AddObject(OBJ_EFFECT, pObj);
+		SoundManager->PlaySound(L"Die.wav", CSoundManager::MONSTER);
 		return 1;
 	}
 

@@ -29,5 +29,6 @@ private:
 	bool m_bAttack = false;
 	bool m_bHitCreated = false;
 	bool m_bGround = false;
+	float m_fAngle = 0.f;
 };
 

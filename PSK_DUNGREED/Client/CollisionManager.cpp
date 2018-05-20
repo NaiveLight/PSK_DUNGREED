@@ -7,10 +7,12 @@
 #include "Weapon.h"
 #include "HitBox.h"
 #include "TileMap.h"
+#include "Bullet.h"
 #include "ScrollManager.h"
 #include "ObjectManager.h"
 #include "AbstractObjFactory.h"
 #include "SceneManager.h"
+#include "SoundManager.h"
 
 CCollisionManager::CCollisionManager()
 {
@@ -138,6 +140,8 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 						{
 							ScrollManager->ShakingStart(5.f, 0.1f);
 							ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CObj_Dungeon>::CreateObj(&pPlayer->GetInfo()->vPos));
+							SoundManager->PlaySound(L"DungeonOut.wav", CSoundManager::MONSTER);
+							SoundManager->StopSound(CSoundManager::BGM);
 						}
 						return true;
 					}
@@ -436,6 +440,68 @@ bool CCollisionManager::MonsterToTile(CMonster * pMonster, CTileMap * pTileMap)
 	return bResult;
 }
 
+bool CCollisionManager::BulletToTile(CBullet* pBullet, CTileMap * pTileMap)
+{
+	bool bResult = false;
+
+	float fX = pBullet->GetHitBox()->fX;
+	float fY = pBullet->GetHitBox()->fY;
+
+	int iTempTileX = pTileMap->GetTileX();
+	int iTempTileY = pTileMap->GetTileY();
+
+	std::vector<TILE*>* pVecTile = pTileMap->GetVecTile();
+
+	int iIndex = int(fX) / TILECX + int(fY) / TILECY * iTempTileX;
+
+	if (iIndex < 0 || iIndex >= (int)pTileMap->GetVecTile()->size() - iTempTileX)
+		return bResult;
+
+	int iTileX = WINCX / TILECX + 1;
+	int iTileY = WINCY / TILECY + 1;
+
+	int iCullX = int(ScrollManager->GetScroll().x / TILECX);
+	int iCullY = int(ScrollManager->GetScroll().y / TILECY);
+
+	int checkTileArray[9] =
+	{
+		iIndex - iTempTileX - 1
+		, iIndex - iTempTileX
+		, iIndex - iTempTileX + 1
+		, iIndex - 1
+		, iIndex
+		, iIndex + 1
+		, iIndex + iTempTileX - 1
+		, iIndex + iTempTileX
+		, iIndex + iTempTileX + 1
+	};
+
+	float fMoveX = 0.f;
+	float fMoveY = 0.f;
+	float x1, x2, y1, y2, fGradient;
+	x1 = x2 = y1 = y2 = fGradient = 0.f;
+
+	for (int i = 0; i < 8; ++i)
+	{
+		if (checkTileArray[i] < 0 || checkTileArray[i] >= iTempTileX * iTempTileY)
+			continue;
+
+		TILE* pTile = pTileMap->GetTile(checkTileArray[i]);
+
+		if (pTile->byOption != COLL_RECT)
+		{
+			continue;
+		}
+
+		// 타일과 범위가 겹쳤을 경우
+		if (CheckRect(pBullet, pTile, &fMoveX, &fMoveY))
+		{
+			return true;
+		}
+	}
+	return bResult;
+}
+
 void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CObj * pPlayer)
 {
 	if (CheckSphere(pHitBox, pPlayer))
@@ -457,6 +523,7 @@ void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMo
 				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Slash",
 					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y + 32.f, 0.f), &FRAME{ 0.f, 12.f, 4.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 				ObjectManager->AddObject(OBJ_EFFECT, pObj);
+				SoundManager->PlaySound(L"Hit_Monster.wav", CSoundManager::COLLISION);
 			}
 		}
 	}
@@ -470,7 +537,20 @@ void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMo
 				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Slash",
 					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y + 32.f, 0.f), &FRAME{ 0.f, 12.f, 4.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
 				ObjectManager->AddObject(OBJ_EFFECT, pObj);
+				SoundManager->PlaySound(L"Hit_Monster.wav", CSoundManager::COLLISION);
 			}
+		}
+	}
+}
+
+void CCollisionManager::BulletToPlayer(std::list<CObj*>* pBulletList, CPlayer * pPlayer)
+{
+	for (auto& pBullet : *pBulletList)
+	{
+		if (CheckSphere(pBullet, pPlayer))
+		{
+			pPlayer->ApplyDamage(dynamic_cast<CBullet*>(pBullet)->GetAtt());
+			dynamic_cast<CBullet*>(pBullet)->SetCollision(true);
 		}
 	}
 }
@@ -520,7 +600,7 @@ bool CCollisionManager::CheckRect(CPlayer * pPlayer, TILE * pTile, float * pMove
 	return false;
 }
 
-bool CCollisionManager::CheckRect(CMonster * pMonster, TILE * pTile, float * pMoveX, float * pMoveY)
+bool CCollisionManager::CheckRect(CObj * pMonster, TILE * pTile, float * pMoveX, float * pMoveY)
 {
 	float fRadSumX = pMonster->GetHitBox()->fCX * 0.5f + 32.f;
 	float fDistX = abs(pMonster->GetHitBox()->fX - pTile->vPos.x);

@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "ScrollManager.h"
 #include "KeyManager.h"
+#include "SoundManager.h"
 
 CTownScene::CTownScene()
 {
@@ -53,6 +54,8 @@ void CTownScene::LateInit()
 		float(TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20))
 		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13))
 	);
+
+	SoundManager->PlayBGM(L"BG_TOWN.wav");
 }
 
 int CTownScene::Update()

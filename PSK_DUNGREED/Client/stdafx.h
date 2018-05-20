@@ -31,6 +31,10 @@
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
+#include "fmod.h"
+#pragma comment(lib, "fmodex_vc.lib")
+#include <io.h>
+
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include <iostream>
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")

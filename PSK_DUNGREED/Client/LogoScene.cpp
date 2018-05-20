@@ -6,6 +6,7 @@
 #include "ObjectManager.h"
 #include "TextureManager.h"
 #include "TimeManager.h"
+#include "SoundManager.h"
 
 #include "AbstractObjFactory.h"
 #include <process.h>
@@ -39,6 +40,7 @@ HRESULT CLogoScene::Initialize()
 
 void CLogoScene::LateInit()
 {
+	SoundManager->PlaySound(L"BG_INTRO.wav", CSoundManager::UI);
 }
 
 int CLogoScene::Update()

@@ -37,6 +37,8 @@ HRESULT CRoom_3::Initialize()
 		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(287)->vPos);
 
 	ObjectManager->AddObject(OBJ_MONSTER,
+		CAbstractFactory<CMonster_Banshee>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(164)->vPos));
+	ObjectManager->AddObject(OBJ_MONSTER,
 		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(293)->vPos));
 	ObjectManager->AddObject(OBJ_MONSTER,
 		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(300)->vPos));

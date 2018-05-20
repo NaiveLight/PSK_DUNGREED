@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "CollisionManager.h"
 #include "TimeManager.h"
+#include "SoundManager.h"
 
 CWeapon_Sword::CWeapon_Sword()
 {
@@ -107,6 +108,7 @@ void CWeapon_Sword::UpdateMatrix()
 
 void CWeapon_Sword::Attack()
 {
+	SoundManager->PlaySound(L"Swing.wav", CSoundManager::PATTACK);
 	ScrollManager->ShakingStart(4.f, 0.1f);
 	
 	CObj* pPlayer = ObjectManager->GetObjectList(OBJ_PLAYER)->front();

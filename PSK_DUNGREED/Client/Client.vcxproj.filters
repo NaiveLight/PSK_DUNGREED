@@ -154,11 +154,11 @@
     <Filter Include="소스 파일\02.Object\05.Actor\01.Monster\01.Banshee">
       <UniqueIdentifier>{83065fbc-eb62-452d-8fcb-1498c6ae267f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\01.Scene\03.Stage\Room4">
-      <UniqueIdentifier>{43f30980-37a7-4529-a537-206c54b7286c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\03.Manager\07.SoundManager">
       <UniqueIdentifier>{cec23cf3-2fbc-4331-a2ae-8b743e80678a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Scene\03.Stage\BossRoom">
+      <UniqueIdentifier>{fd375723-16cd-4bb9-a44c-354bd9916d66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -315,11 +315,14 @@
     <ClInclude Include="Room_3.h">
       <Filter>소스 파일\01.Scene\03.Stage\Room3</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>소스 파일\03.Manager\07.SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet_Banshee.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>소스 파일\02.Object\06.Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -467,11 +470,14 @@
     <ClCompile Include="Room_3.cpp">
       <Filter>소스 파일\01.Scene\03.Stage\Room3</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>소스 파일\03.Manager\07.SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일\02.Object\06.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet_Banshee.cpp">
+      <Filter>헤더 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

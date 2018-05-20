@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "KeyManager.h"
 #include "TimeManager.h"
+#include "SoundManager.h"
 
 CMainGame::CMainGame()
 {
@@ -56,6 +57,7 @@ HRESULT CMainGame::Initialize()
 
 	SceneManager->ChangeScene(SCENE_LOGO);
 	TimeManager->InitTime();
+	SoundManager->Init();
 
 	return S_OK;
 }
@@ -70,12 +72,15 @@ void CMainGame::Update()
 		SceneManager->ChangeScene(SCENE_ROOM1);
 	if (KeyManager->KeyDown(VK_F7))
 		SceneManager->ChangeScene(SCENE_ROOM2);
-	//if (KeyManager->KeyDown(VK_F5))
-	//	SceneManager->ChangeScene(SCENE_TOWN);
+	if (KeyManager->KeyDown(VK_F8))
+		SceneManager->ChangeScene(SCENE_ROOM3);
+	if (KeyManager->KeyDown(VK_F9))
+		SceneManager->ChangeScene(SCENE_ROOM3);
 
 	TimeManager->SetTime();
 	SceneManager->Update();
 	KeyManager->Update();
+	SoundManager->Update();
 }
 
 void CMainGame::Render()
@@ -97,6 +102,8 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
+	SoundManager->StopAll();
+	SoundManager->DestroyInstance();
 	KeyManager->DestroyInstance();
 	TimeManager->DestroyInstance();
 	SceneManager->DestroyInstance();
@@ -108,7 +115,6 @@ void CMainGame::Release()
 
 void CMainGame::CalcFPS()
 {
-	//std::cout << TimeManager->GetDeltaTime() << std::endl;
 	m_fTime += TimeManager->GetDeltaTime();
 	++m_dwCount;
 

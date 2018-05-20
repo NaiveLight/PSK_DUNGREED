@@ -152,6 +152,7 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullet_Banshee.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Device.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullet_Banshee.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Device.cpp" />
