@@ -117,7 +117,7 @@ int CMonster_Skell::Update()
 		m_bAttack = true;
 		m_eCurState = ATTACK;
 		m_fVelocityX = 0.f;
-		m_fAttackTime = m_tData.fAttSpeed;
+		m_fAttackTime = float(rand()%4 + 1);
 	}
 	else if (fDist <= 500.f)
 	{
@@ -227,15 +227,18 @@ void CMonster_Skell::FrameMove()
 		{
 			m_bHitCreated = true;
 			// CreateHitBox
+			CAbstractFactory<CHitBox>::CreateObj(&D3DXVECTOR3(
+			m_tHitBox.fX
+			,m_tHitBox.fY
+			, 0.f));
 		}
-			
 	}
 
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 	{
 		switch (m_eCurState)
 		{
-		case SPAWN: case ATTACK:
+		case ATTACK:
 			m_eCurState = IDLE;
 			m_bHitCreated = false;
 			m_tFrame.fFrame = 0.f;

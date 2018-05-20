@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Room_2.h"
+#include "Room_3.h"
 
 #include "Device.h"
 #include "ObjectManager.h"
@@ -8,17 +8,16 @@
 #include "ScrollManager.h"
 #include "KeyManager.h"
 
-CRoom_2::CRoom_2()
+CRoom_3::CRoom_3()
 {
 }
 
-
-CRoom_2::~CRoom_2()
+CRoom_3::~CRoom_3()
 {
 	Release();
 }
 
-HRESULT CRoom_2::Initialize()
+HRESULT CRoom_3::Initialize()
 {
 	Device->SetBuffColor(D3DCOLOR_ARGB(255, 44, 46, 59));
 
@@ -29,24 +28,26 @@ HRESULT CRoom_2::Initialize()
 		ObjectManager->SetPlayer(pPlayer);
 	}
 
-	ObjectManager->AddObject(OBJ_TILEMAP, CAbstractFactory<CTileMap>::CreateTileMap(L"Room2_TILE.dat"));
-	ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CMapObj>::CreateMapObj(L"Room2_OBJ.dat"));
+	ObjectManager->AddObject(OBJ_LAYER, CAbstractFactory<CLayer>::CreateLayer(L"Dungeon", 0.05f, &D3DXVECTOR3(WINCX * 0.5f - 100.f, WINCY * 0.5f + 150.f, 0.f), &FRAME(0.f, 0.f, 0.f)));
+	ObjectManager->AddObject(OBJ_TILEMAP, CAbstractFactory<CTileMap>::CreateTileMap(L"Room3_TILE.dat"));
+	ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CMapObj>::CreateMapObj(L"Room3_OBJ.dat"));
 	ObjectManager->GetObjectList(OBJ_CURSOR)->front()->SetFrame(&FRAME(1.f, 0.f, 0.f));
 
 	ObjectManager->GetPlayer()->SetPos(
-		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(254)->vPos);
+		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(287)->vPos);
 
 	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(317)->vPos));
+		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(230)->vPos));
 	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(321)->vPos));
+		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(293)->vPos));
 	ObjectManager->AddObject(OBJ_MONSTER,
-		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(325)->vPos));
+		CAbstractFactory<CMonster_Skell>::CreateObj(&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(298)->vPos));
+
 
 	return S_OK;
 }
 
-void CRoom_2::LateInit()
+void CRoom_3::LateInit()
 {
 	ObjectManager->SetSceneChange(false);
 
@@ -60,7 +61,7 @@ void CRoom_2::LateInit()
 	);
 }
 
-int CRoom_2::Update()
+int CRoom_3::Update()
 {
 	CScene::LateInit();
 
@@ -68,12 +69,12 @@ int CRoom_2::Update()
 	return 0;
 }
 
-void CRoom_2::Render()
+void CRoom_3::Render()
 {
 	ObjectManager->Render();
 }
 
-void CRoom_2::Release()
+void CRoom_3::Release()
 {
 	ObjectManager->ReleaseObject(OBJ_MONSTER);
 	ObjectManager->ReleaseObject(OBJ_MAPOBJ);

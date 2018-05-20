@@ -30,6 +30,7 @@ public:
 	const bool& GetIsDown() { return m_bDown; }
 	const bool& GetIsDash() { return m_bDash; }
 	const float& GetVelocityY() { return m_fVelocityY; }
+	const int& GetAtt() { return m_tData.iMinAtt; }
 
 public:
 	void SetVelocityY(const float& fVelY) { m_fVelocityY = fVelY; }

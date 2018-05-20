@@ -19,7 +19,14 @@ HRESULT CHitBox::Initialize()
 
 int CHitBox::Update()
 {
-	CCollisionManager::HitBoxToMonster(this, ObjectManager->GetObjectList(OBJ_MONSTER));
+	if (m_bPlayer)
+	{
+		CCollisionManager::HitBoxToMonster(this, ObjectManager->GetObjectList(OBJ_MONSTER));
+	}
+	else
+	{
+		CCollisionManager::HitBoxToPlayer(this, ObjectManager->GetObjectList(OBJ_PLAYER)->front());
+	}
 	return 1;
 }
 

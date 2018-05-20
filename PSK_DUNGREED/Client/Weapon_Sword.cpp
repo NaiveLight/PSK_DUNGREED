@@ -118,7 +118,7 @@ void CWeapon_Sword::Attack()
 
 	CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Swing", m_bIsLeft, &vPos, &FRAME(0.f, 12.f, 3.f), &m_tInfo.vDir);
 	ObjectManager->AddObject(OBJ_EFFECT, pObj);
-	//ObjectManager->AddObject(OBJ_PATTACK, CAbstractFactory<CHitBox>::CreateObj(&vPos));
+	ObjectManager->AddObject(OBJ_PATTACK, CAbstractFactory<CHitBox>::CreateHitBox(dynamic_cast<CPlayer*>(pPlayer)->GetAtt(), false, true, &HITBOX{ vPos.x, vPos.y, 160.f, 112.f }, &vPos));
 
 	if (!m_bAttack)
 	{

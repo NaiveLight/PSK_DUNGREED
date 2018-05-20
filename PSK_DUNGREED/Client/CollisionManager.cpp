@@ -10,6 +10,7 @@
 #include "ScrollManager.h"
 #include "ObjectManager.h"
 #include "AbstractObjFactory.h"
+#include "SceneManager.h"
 
 CCollisionManager::CCollisionManager()
 {
@@ -153,6 +154,44 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x + fMoveX + 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
 					}
 				}
+				break;
+			case COLL_ROOM:
+				if (fMoveX > fMoveY)
+				{
+					// 타일 하단 충돌
+					if (pPlayer->GetInfo()->vPos.y + 32.f > pTile->vPos.y)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y + fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+					}
+					// 타일 상단 충돌
+					else
+					{
+						if (pPlayer->GetVelocityY() < 0.f)
+							continue;
+
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+						pPlayer->SetJump(false);
+						pPlayer->SetInpuActive(false);
+					}
+				}
+				else
+				{
+					//좌측 충돌
+					if (pPlayer->GetInfo()->vPos.x < pTile->vPos.x)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x - fMoveX - 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+					else
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x + fMoveX + 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+				}
+
+				SceneManager->ChangeScene(SceneManager->GetCurSceneID() == 5 ?  3 : SceneManager->GetCurSceneID() + 1);
+				return true;
+
 				break;
 				//위쪽 라인 충돌
 			case COLL_LINE:
@@ -348,50 +387,114 @@ bool CCollisionManager::MonsterToTile(CMonster * pMonster, CTileMap * pTileMap)
 			switch (pTile->byOption)
 			{
 				//렉트 충돌
-			case COLL_RECT: case COLL_DUNGEON:case COLL_ROOM: case COLL_LINE:
+			case COLL_RECT: case COLL_DUNGEON:case COLL_ROOM:
 				pMonster->SetPos(&D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y - fMoveY, 0.f));
 				return true;
+				break;
+			case COLL_UPDIG:
+				x1 = pTile->vPos.x - 32.f;
+				x2 = pTile->vPos.x + 32.f;
+
+				if (x1 <= pMonster->GetInfo()->vPos.x && pMonster->GetInfo()->vPos.x <= x2)
+				{
+					// X 위치가 라인 안에 있을때
+					y1 = pTile->vPos.y + 32.f;
+					y2 = pTile->vPos.y - 32.f;
+
+					fGradient = (y2 - y1) / (x2 - x1);
+
+					// 직선 방정식으로 플레이어의 x위치에서 y값을 도출함 
+					fMoveY = fGradient * (pMonster->GetInfo()->vPos.x - x1) + y1;
+
+					pMonster->SetPos(&D3DXVECTOR3(pMonster->GetInfo()->vPos.x, fMoveY - 64.f, 0.f));
+					return true;
+				}
+				break;
+
+				//하향 대각선 충돌
+			case COLL_DOWNDIG:
+				x1 = pTile->vPos.x - 32.f;
+				x2 = pTile->vPos.x + 32.f;
+
+				if (x1 <= pMonster->GetInfo()->vPos.x && pMonster->GetInfo()->vPos.x <= x2)
+				{
+					// X 위치가 라인 안에 있을때
+					y1 = pTile->vPos.y - 32.f;
+					y2 = pTile->vPos.y + 32.f;
+
+					fGradient = (y2 - y1) / (x2 - x1);
+
+					fMoveY = fGradient * (pMonster->GetInfo()->vPos.x - x1) + y1;
+
+					pMonster->SetPos(&D3DXVECTOR3(pMonster->GetInfo()->vPos.x, fMoveY - 64.f, 0.f));
+					return true;
+				}
+				break;
 			}
 		}
 	}
 	return bResult;
 }
 
-void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CPlayer * pPlayer)
+void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CObj * pPlayer)
 {
 }
 
 void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMonsterList)
 {
-	//if (pHitBox->GetIsRectHit())
-	//{
-	//	for (auto& pMonster : *pMonsterList)
-	//	{
-	//		if (CheckRect(pHitBox, pMonster))
-	//		{
-	//			//pMonster -> ApplyDamage (Player's Attack)
-	//		}
-	//	}
-	//}
-	//else
-	//{
-	//	for (auto& pMonster : *pMonsterList)
-	//	{
-	//		if (CheckSphere(pHitBox, pMonster))
-	//		{
-	//			//pMonster -> ApplyDamage (Player's Attack)
-	//		}
-	//	}
-	//}
+	if (pMonsterList->empty())
+		return;
+
+	if (pHitBox->GetRect())
+	{
+		for (auto& pMonster : *pMonsterList)
+		{
+			if (CheckRect(pHitBox, pMonster))
+			{
+				dynamic_cast<CMonster*>(pMonster)->ApplyDamage(pHitBox->GetAtt());
+				CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"Hit",
+					false, &D3DXVECTOR3(pMonster->GetInfo()->vPos.x, pMonster->GetInfo()->vPos.y, 0.f), &FRAME{ 0.f, 12.f, 6.f }, &D3DXVECTOR3(0.f, -1.f, 0.f));
+				ObjectManager->AddObject(OBJ_EFFECT, pObj);
+			}
+		}
+	}
+	else
+	{
+		for (auto& pMonster : *pMonsterList)
+		{
+			if (CheckSphere(pHitBox, pMonster))
+			{
+				dynamic_cast<CMonster*>(pMonster)->ApplyDamage(pHitBox->GetAtt());
+			}
+		}
+	}
 }
 
 bool CCollisionManager::CheckSphere(CObj * pDst, CObj * pSrc)
 {
+	float fRadSum = pDst->GetHitBox()->fCX * 0.5f + pSrc->GetHitBox()->fCX * 0.5f;
+
+	float fW = pDst->GetHitBox()->fX- pSrc->GetHitBox()->fX;
+	float fH = pDst->GetHitBox()->fY- pSrc->GetHitBox()->fY;
+
+	float fDist = sqrtf(fW * fW + fH * fH);
+
+	if (fRadSum >= fDist)
+		return true;
+
 	return false;
 }
 
 bool CCollisionManager::CheckRect(CObj * pDst, CObj * pSrc)
 {
+	float fRadSumX = pDst->GetHitBox()->fCX * 0.5f + pSrc->GetHitBox()->fCX * 0.5f;
+	float fDistX = abs(pDst->GetHitBox()->fX- pSrc->GetHitBox()->fX);
+	float fRadSumY = pDst->GetHitBox()->fCY * 0.5f + pSrc->GetHitBox()->fCY * 0.5f;
+	float fDistY = abs(pDst->GetHitBox()->fY- pSrc->GetHitBox()->fY);
+
+	if (fRadSumX >= fDistX && fRadSumY >= fDistY)
+		return true;
+
 	return false;
 }
 

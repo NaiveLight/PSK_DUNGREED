@@ -18,7 +18,7 @@ public:
 public:
 	static bool PlayerToTile(CPlayer* pPlayer, CTileMap* pTIleMap);
 	static bool MonsterToTile(CMonster* pMonster, CTileMap* pTileMap);
-	static void HitBoxToPlayer(CHitBox* pHitBox, CPlayer* pPlayer);
+	static void HitBoxToPlayer(CHitBox* pHitBox, CObj * pPlayer);
 	static void HitBoxToMonster(CHitBox* pHitBox, std::list<CObj*>* pMonsterList);
 	static void BulletToTile();
 	static void BulletToActor();

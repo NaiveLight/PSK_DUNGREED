@@ -12,6 +12,8 @@
 #include "TileMap.h"
 #include "MapObj.h"
 #include "Obj_Dungeon.h"
+#include "Obj_Door.h"
+#include "Obj_Torch.h"
 
 #include "Monster.h"
 #include "Monster_Skell.h"
@@ -138,12 +140,20 @@ public:
 	// OBJ_PLAYER
 
 	// OBJ_PAttack,OBJ_MAttack
-	static CObj* CreateHitBox(const bool& bRect, const bool& bPlayer, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr)
+	static CObj* CreateHitBox(const int& iAtt, const bool& bRect, const bool& bPlayer, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr)
 	{
 		CObj* pObj = new CHitBox;
 
 		pObj->SetHitBox(pHitBox);
-		dynamic_cast<CHitBox*>(pObj)->
+		pObj->SetPos(pPos);
+		dynamic_cast<CHitBox*>(pObj)->SetAtt(iAtt);
+		dynamic_cast<CHitBox*>(pObj)->SetRect(bRect);
+		dynamic_cast<CHitBox*>(pObj)->SetPlayer(bPlayer);
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
+
+		return pObj;
 	}
 
 	// OBJ_ITEM

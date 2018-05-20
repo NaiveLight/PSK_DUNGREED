@@ -11,6 +11,9 @@ public:
 	virtual ~CMonster();
 
 public:
+	void ApplyDamage(const int& iAtt);
+
+public:
 	virtual HRESULT Initialize() PURE;
 	virtual int Update() PURE;
 	virtual void Render() PURE;

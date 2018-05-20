@@ -22,6 +22,7 @@ HRESULT CMainGame::Initialize()
 {
 	//ShowCursor(FALSE);
 	//TextureManager->InsertTexture(L"BACKGROUND", L"")
+	srand(unsigned(time(nullptr)));
 
 	D3DXMatrixIdentity(&m_matIdentity);
 

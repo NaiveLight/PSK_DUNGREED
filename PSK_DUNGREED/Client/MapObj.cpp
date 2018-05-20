@@ -2,6 +2,8 @@
 #include "MapObj.h"
 
 #include "Device.h"
+#include "ObjectManager.h"
+#include "AbstractObjFactory.h"
 #include "TextureManager.h"
 #include "ScrollManager.h"
 
@@ -96,12 +98,16 @@ void CMapObj::LoadObj()
 
 		if (!lstrcmp(pObj->szStateKey, L"Torch"))
 		{
-
+			ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CObj_Torch>::CreateObj(&pObj->vPos));
+			Safe_Delete(pObj);
+			continue;
 		}
 
 		if (!lstrcmp(pObj->szStateKey, L"Door"))
 		{
-
+			ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CObj_Door>::CreateObj(&pObj->vPos));
+			Safe_Delete(pObj);
+			continue;
 		}
 		m_vecObj.push_back(pObj);
 	}

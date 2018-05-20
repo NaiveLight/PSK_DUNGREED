@@ -13,7 +13,6 @@ CRoom_1::CRoom_1()
 {
 }
 
-
 CRoom_1::~CRoom_1()
 {
 	Release();
@@ -37,7 +36,7 @@ HRESULT CRoom_1::Initialize()
 	ObjectManager->GetObjectList(OBJ_CURSOR)->front()->SetFrame(&FRAME(1.f, 0.f, 0.f));
 
 	ObjectManager->GetPlayer()->SetPos(
-		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(305)->vPos);
+		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(338)->vPos);
 
 	ObjectManager->AddObject(OBJ_MONSTER,
 		CAbstractFactory<CMonster_Skell>::CreateObj(&D3DXVECTOR3(ObjectManager->GetPlayer()->GetInfo()->vPos.x + 500.f, ObjectManager->GetPlayer()->GetInfo()->vPos.y - 300.f, 0.f)));
@@ -53,8 +52,8 @@ void CRoom_1::LateInit()
 	);
 
 	ScrollManager->SetMaxScroll(
-		TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20)
-		, TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13)
+		float(TILECX *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileX() - 20))
+		, float(TILECY *  (dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTileY() - 13))
 	);
 }
 
@@ -63,6 +62,10 @@ int CRoom_1::Update()
 	CScene::LateInit();
 
 	ObjectManager->Update();
+
+	if (ObjectManager->GetObjectList(OBJ_MONSTER)->empty())
+		std::cout << "몬스터없음\n";
+
 	return 0;
 }
 

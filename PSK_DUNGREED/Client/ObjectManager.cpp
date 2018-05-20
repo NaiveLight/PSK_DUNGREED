@@ -19,9 +19,6 @@ std::list<CObj*>* CObjectManager::GetObjectList(OBJID eObjID)
 	if (eObjID == OBJ_END)
 		return nullptr;
 
-	if (m_ObjList[eObjID].empty())
-		return nullptr;
-
 	return &m_ObjList[eObjID];
 }
 
@@ -45,6 +42,9 @@ int CObjectManager::Update()
 
 	for (int i = 0; i < OBJ_END; ++i)
 	{
+		if (i == OBJ_PATTACK)
+			std::cout << m_ObjList[OBJ_PATTACK].size() << std::endl;
+
 		auto iter = m_ObjList[i].begin();
 		auto iter_end = m_ObjList[i].end();
 

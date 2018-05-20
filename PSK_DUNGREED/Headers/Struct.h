@@ -87,6 +87,10 @@ typedef struct tagHitBox
 	float fY;
 	float fCX;
 	float fCY;
+
+	tagHitBox() {};
+	tagHitBox(float _fX, float _fY, float _fCX, float _fCY)
+		: fX(_fX), fY(_fY), fCX(_fCX), fCY(_fCY) {}
 }HITBOX;
 
 typedef struct tagUnitData

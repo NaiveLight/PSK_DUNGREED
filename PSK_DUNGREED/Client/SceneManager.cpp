@@ -9,7 +9,7 @@
 #include "TownScene.h"
 #include "Room_1.h"
 #include "Room_2.h"
-//#include "Room_3.h"
+#include "Room_3.h"
 
 CSceneManager::CSceneManager()
 {
@@ -20,7 +20,7 @@ CSceneManager::~CSceneManager()
 	Release();
 }
 
-HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
+HRESULT CSceneManager::ChangeScene(int eSceneID)
 {
 	if (eSceneID == SCENE_LOGO || eSceneID == SCENE_TITLE)
 	{
@@ -47,7 +47,7 @@ HRESULT CSceneManager::ChangeScene(SCENEID eSceneID)
 
 	m_bFade = true;
 	m_bIsSceneChange = true;
-	m_eCurScene = eSceneID;
+	m_eCurScene = (SCENEID)eSceneID;
 
 	return S_OK;
 }
@@ -60,8 +60,11 @@ void CSceneManager::Update()
 
 void CSceneManager::Render()
 {
-	if(!m_bIsSceneChange)
+	if (!m_bIsSceneChange)
+	{
 		m_pScene->Render();
+		m_fAlpha = 0.f;
+	}
 	else
 	{
 		if (m_bFade)
@@ -115,11 +118,11 @@ void CSceneManager::FadeOut()
 			, D3DCOLOR_ARGB((int)m_fAlpha, 255, 255, 255));
 	}
 
-	if(m_eCurScene != SCENE_LOGO || m_eCurScene != SCENE_TITLE)
+	if(m_eCurScene != SCENE_LOGO)
 		SwapScene(m_eCurScene);
 }
 
-void CSceneManager::SwapScene(SCENEID eSceneID)
+void CSceneManager::SwapScene(int eSceneID)
 {
 	if (m_pScene != nullptr)
 		Safe_Delete(m_pScene);
@@ -134,6 +137,9 @@ void CSceneManager::SwapScene(SCENEID eSceneID)
 		break;
 	case SCENE_ROOM2:
 		m_pScene = new CRoom_2;
+		break;
+	case SCENE_ROOM3:
+		m_pScene = new CRoom_3;
 		break;
 	}
 
