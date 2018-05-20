@@ -18,6 +18,10 @@ std::list<CObj*>* CObjectManager::GetObjectList(OBJID eObjID)
 {
 	if (eObjID == OBJ_END)
 		return nullptr;
+
+	if (m_ObjList[eObjID].empty())
+		return nullptr;
+
 	return &m_ObjList[eObjID];
 }
 

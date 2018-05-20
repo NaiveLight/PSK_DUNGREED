@@ -2,6 +2,7 @@
 #include "Room_1.h"
 
 #include "Device.h"
+#include "Player.h"
 #include "ObjectManager.h"
 #include "AbstractObjFactory.h"
 #include "SceneManager.h"
@@ -29,6 +30,8 @@ HRESULT CRoom_1::Initialize()
 		ObjectManager->SetPlayer(pPlayer);
 	}
 
+	dynamic_cast<CPlayer*>(ObjectManager->GetPlayer())->SetInpuActive(true);
+	dynamic_cast<CPlayer*>(ObjectManager->GetPlayer())->SetDungeonEnter(false);
 	ObjectManager->AddObject(OBJ_TILEMAP, CAbstractFactory<CTileMap>::CreateTileMap(L"Room1_TILE.dat"));
 	ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CMapObj>::CreateMapObj(L"Room1_OBJ.dat"));
 	ObjectManager->GetObjectList(OBJ_CURSOR)->front()->SetFrame(&FRAME(1.f, 0.f, 0.f));
@@ -73,5 +76,6 @@ void CRoom_1::Release()
 	ObjectManager->ReleaseObject(OBJ_MAPOBJ);
 	ObjectManager->ReleaseObject(OBJ_TILEMAP);
 	ObjectManager->ReleaseObject(OBJ_LAYER);
+	ObjectManager->ReleaseObject(OBJ_MONSTER);
 	ObjectManager->ReleaseObject(OBJ_BACKGROUND);
 }

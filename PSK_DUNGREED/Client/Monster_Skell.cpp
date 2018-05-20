@@ -105,11 +105,12 @@ int CMonster_Skell::Update()
 
 	CObj* pPlayer = ObjectManager->GetObjectList(OBJ_PLAYER)->front();
 
+	if (pPlayer == nullptr)
+		return 0;
+
 	m_tInfo.vDir = pPlayer->GetInfo()->vPos - m_tInfo.vPos;
 	m_bIsLeft = m_tInfo.vDir.x < 0 ? true : false;
 	float fDist = D3DXVec3Length(&m_tInfo.vDir);
-
-	std::cout << fDist << std::endl;
 
 	if (fDist <= 30.f && m_fAttackTime <= 0.f)
 	{

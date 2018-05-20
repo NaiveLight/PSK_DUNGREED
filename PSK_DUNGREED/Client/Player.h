@@ -35,6 +35,8 @@ public:
 	void SetVelocityY(const float& fVelY) { m_fVelocityY = fVelY; }
 	void SetJump(const bool& bJump) { m_bJump = bJump; }
 	void SetMinMaxPos(const float& fMinX, const float& fMaxX) { m_fMinPosX = fMinX; m_fMaxPosX = fMaxX; }
+	void SetInpuActive(const bool& bActive) { m_bInputActive = bActive; }
+	void SetDungeonEnter(const bool& bDE) { m_bDungeonEnter = bDE; }
 
 public:
 	virtual HRESULT Initialize() override;
@@ -113,6 +115,7 @@ private:
 	bool m_bWeaponRender = false;
 
 private:
+	bool m_bInputActive = true;
 	bool m_bDungeonEnter = false;
 	bool m_bStageEnter = false;
 	bool m_bRoomEnter = false;

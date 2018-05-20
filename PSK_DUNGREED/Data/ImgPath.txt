@@ -51,7 +51,6 @@ UI_BUTTON|Play|2|..\Texture\UI\UI_BUTTON\Play\Play0%d.png
 UI_CURSOR|Cursor|2|..\Texture\UI\UI_CURSOR\Cursor\Cursor0%d.png
 UI_LOGO|Copyright|1|..\Texture\UI\UI_LOGO\Copyright\Copyright0%d.png
 UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png
-UI_LOGO|TeamLogo|3|..\Texture\UI\UI_LOGO\TeamLogo\TeamLogo0%d.png
 WEAPON|GreatSword|1|..\Texture\WEAPON\GreatSword\GreatSword0%d.png
 WEAPON|ShortSword|1|..\Texture\WEAPON\ShortSword\ShortSword0%d.png
 WEAPON|Halberd|1|..\Texture\WEAPON\Halberd\Halberd0%d.png

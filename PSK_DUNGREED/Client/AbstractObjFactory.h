@@ -11,6 +11,7 @@
 
 #include "TileMap.h"
 #include "MapObj.h"
+#include "Obj_Dungeon.h"
 
 #include "Monster.h"
 #include "Monster_Skell.h"

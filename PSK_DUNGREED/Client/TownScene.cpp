@@ -38,8 +38,6 @@ HRESULT CTownScene::Initialize()
 	ObjectManager->GetPlayer()->SetPos(
 		&dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front())->GetTile(2004)->vPos);
 	
-	ObjectManager->AddObject(OBJ_MONSTER, 
-		CAbstractFactory<CMonster_Skell>::CreateObj(&D3DXVECTOR3(ObjectManager->GetPlayer()->GetInfo()->vPos.x + 500.f, ObjectManager->GetPlayer()->GetInfo()->vPos.y - 300.f, 0.f)));
 	return S_OK;
 }
 

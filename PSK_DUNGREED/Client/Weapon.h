@@ -28,7 +28,7 @@ protected:
 
 protected:
 	D3DXVECTOR3 m_vOrigin = D3DXVECTOR3(0.f, 0.f, 0.f);
-	int m_iAtt = 0.f;
+	int m_iAtt = 0;
 	float m_fAttTime = 0.f;
 	float m_fRotateAngle = 0.f;
 	float m_fRevolveAngle = 0.f;

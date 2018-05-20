@@ -14,6 +14,9 @@ public:
 	void SetPlayer(CObj* pPlayer) { m_pPlayer = pPlayer; }
 
 public:
+	void RemovePlayer() { if(!m_ObjList[OBJ_PLAYER].empty()) m_ObjList[OBJ_PLAYER].pop_front(); }
+
+public:
 	CObj* GetPlayer() { return m_pPlayer; }
 
 public:

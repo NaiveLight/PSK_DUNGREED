@@ -8,6 +8,8 @@
 #include "HitBox.h"
 #include "TileMap.h"
 #include "ScrollManager.h"
+#include "ObjectManager.h"
+#include "AbstractObjFactory.h"
 
 CCollisionManager::CCollisionManager()
 {
@@ -74,15 +76,84 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 			switch (pTile->byOption)
 			{
 				//렉트 충돌
-			case COLL_RECT: case COLL_DUNGEON:
-				if (pPlayer->GetVelocityY() < 0.f)
-					continue;
+			case COLL_RECT:
+				// 위 아래 판별
+				if (fMoveX > fMoveY)
+				{
+					// 타일 하단 충돌
+					if (pPlayer->GetInfo()->vPos.y + 32.f > pTile->vPos.y)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y + fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+					}
+					// 타일 상단 충돌
+					else
+					{
+						if (pPlayer->GetVelocityY() < 0.f)
+							continue;
 
-				pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
-				pPlayer->SetVelocityY(0.f);
-				pPlayer->SetJump(false);
-				return true;
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+						pPlayer->SetJump(false);
+						return true;
+					}
+				}
+				else
+				{
+					//좌측 충돌
+					if (pPlayer->GetInfo()->vPos.x < pTile->vPos.x)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x - fMoveX - 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+					else
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x + fMoveX + 6.f , pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+				}
 
+				break;
+			case COLL_DUNGEON:
+				// 위 아래 판별
+				if (fMoveX > fMoveY)
+				{
+					// 타일 하단 충돌
+					if (pPlayer->GetInfo()->vPos.y + 32.f > pTile->vPos.y)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y + fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+					}
+					// 타일 상단 충돌
+					else
+					{
+						if (pPlayer->GetVelocityY() < 0.f)
+							continue;
+
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
+						pPlayer->SetVelocityY(0.f);
+						pPlayer->SetJump(false);
+						pPlayer->SetInpuActive(false);
+
+						if (ObjectManager->GetObjectList(OBJ_MAPOBJ)->size() == 1)
+						{
+							ScrollManager->ShakingStart(5.f, 0.1f);
+							ObjectManager->AddObject(OBJ_MAPOBJ, CAbstractFactory<CObj_Dungeon>::CreateObj(&pPlayer->GetInfo()->vPos));
+						}
+						return true;
+					}
+				}
+				else
+				{
+					//좌측 충돌
+					if (pPlayer->GetInfo()->vPos.x < pTile->vPos.x)
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x - fMoveX - 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+					else
+					{
+						pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x + fMoveX + 6.f, pPlayer->GetInfo()->vPos.y, 0.f));
+					}
+				}
+				break;
 				//위쪽 라인 충돌
 			case COLL_LINE:
 				// 점프 중 일때
@@ -292,26 +363,26 @@ void CCollisionManager::HitBoxToPlayer(CHitBox * pHitBox, CPlayer * pPlayer)
 
 void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMonsterList)
 {
-	if (pHitBox->GetIsRectHit())
-	{
-		for (auto& pMonster : *pMonsterList)
-		{
-			if (CheckRect(pHitBox, pMonster))
-			{
-				//pMonster -> ApplyDamage (Player's Attack)
-			}
-		}
-	}
-	else
-	{
-		for (auto& pMonster : *pMonsterList)
-		{
-			if (CheckSphere(pHitBox, pMonster))
-			{
-				//pMonster -> ApplyDamage (Player's Attack)
-			}
-		}
-	}
+	//if (pHitBox->GetIsRectHit())
+	//{
+	//	for (auto& pMonster : *pMonsterList)
+	//	{
+	//		if (CheckRect(pHitBox, pMonster))
+	//		{
+	//			//pMonster -> ApplyDamage (Player's Attack)
+	//		}
+	//	}
+	//}
+	//else
+	//{
+	//	for (auto& pMonster : *pMonsterList)
+	//	{
+	//		if (CheckSphere(pHitBox, pMonster))
+	//		{
+	//			//pMonster -> ApplyDamage (Player's Attack)
+	//		}
+	//	}
+	//}
 }
 
 bool CCollisionManager::CheckSphere(CObj * pDst, CObj * pSrc)

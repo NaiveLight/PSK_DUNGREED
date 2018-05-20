@@ -291,6 +291,9 @@
     <ClInclude Include="HitBox.h">
       <Filter>소스 파일\02.Object\04.Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="Obj_Dungeon.h">
+      <Filter>소스 파일\02.Object\03.MapObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -421,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="HitBox.cpp">
       <Filter>소스 파일\02.Object\04.Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj_Dungeon.cpp">
+      <Filter>소스 파일\02.Object\03.MapObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

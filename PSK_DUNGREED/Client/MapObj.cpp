@@ -82,9 +82,7 @@ void CMapObj::LoadObj()
 
 	int iVecSize = 0;
 	ReadFile(hFile, &iVecSize, sizeof(int), &dwByte, nullptr);
-
-	//m_vecObj.reserve(iVecSize);
-
+	
 	while (true)
 	{
 		MAPOBJ* pObj = new MAPOBJ;
@@ -96,6 +94,15 @@ void CMapObj::LoadObj()
 			break;
 		}
 
+		if (!lstrcmp(pObj->szStateKey, L"Torch"))
+		{
+
+		}
+
+		if (!lstrcmp(pObj->szStateKey, L"Door"))
+		{
+
+		}
 		m_vecObj.push_back(pObj);
 	}
 

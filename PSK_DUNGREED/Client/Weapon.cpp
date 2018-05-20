@@ -14,8 +14,8 @@ CWeapon::~CWeapon()
 
 void CWeapon::CreateHitBox()
 {
-	ObjectManager->AddObject(
-		OBJ_PATTACK,
-		CAbstractFactory<CHitBox>::CreateHitBox()
-		)
+	//ObjectManager->AddObject(
+	//	OBJ_PATTACK,
+	//	CAbstractFactory<CHitBox>::CreateHitBox()
+	//);
 }

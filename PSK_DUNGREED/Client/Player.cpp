@@ -81,6 +81,9 @@ int CPlayer::Update()
 
 void CPlayer::Render()
 {
+	if (m_bDungeonEnter)
+		return;
+
 	if (m_pWeapon->GetRenderFirst())
 		m_pWeapon->Render();
 
@@ -221,6 +224,9 @@ void CPlayer::CheckMousePos()
 
 void CPlayer::CheckInput()
 {
+	if (!m_bInputActive)
+		return;
+
 	SwapWeapon();
 
 	if (KeyManager->KeyPressing('S'))
