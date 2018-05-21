@@ -4,7 +4,7 @@ class CMonster :
 	public CObj
 {
 public:
-	enum STATE{SPAWN, IDLE, MOVE, ATTACK, END};
+	enum STATE{SPAWN, IDLE, MOVE, ATTACK, ATTACK_LEFT, ATTACK_RIGHT, END};
 
 public:
 	CMonster();

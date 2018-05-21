@@ -178,6 +178,15 @@
     <Filter Include="소스 파일\02.Object\08.UI\04.DashBar">
       <UniqueIdentifier>{74a91840-d92b-4bcf-8c3c-30c6d11fd8dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\02.Boss\Belial_Hand">
+      <UniqueIdentifier>{d08a60b4-37d2-49c3-be4d-1addce739b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\02.Boss\Belial_CenterParticle">
+      <UniqueIdentifier>{0c06db2c-3754-43d7-848e-ed13af13b4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle">
+      <UniqueIdentifier>{8b305043-4a39-4631-b6f8-11f9610fd386}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -357,11 +366,23 @@
     <ClInclude Include="HpEffect.h">
       <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
     </ClInclude>
-    <ClInclude Include="DashBar.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="BossRoom.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\01.Scene\03.Stage\BossRoom</Filter>
+    </ClInclude>
+    <ClInclude Include="DashBar.h">
+      <Filter>소스 파일\02.Object\08.UI\04.DashBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Belial.h">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Belial_Hand.h">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="Belial_CenterParticle.h">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_CenterParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="Belial_Particle.h">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -533,11 +554,23 @@
     <ClCompile Include="HpEffect.cpp">
       <Filter>소스 파일\02.Object\08.UI\03.HpBar_Player</Filter>
     </ClCompile>
-    <ClCompile Include="DashBar.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="BossRoom.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\01.Scene\03.Stage\BossRoom</Filter>
+    </ClCompile>
+    <ClCompile Include="DashBar.cpp">
+      <Filter>소스 파일\02.Object\08.UI\04.DashBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Belial.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Belial_Hand.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="Belial_CenterParticle.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_CenterParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="Belial_Particle.cpp">
+      <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

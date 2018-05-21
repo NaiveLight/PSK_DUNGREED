@@ -10,6 +10,7 @@
 #include "Room_1.h"
 #include "Room_2.h"
 #include "Room_3.h"
+#include "BossRoom.h"
 
 CSceneManager::CSceneManager()
 {
@@ -140,6 +141,9 @@ void CSceneManager::SwapScene(int eSceneID)
 		break;
 	case SCENE_ROOM3:
 		m_pScene = new CRoom_3;
+		break;
+	case SCENE_BOSSROOM:
+		m_pScene = new CBossRoom;
 		break;
 	}
 

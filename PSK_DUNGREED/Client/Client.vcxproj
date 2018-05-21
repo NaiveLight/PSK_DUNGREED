@@ -150,6 +150,10 @@
   <ItemGroup>
     <ClInclude Include="AbstractObjFactory.h" />
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Belial.h" />
+    <ClInclude Include="Belial_CenterParticle.h" />
+    <ClInclude Include="Belial_Hand.h" />
+    <ClInclude Include="Belial_Particle.h" />
     <ClInclude Include="BossRoom.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
@@ -212,6 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Belial.cpp" />
+    <ClCompile Include="Belial_CenterParticle.cpp" />
+    <ClCompile Include="Belial_Hand.cpp" />
+    <ClCompile Include="Belial_Particle.cpp" />
     <ClCompile Include="BossRoom.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />

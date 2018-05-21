@@ -7,9 +7,10 @@ BOSS_HAND|Idle|10|..\Texture\BOSS\BOSS_HAND\Idle\Idle0%d.png
 BOSS_HEAD|Attack|10|..\Texture\BOSS\BOSS_HEAD\Attack\Attack0%d.png
 BOSS_HEAD|Idle|10|..\Texture\BOSS\BOSS_HEAD\Idle\Idle0%d.png
 BULLET|Banshee|4|..\Texture\BULLET\Banshee\Banshee0%d.png
-BULLET|BossHand|7|..\Texture\BULLET\BossHand\BossHand0%d.png
 BULLET|BossHead|2|..\Texture\BULLET\BossHead\BossHead0%d.png
 EFFECT|BossHand|7|..\Texture\EFFECT\BossHand\BossHand0%d.png
+EFFECT|BossLaser|7|..\Texture\EFFECT\BossLaser\BossLaser0%d.png
+EFFECT|BossParticle|8|..\Texture\EFFECT\BossParticle\BossParticle0%d.png
 EFFECT|BulletBanshee|6|..\Texture\EFFECT\BulletBanshee\BulletBanshee0%d.png
 EFFECT|BulletBoss|8|..\Texture\EFFECT\BulletBoss\BulletBoss0%d.png
 EFFECT|Dash|1|..\Texture\EFFECT\Dash\Dash0%d.png
@@ -30,6 +31,7 @@ BANSHEE|Idle|6|..\Texture\MONSTER\BANSHEE\Idle\Idle0%d.png
 SKELL|Attack|11|..\Texture\MONSTER\SKELL\Attack\Attack00%d.png
 SKELL|Idle|1|..\Texture\MONSTER\SKELL\Idle\Idle0%d.png
 SKELL|Walk|6|..\Texture\MONSTER\SKELL\Walk\Walk0%d.png
+OBJECT|BossBack|10|..\Texture\OBJECT\BossBack\BossBack0%d.png
 OBJECT|Chain|1|..\Texture\OBJECT\Chain\Chain0%d.png
 OBJECT|DFloor|1|..\Texture\OBJECT\DFloor\DFloor0%d.png
 OBJECT|Door|10|..\Texture\OBJECT\Door\Door0%d.png
@@ -64,11 +66,11 @@ UI_BUTTON|Exit|2|..\Texture\UI\UI_BUTTON\Exit\Exit0%d.png
 UI_BUTTON|Option|2|..\Texture\UI\UI_BUTTON\Option\Option0%d.png
 UI_BUTTON|Play|2|..\Texture\UI\UI_BUTTON\Play\Play0%d.png
 UI_CURSOR|Cursor|2|..\Texture\UI\UI_CURSOR\Cursor\Cursor0%d.png
+UI_DASH|DashCount|1|..\Texture\UI\UI_DASH\DashCount\DashCount0%d.png
+UI_DASH|DashCountBase|1|..\Texture\UI\UI_DASH\DashCountBase\DashCountBase0%d.png
 UI_HPBAR|PlayerBack|1|..\Texture\UI\UI_HPBAR\PlayerBack\PlyaerBack0%d.png
 UI_HPBAR|PlayerBase|1|..\Texture\UI\UI_HPBAR\PlayerBase\PlayerBase0%d.png
 UI_HPBAR|PlayerHp|1|..\Texture\UI\UI_HPBAR\PlayerHp\PlayerHp0%d.png
-UI_DASH|DashCount|1|..\Texture\UI\UI_DASH\DashCount\DashCount0%d.png
-UI_DASH|DashCountBase|1|..\Texture\UI\UI_DASH\DashCountBase\DashCountBase0%d.png
 UI_ICON|Food|1|..\Texture\UI\UI_ICON\Food\Food0%d.png
 UI_LOGO|Copyright|1|..\Texture\UI\UI_LOGO\Copyright\Copyright0%d.png
 UI_LOGO|MainLogo|1|..\Texture\UI\UI_LOGO\MainLogo\MainLogo0%d.png

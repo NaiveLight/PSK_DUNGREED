@@ -75,6 +75,7 @@ void CTownScene::Render()
 
 void CTownScene::Release()
 {
+	SoundManager->StopAll();
 	ObjectManager->ReleaseObject(OBJ_MAPOBJ);
 	ObjectManager->ReleaseObject(OBJ_TILEMAP);
 	ObjectManager->ReleaseObject(OBJ_LAYER);

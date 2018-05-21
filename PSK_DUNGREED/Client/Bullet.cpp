@@ -38,7 +38,7 @@ HRESULT CBullet::Initialize()
 
 	m_fAlpha = 255.f;
 	m_fTime = TimeManager->GetDeltaTime();
-	m_fSpeed = 300.f;
+	m_fSpeed = 350.f;
 	m_wstrObjKey = L"BULLET";
 	m_tInfo.vLook = D3DXVECTOR3(0.f, -1.f, 0.f);
 
@@ -49,19 +49,32 @@ int CBullet::Update()
 {
 	if (m_bCollision)
 	{
-		CObj* pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"BulletBanshee", false, &m_tInfo.vPos, &FRAME(0.f, 12.f, 6.f), &D3DXVECTOR3(0.f, -1.f, 0.f));
+		CObj* pObj = nullptr;
+	
+		switch(m_eID)
+		{
+			case BULLET_BANSHEE:
+				pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"BulletBanshee", false, &m_tInfo.vPos, &FRAME(0.f, 12.f, 6.f), &D3DXVECTOR3(0.f, -1.f, 0.f));
+				break;
+
+			case BULLET_BELIAL_HEAD:
+				pObj = CAbstractFactory<CEffect_Extinction>::CreateEffect(L"BulletBoss", false, &m_tInfo.vPos, &FRAME(0.f, 14.f, 7.f), &D3DXVECTOR3(0.f, -1.f, 0.f));
+				break;
+		}
+
 		ObjectManager->AddObject(OBJ_EFFECT, pObj);
+
 		return 1;
 	}
 		
 
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * m_fTime;
 
-	m_bCollision = CCollisionManager::BulletToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
-
 	FrameMove();
 	UpdateMatrix();
 	UpdateHitBox();
+
+	m_bCollision = CCollisionManager::BulletToTile(this, dynamic_cast<CTileMap*>(ObjectManager->GetObjectList(OBJ_TILEMAP)->front()));
 
 	return 0;
 }

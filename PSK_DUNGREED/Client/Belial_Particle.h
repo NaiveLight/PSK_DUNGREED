@@ -1,15 +1,14 @@
 #pragma once
-#include "Scene.h"
-class CBossRoom :
-	public CScene
+#include "Obj.h"
+class CBelial_Particle :
+	public CObj
 {
 public:
-	CBossRoom();
-	virtual ~CBossRoom();
+	CBelial_Particle();
+	virtual ~CBelial_Particle();
 
-	// CScene을(를) 통해 상속됨
+	// CObj을(를) 통해 상속됨
 	virtual HRESULT Initialize() override;
-	virtual void LateInit() override;
 	virtual int Update() override;
 	virtual void Render() override;
 	virtual void Release() override;

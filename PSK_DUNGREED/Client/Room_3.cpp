@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "ScrollManager.h"
 #include "KeyManager.h"
+#include "SoundManager.h"
 
 CRoom_3::CRoom_3()
 {
@@ -76,8 +77,10 @@ void CRoom_3::Render()
 
 void CRoom_3::Release()
 {
+	SoundManager->StopAll();
 	ObjectManager->ReleaseObject(OBJ_MONSTER);
 	ObjectManager->ReleaseObject(OBJ_MAPOBJ);
 	ObjectManager->ReleaseObject(OBJ_TILEMAP);
 	ObjectManager->ReleaseObject(OBJ_LAYER);
+	ObjectManager->ReleaseObject(OBJ_BULLET);
 }

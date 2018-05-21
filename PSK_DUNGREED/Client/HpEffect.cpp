@@ -34,6 +34,8 @@ HRESULT CHpEffect::Initialize()
 	m_wstrObjKey = L"EFFECT";
 	m_wstrStateKey = L"HpWave";
 	m_tFrame = FRAME(0.f, 14.f, 7.f);
+
+	return S_OK;
 }
 
 int CHpEffect::Update()

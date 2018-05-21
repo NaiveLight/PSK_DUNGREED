@@ -193,7 +193,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					}
 				}
 
-				SceneManager->ChangeScene(SceneManager->GetCurSceneID() == 5 ?  3 : SceneManager->GetCurSceneID() + 1);
+				SceneManager->ChangeScene(SceneManager->GetCurSceneID() == 6 ?  2 : SceneManager->GetCurSceneID() + 1);
 				return true;
 
 				break;
@@ -545,6 +545,12 @@ void CCollisionManager::HitBoxToMonster(CHitBox * pHitBox, std::list<CObj*>* pMo
 
 void CCollisionManager::BulletToPlayer(std::list<CObj*>* pBulletList, CPlayer * pPlayer)
 {
+	if (pPlayer == nullptr)
+		return;
+
+	if (pBulletList->empty())
+		return;
+
 	for (auto& pBullet : *pBulletList)
 	{
 		if (CheckSphere(pBullet, pPlayer))

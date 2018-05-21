@@ -75,6 +75,9 @@ int CPlayer::Update()
 {
 	m_fTime = TimeManager->GetDeltaTime();
 
+	if (ScrollManager->GetFocus())
+		return 0;
+
 	CheckMousePos();
 	CheckInput();
 
@@ -122,7 +125,7 @@ int CPlayer::Update()
 
 void CPlayer::Render()
 {
-	if (m_bDungeonEnter)
+	if (m_bDungeonEnter || ScrollManager->GetFocus())
 		return;
 
 	if (m_pWeapon->GetRenderFirst())
@@ -139,7 +142,7 @@ void CPlayer::Render()
 		, nullptr
 		, D3DCOLOR_ARGB(BYTE(m_fAlpha), 255, 255, 255));
 
-	RenderCollider();
+	//RenderCollider();
 
 	if (!m_pWeapon->GetRenderFirst())
 		m_pWeapon->Render();

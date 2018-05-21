@@ -13,6 +13,7 @@ public:
 public:
 	void SetAtt(const int& iAtt) { m_iAtt = iAtt; }
 	void SetCollision(const bool& bCollision) { m_bCollision = bCollision; }
+	void SetBulletID(BULLETID eID) { m_eID = eID; }
 
 public:
 	virtual HRESULT Initialize() override;
@@ -26,6 +27,7 @@ private:
 	void FrameMove();
 
 private:
+	BULLETID m_eID = BULLET_BANSHEE;
 	int m_iAtt = false;
 	float m_fSpeed = false;
 	bool m_bCollision = false;

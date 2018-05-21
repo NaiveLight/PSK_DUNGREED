@@ -23,6 +23,15 @@ void CScrollManager::Update()
 		if (m_fShakeTime <= 0.f)
 			ShakingEnd();
 	}
+
+	if (m_bIsFocusing)
+	{
+		m_fFocusTime -= TimeManager->GetDeltaTime();
+		m_vScroll = m_vFocusScroll;
+
+		if (m_fFocusTime <= 0.f)
+			FocusingEnd();
+	}
 }
 
 void CScrollManager::SetCurScroll(float fX, float fY)
@@ -87,6 +96,22 @@ void CScrollManager::ShakingEnd()
 {
 	m_bIsShaking = false;
 	m_fShakePower = 0.f;
+}
+
+void CScrollManager::FocusingStart(const D3DXVECTOR3& vPos, float fTime)
+{
+	if (!m_bIsFocusing)
+	{
+		m_bIsFocusing = true;
+		m_vPrevScroll = m_vScroll;
+		m_vFocusScroll = vPos;
+		m_fFocusTime = fTime;
+	}
+}
+
+void CScrollManager::FocusingEnd()
+{
+	m_bIsFocusing= false;
 }
 
 const D3DXVECTOR3 & CScrollManager::GetScroll() const

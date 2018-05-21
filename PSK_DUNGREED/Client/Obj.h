@@ -27,6 +27,7 @@ public:
 	void SetObjKey(const std::wstring& wstrObjKey);
 	void SetStateKey(const std::wstring& wstrStateKey);
 	void SetIsLeft(const bool& bIsLeft);
+	void SetAlpha(const float& fAlpha) { m_fAlpha = fAlpha; }
 
 public:
 	virtual HRESULT Initialize() PURE;

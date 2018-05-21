@@ -18,6 +18,10 @@
 #include "Monster.h"
 #include "Monster_Skell.h"
 #include "Monster_Banshee.h"
+#include "Belial.h"
+#include "Belial_Hand.h"
+#include "Belial_CenterParticle.h"
+#include "Belial_Particle.h"
 
 #include "Player.h"
 
@@ -62,6 +66,31 @@ public:
 
 		return pObj;
 	}
+
+	static CObj* CreateObj(const bool& bIsLeft, const D3DXVECTOR3* pPos)
+	{
+		CObj* pObj = new T;
+		if (FAILED(pObj->Initialize()))
+			Safe_Delete(pObj);
+
+		pObj->SetPos(pPos);
+		pObj->SetIsLeft(bIsLeft);
+
+		return pObj;
+	}
+
+	static CObj* CreateObj(const D3DXVECTOR3* pPos, const D3DXVECTOR3* pDir)
+	{
+		CObj* pObj = new T;
+		if (FAILED(pObj->Initialize()))
+			Safe_Delete(pObj);
+
+		pObj->SetPos(pPos);
+		pObj->SetDir(pDir);
+
+		return pObj;
+	}
+
 
 	// OBJ_BACKGROUND
 	static CObj* CreateBackGround(const std::wstring& wstrStateKey)
@@ -161,9 +190,12 @@ public:
 
 	// OBJ_ITEM
 
-	static CObj* CreateBullet(const std::wstring& wstrStateKey, const int& iAtt, const FRAME* pFrame, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr, const D3DXVECTOR3* pDir = nullptr)
+	static CObj* CreateBullet(BULLETID eID, const std::wstring& wstrStateKey, const int& iAtt, const FRAME* pFrame, const HITBOX* pHitBox, const D3DXVECTOR3* pPos = nullptr, const D3DXVECTOR3* pDir = nullptr)
 	{
 		CObj* pObj = new CBullet;
+
+		if (FAILED(pObj->Initialize()))
+			return nullptr;
 
 		pObj->SetFrame(pFrame);
 		pObj->SetStateKey(wstrStateKey);
@@ -171,9 +203,7 @@ public:
 		pObj->SetPos(pPos);
 		pObj->SetDir(pDir);
 		dynamic_cast<CBullet*>(pObj)->SetAtt(iAtt);
-
-		if (FAILED(pObj->Initialize()))
-			return nullptr;
+		dynamic_cast<CBullet*>(pObj)->SetBulletID(eID);
 
 		return pObj;
 	}

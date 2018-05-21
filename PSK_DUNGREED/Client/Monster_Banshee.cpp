@@ -36,6 +36,8 @@ HRESULT CMonster_Banshee::Initialize()
 	}
 
 	InitAttributes();
+
+	return S_OK;
 }
 
 void CMonster_Banshee::InitAttributes()
@@ -180,13 +182,13 @@ int CMonster_Banshee::Update()
 		m_eCurState = ATTACK;
 		m_fAttackTime = 3.f;
 
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 9; i++)
 		{
 			//Create Bullet
 			SoundManager->PlaySound(L"BansheeAttack.wav", CSoundManager::MONSTER);
-			float fAngle = m_fAngle + 60.f * i;
+			float fAngle = m_fAngle + 40.f * i;
 			D3DXVECTOR3 vDir = D3DXVECTOR3(sinf(D3DXToRadian(fAngle)), cosf(D3DXToRadian(fAngle)), 0.f);
-			CObj* pBullet = CAbstractFactory<CBullet>::CreateBullet(L"Banshee", m_tData.iMinAtt, &FRAME(0.f, 4.f, 4.f), &HITBOX(0.f, 0.f, 52.f, 64.f), &m_tInfo.vPos, &vDir);
+			CObj* pBullet = CAbstractFactory<CBullet>::CreateBullet(BULLET_BANSHEE, L"Banshee", m_tData.iMinAtt, &FRAME(0.f, 4.f, 4.f), &HITBOX(0.f, 0.f, 52.f, 64.f), &m_tInfo.vPos, &vDir);
 			ObjectManager->AddObject(OBJ_BULLET, pBullet);
 		}
 	}

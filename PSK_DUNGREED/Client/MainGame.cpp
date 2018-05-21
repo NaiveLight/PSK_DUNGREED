@@ -9,6 +9,8 @@
 #include "KeyManager.h"
 #include "TimeManager.h"
 #include "SoundManager.h"
+#include "DataSubject.h"
+#include "CollisionManager.h"
 
 CMainGame::CMainGame()
 {
@@ -21,8 +23,7 @@ CMainGame::~CMainGame()
 
 HRESULT CMainGame::Initialize()
 {
-	//ShowCursor(FALSE);
-	//TextureManager->InsertTexture(L"BACKGROUND", L"")
+	ShowCursor(FALSE);
 	srand(unsigned(time(nullptr)));
 
 	D3DXMatrixIdentity(&m_matIdentity);
@@ -75,7 +76,7 @@ void CMainGame::Update()
 	if (KeyManager->KeyDown(VK_F8))
 		SceneManager->ChangeScene(SCENE_ROOM3);
 	if (KeyManager->KeyDown(VK_F9))
-		SceneManager->ChangeScene(SCENE_ROOM3);
+		SceneManager->ChangeScene(SCENE_BOSSROOM);
 
 	TimeManager->SetTime();
 	SceneManager->Update();
@@ -103,6 +104,9 @@ void CMainGame::Render()
 void CMainGame::Release()
 {
 	SoundManager->StopAll();
+
+	CCollisionManager::GetInstance()->DestroyInstance();
+	CDataSubject::GetInstance()->DestroyInstance();
 	SoundManager->DestroyInstance();
 	KeyManager->DestroyInstance();
 	TimeManager->DestroyInstance();

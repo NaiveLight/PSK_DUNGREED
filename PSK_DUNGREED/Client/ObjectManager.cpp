@@ -43,9 +43,6 @@ int CObjectManager::Update()
 
 	for (int i = 0; i < OBJ_END; ++i)
 	{
-		//if (i == OBJ_BULLET)
-		//	std::cout << m_ObjList[i].size() << std::endl;
-
 		auto iter = m_ObjList[i].begin();
 		auto iter_end = m_ObjList[i].end();
 
@@ -62,7 +59,7 @@ int CObjectManager::Update()
 		}
 	}
 
-	CCollisionManager::BulletToPlayer(&m_ObjList[OBJ_BULLET], dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front()));
+	CCollisionManager::BulletToPlayer(&m_ObjList[OBJ_BULLET], dynamic_cast<CPlayer*>(ObjectManager->GetPlayer()));
 
 	ScrollManager->Update();
 
