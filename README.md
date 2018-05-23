@@ -8,5 +8,3 @@ Just For Study
 Copyright TEAM HORAY. 2018 ALL Rights Reserved
 
 https://www.youtube.com/embed/-Z2aLG9Gm-A
-
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/-Z2aLG9Gm-A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
