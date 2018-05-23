@@ -26,6 +26,11 @@ const D3DXMATRIX * CPlayerObserver::GetMatrix(void) const
 	return &m_matPlayer;
 }
 
+const DATA * CPlayerObserver::GetBossData() const
+{
+	return &m_tBossData;
+}
+
 void CPlayerObserver::Update(int iMessage, void * pData)
 {
 	auto* pDatalist = CDataSubject::GetInstance()->GetDatalist(iMessage);
@@ -47,6 +52,10 @@ void CPlayerObserver::Update(int iMessage, void * pData)
 
 	case PLAYER_MATRIX:
 		m_matPlayer = *((D3DXMATRIX*)(*iter));
+		break;
+
+	case BOSS_DATA:
+		m_tBossData = *((DATA*)(*iter));
 		break;
 	}
 }

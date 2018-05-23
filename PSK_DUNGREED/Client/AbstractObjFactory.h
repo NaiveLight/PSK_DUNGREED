@@ -42,6 +42,7 @@
 #include "UI_Button.h"
 #include "HpBar_Player.h"
 #include "DashBar.h"
+#include "HpBar_Boss.h"
 
 template <typename T>
 class CAbstractFactory

@@ -78,4 +78,5 @@ void CDashBar::Render()
 
 void CDashBar::Release()
 {
+	Safe_Delete(m_pObserver);
 }

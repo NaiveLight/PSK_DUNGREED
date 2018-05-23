@@ -11,6 +11,7 @@
 #include "CollisionManager.h"
 #include "SoundManager.h"
 #include "Belial_Hand.h"
+#include "DataSubject.h"
 
 CBelial::CBelial()
 {
@@ -34,8 +35,8 @@ void CBelial::InitAttributes()
 	m_tData.fAttSpeed = 3.f;
 
 	m_tData.iMinAtt = 10;
-	m_tData.iCurHp = 100;
-	m_tData.iMaxHp = 500;
+	m_tData.iCurHp = 400;
+	m_tData.iMaxHp = 400;
 
 	m_tData.iGold = (rand() % 3000);
 
@@ -65,6 +66,8 @@ HRESULT CBelial::Initialize()
 	}
 
 	InitAttributes();
+
+	CDataSubject::GetInstance()->AddData(BOSS_DATA, &m_tData);
 
 	return S_OK;
 }
@@ -146,6 +149,7 @@ int CBelial::Update()
 		m_pParticle->Update();
 		m_pLeftHand->Update();
 		m_pRightHand->Update();
+		CDataSubject::GetInstance()->Notify(BOSS_DATA);
 		return 0;
 	}
 		
@@ -166,7 +170,7 @@ int CBelial::Update()
 		m_pRightHand->Update();
 
 		m_bCircleEffect = true;
-
+		CDataSubject::GetInstance()->Notify(BOSS_DATA);
 		return 0;
 	}
 
@@ -186,7 +190,7 @@ int CBelial::Update()
 			D3DXVECTOR3 vPos = D3DXVECTOR3(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY* 0.5f, 0.f);
 			ScrollManager->FocusingStart(vPos, 7.f);
 		}
-			
+		CDataSubject::GetInstance()->Notify(BOSS_DATA);
 		return 0;
 	}
 
@@ -204,6 +208,7 @@ int CBelial::Update()
 			m_fAlpha = 255.f;
 			m_bIsFade = false;
 			SoundManager->PlayBGM(L"BG_BOSS.wav");
+			CDataSubject::GetInstance()->Notify(BOSS_DATA);
 		}
 	}
 	else
@@ -253,6 +258,12 @@ int CBelial::Update()
 		}
 		else
 		{
+			if (!m_bUIAdded)
+			{
+				ObjectManager->AddObject(OBJ_UI, CAbstractFactory<CHpBar_Boss>::CreateObj());
+				m_bUIAdded = true;
+			}
+
 			m_fAttTime -= m_fTime;
 
 			if (m_fAttTime <= 0.f)
@@ -289,6 +300,8 @@ int CBelial::Update()
 
 	UpdateMatrix();
 	UpdateHitBox();
+
+	CDataSubject::GetInstance()->Notify(BOSS_DATA);
 
 	m_pLeftHand->Update();
 	m_pRightHand->Update();
@@ -402,7 +415,7 @@ void CBelial::Attack()
 			if (fAngle > 360.f)
 				fAngle -= 360.f;
 			D3DXVECTOR3 vDir = D3DXVECTOR3(sinf(D3DXToRadian(fAngle)), cosf(D3DXToRadian(fAngle)), 0.f);
-			CObj* pBullet = CAbstractFactory<CBullet>::CreateBullet(BULLET_BELIAL_HEAD, L"BossHead", m_tData.iMinAtt, &FRAME(0.f, 2.f, 2.f), &HITBOX(0.f, 0.f, 52.f, 52.f), &D3DXVECTOR3(m_tInfo.vPos.x +32.f, m_tInfo.vPos.y + 128.f, 0.f), &vDir);
+			CObj* pBullet = CAbstractFactory<CBullet>::CreateBullet(BULLET_BELIAL_HEAD, L"BossHead", m_tData.iMinAtt, &FRAME(0.f, 6.f, 2.f), &HITBOX(0.f, 0.f, 52.f, 52.f), &D3DXVECTOR3(m_tInfo.vPos.x +32.f, m_tInfo.vPos.y + 128.f, 0.f), &vDir);
 			ObjectManager->AddObject(OBJ_BULLET, pBullet);
 		}
 		m_fBulletTime = 0.2f;

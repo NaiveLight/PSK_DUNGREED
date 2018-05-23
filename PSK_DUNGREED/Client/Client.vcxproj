@@ -167,6 +167,7 @@
     <ClInclude Include="Effect_Alpha.h" />
     <ClInclude Include="Effect_Extinction.h" />
     <ClInclude Include="HitBox.h" />
+    <ClInclude Include="HpBar_Boss.h" />
     <ClInclude Include="HpBar_Player.h" />
     <ClInclude Include="HpEffect.h" />
     <ClInclude Include="KeyManager.h" />
@@ -233,6 +234,7 @@
     <ClCompile Include="Effect_Alpha.cpp" />
     <ClCompile Include="Effect_Extinction.cpp" />
     <ClCompile Include="HitBox.cpp" />
+    <ClCompile Include="HpBar_Boss.cpp" />
     <ClCompile Include="HpBar_Player.cpp" />
     <ClCompile Include="HpEffect.cpp" />
     <ClCompile Include="KeyManager.cpp" />

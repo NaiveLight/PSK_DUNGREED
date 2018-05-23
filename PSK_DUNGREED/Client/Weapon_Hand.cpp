@@ -8,6 +8,7 @@
 #include "TextureManager.h"
 #include "CollisionManager.h"
 #include "TimeManager.h"
+#include "SoundManager.h"
 
 CWeapon_Hand::CWeapon_Hand()
 {
@@ -122,6 +123,7 @@ void CWeapon_Hand::UpdateMatrix()
 
 void CWeapon_Hand::Attack()
 {
+	SoundManager->PlaySound(L"ATTACK_HAND.wav", CSoundManager::PATTACK);
 	m_bAttack = true;
 	m_bTempLeft = m_bIsLeft;
 	m_vOrigin = m_tInfo.vPos;

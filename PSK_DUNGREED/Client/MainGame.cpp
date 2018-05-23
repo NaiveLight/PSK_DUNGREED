@@ -105,7 +105,7 @@ void CMainGame::Release()
 {
 	SoundManager->StopAll();
 
-	CCollisionManager::GetInstance()->DestroyInstance();
+	//CCollisionManager::GetInstance()->DestroyInstance();
 	CDataSubject::GetInstance()->DestroyInstance();
 	SoundManager->DestroyInstance();
 	KeyManager->DestroyInstance();

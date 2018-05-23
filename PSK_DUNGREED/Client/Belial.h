@@ -54,5 +54,6 @@ private:
 	bool m_bCircleEffect = false;
 	bool m_bDigEffect = false; // ´ë°¢¼±
 	bool m_bIsOver = false;
+	bool m_bUIAdded = false;
 };
 

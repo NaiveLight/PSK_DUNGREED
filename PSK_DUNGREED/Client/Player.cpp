@@ -443,6 +443,8 @@ void CPlayer::Dash()
 		//마우스 우측 클릭 시 대시
 		if (KeyManager->KeyDown(VK_RBUTTON))
 		{
+			SoundManager->Update();
+			SoundManager->PlaySound(L"Dash.wav", CSoundManager::PLAYER);
 			m_bDash = true;
 			m_tPData.fDashTime = 0.1f;
 			m_tPData.iDashCnt--;

@@ -187,6 +187,9 @@
     <Filter Include="소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle">
       <UniqueIdentifier>{8b305043-4a39-4631-b6f8-11f9610fd386}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\08.UI\05.HpBar_Boss">
+      <UniqueIdentifier>{75287ce3-4a58-4f1e-9ba7-6093426c8948}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -384,6 +387,9 @@
     <ClInclude Include="Belial_Particle.h">
       <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle</Filter>
     </ClInclude>
+    <ClInclude Include="HpBar_Boss.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -571,6 +577,9 @@
     </ClCompile>
     <ClCompile Include="Belial_Particle.cpp">
       <Filter>소스 파일\02.Object\05.Actor\02.Boss\Belial_Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="HpBar_Boss.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

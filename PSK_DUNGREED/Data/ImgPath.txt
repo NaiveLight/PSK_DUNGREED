@@ -62,6 +62,10 @@ TILE|Pillar|4|..\Texture\TILE\Pillar\Pillar0%d.png
 TILE|Sand|9|..\Texture\TILE\Sand\Sand0%d.png
 TILE|Stone|23|..\Texture\TILE\Stone\Stone00%d.png
 TILE|Town|12|..\Texture\TILE\Town\Town0%d.png
+UI_BOSS|BossHp|1|..\Texture\UI\UI_BOSS\BossHp\BossHp0%d.png
+UI_BOSS|BossHpBack|1|..\Texture\UI\UI_BOSS\BossHpBack\BossHpBack0%d.png
+UI_BOSS|BossHpBase|1|..\Texture\UI\UI_BOSS\BossHpBase\BossHpBase0%d.png
+UI_BOSS|BossIcon|1|..\Texture\UI\UI_BOSS\BossIcon\BossIcon0%d.png
 UI_BUTTON|Exit|2|..\Texture\UI\UI_BUTTON\Exit\Exit0%d.png
 UI_BUTTON|Option|2|..\Texture\UI\UI_BUTTON\Option\Option0%d.png
 UI_BUTTON|Play|2|..\Texture\UI\UI_BUTTON\Play\Play0%d.png

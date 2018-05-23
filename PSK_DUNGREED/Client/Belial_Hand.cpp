@@ -169,7 +169,7 @@ void CBelial_Hand::FrameMove()
 				m_tData.iMinAtt
 				, true
 				, false
-				, &HITBOX(m_tInfo.vPos.x + (m_bIsLeft ? -508.f : 508.f), m_tInfo.vPos.y, float(WINCX), 220.f)
+				, &HITBOX(m_tInfo.vPos.x + (m_bIsLeft ? -508.f : 508.f), m_tInfo.vPos.y, float(WINCX), 200.f)
 				, &D3DXVECTOR3(m_tInfo.vPos.x + (m_bIsLeft ? -508.f : 508.f), m_tInfo.vPos.y, 0.f)
 			));
 		}

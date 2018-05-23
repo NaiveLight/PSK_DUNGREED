@@ -211,7 +211,7 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					if (pPlayer->GetIsDown() || pPlayer->GetIsDash())
 						continue;
 
-					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 60.f)
+					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 58.f)
 						continue;
 
 					pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
@@ -223,11 +223,10 @@ bool CCollisionManager::PlayerToTile(CPlayer * pPlayer, CTileMap* pTileMap)
 					continue;
 				else
 				{
-					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 60.f)
+					if (pTile->vPos.y - 28.f < pPlayer->GetInfo()->vPos.y + 58.f)
 						continue;
 
 					pPlayer->SetPos(&D3DXVECTOR3(pPlayer->GetInfo()->vPos.x, pPlayer->GetInfo()->vPos.y - fMoveY, 0.f));
-					//pPlayer->SetVelocityY(0.f);
 					pPlayer->SetJump(false);
 					return true;
 				}
